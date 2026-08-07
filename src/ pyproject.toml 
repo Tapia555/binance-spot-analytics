@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "binance-spot-analytics"
+version = "0.1.0"
+description = "Analytical Binance Spot BTCUSDT strategy"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp>=3.10",
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "PyYAML>=6.0",
+    "python-dotenv>=1.0",
+    "websockets>=13.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.8"
+]
+
+[project.scripts]
+binance-bot = "src.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
