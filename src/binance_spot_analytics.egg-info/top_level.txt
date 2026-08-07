@@ -1,7 +1,0 @@
-data
-indicators
-reporting
-risk
-simulation
-storage
-strategy
