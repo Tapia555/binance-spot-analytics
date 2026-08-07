@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from collections.abc import AsyncIterator
+from typing import Any
 
 import websockets
 
@@ -16,7 +17,7 @@ class BinanceKlineStream:
         stream = f"{symbol.lower()}@kline_{interval}"
         self.url = f"{base_url.rstrip('/')}/{stream}"
 
-    async def messages(self, limit: int = 1) -> AsyncIterator[dict]:
+    async def messages(self, limit: int = 1) -> AsyncIterator[dict[str, Any]]:
         received = 0
 
         async with websockets.connect(self.url) as websocket:
@@ -24,3 +25,18 @@ class BinanceKlineStream:
                 raw_message = await websocket.recv()
                 received += 1
                 yield json.loads(raw_message)
+
+    async def closed_klines(
+        self,
+        limit: int = 1,
+    ) -> AsyncIterator[dict[str, Any]]:
+        received = 0
+
+        async with websockets.connect(self.url) as websocket:
+            while received < limit:
+                raw_message = await websocket.recv()
+                message = json.loads(raw_message)
+
+                if message.get("k", {}).get("x") is True:
+                    received += 1
+                    yield message

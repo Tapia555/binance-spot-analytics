@@ -13,3 +13,5 @@ reports/*
 !logs/.gitkeep
 !data/.gitkeep
 !reports/.gitkeep
+*.egg-info/
+
