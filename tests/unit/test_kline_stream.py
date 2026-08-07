@@ -40,3 +40,12 @@ def test_parse_kline():
     assert kline.close == 64050.0
     assert kline.volume == 12.5
     assert kline.closed is True
+
+
+def test_symbol_and_interval_are_normalized():
+    stream = KlineStream(
+        symbol="BTCUSDT",
+        interval="5m",
+    )
+
+    assert stream.url.endswith("/btcusdt@kline_5m")

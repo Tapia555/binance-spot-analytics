@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import asyncio
 import json
+from collections.abc import AsyncIterator, Awaitable, Callable
 from dataclasses import dataclass
 
 import aiohttp
@@ -51,16 +53,59 @@ class KlineStream:
             closed=bool(data["x"]),
         )
 
-    async def receive_once(self) -> Kline:
-        timeout = aiohttp.ClientTimeout(total=30)
+    async def listen(
+        self,
+        on_kline: Callable[[Kline], Awaitable[None]],
+        *,
+        reconnect_delay: float = 5.0,
+        stop_event: asyncio.Event | None = None,
+    ) -> None:
+        while stop_event is None or not stop_event.is_set():
+            try:
+                await self._listen_once(
+                    on_kline,
+                    stop_event=stop_event,
+                )
+            except (
+                aiohttp.ClientError,
+                asyncio.TimeoutError,
+                ConnectionError,
+            ):
+                if stop_event is not None and stop_event.is_set():
+                    break
+
+                await asyncio.sleep(reconnect_delay)
+
+    async def _listen_once(
+        self,
+        on_kline: Callable[[Kline], Awaitable[None]],
+        *,
+        stop_event: asyncio.Event | None,
+    ) -> None:
+        timeout = aiohttp.ClientTimeout(total=None)
 
         async with aiohttp.ClientSession(timeout=timeout) as session:
-            async with session.ws_connect(self.url) as websocket:
-                message = await websocket.receive()
+            async with session.ws_connect(
+                self.url,
+                heartbeat=20.0,
+            ) as websocket:
+                while stop_event is None or not stop_event.is_set():
+                    message = await websocket.receive()
 
-                if message.type != aiohttp.WSMsgType.TEXT:
-                    raise RuntimeError(
-                        f"unexpected websocket message: {message.type}"
-                    )
+                    if message.type == aiohttp.WSMsgType.TEXT:
+                        kline = self.parse_message(
+                            json.loads(message.data),
+                        )
+                        await on_kline(kline)
 
-                return self.parse_message(json.loads(message.data))
+                    elif message.type == aiohttp.WSMsgType.PING:
+                        await websocket.pong(message.data)
+
+                    elif message.type in {
+                        aiohttp.WSMsgType.CLOSE,
+                        aiohttp.WSMsgType.CLOSED,
+                        aiohttp.WSMsgType.ERROR,
+                    }:
+                        raise ConnectionError(
+                            "websocket connection closed",
+                        )
