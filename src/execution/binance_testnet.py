@@ -9,6 +9,8 @@ from urllib.parse import urlencode
 
 import requests
 from dotenv import load_dotenv
+from src.execution.order_validator import validate_limit_order
+
 
 
 class BinanceTestnetClient:
@@ -98,6 +100,32 @@ class BinanceTestnetClient:
         quantity: str,
         price: str,
     ) -> dict[str, Any]:
+        exchange_info = requests.get(
+            f"{self.base_url}/v3/exchangeInfo",
+            params={"symbol": symbol},
+            timeout=15,
+        )
+        exchange_info.raise_for_status()
+
+        symbol_info = exchange_info.json()["symbols"][0]
+
+        filters = {
+            item["filterType"]: item
+            for item in symbol_info["filters"]
+        }
+
+        validation = validate_limit_order(
+            price=price,
+            quantity=quantity,
+            filters=filters,
+        )
+
+        if not validation.valid:
+            raise ValueError(
+                "Invalid order: "
+                + "; ".join(validation.errors)
+            )
+
         return self._signed_request(
             "POST",
             "/v3/order",
