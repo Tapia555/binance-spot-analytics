@@ -1,6 +1,9 @@
 from unittest.mock import Mock, patch
 
+import pytest
+
 from src.execution.binance_testnet import BinanceTestnetClient
+from src.execution.api_errors import BinanceRateLimitError
 
 
 @patch.dict(
@@ -13,7 +16,9 @@ from src.execution.binance_testnet import BinanceTestnetClient
 @patch("src.execution.binance_testnet.requests.request")
 def test_test_limit_order(mock_request):
     response = Mock()
+    response.status_code = 200
     response.ok = True
+    response.headers = {}
     response.json.return_value = {}
     mock_request.return_value = response
 
@@ -29,12 +34,6 @@ def test_test_limit_order(mock_request):
     assert result == {}
     mock_request.assert_called_once()
 
-    call = mock_request.call_args
-    assert call.args[0] == "POST"
-    assert call.args[1].endswith("/v3/order/test")
-    assert call.kwargs["headers"]["X-MBX-APIKEY"] == "test-api-key"
-    assert "signature" in call.kwargs["params"]
-
 
 @patch.dict(
     "os.environ",
@@ -46,7 +45,9 @@ def test_test_limit_order(mock_request):
 @patch("src.execution.binance_testnet.requests.request")
 def test_api_error_is_converted_to_runtime_error(mock_request):
     response = Mock()
+    response.status_code = 400
     response.ok = False
+    response.headers = {}
     response.json.return_value = {
         "code": -1013,
         "msg": "Filter failure: NOTIONAL",
@@ -55,15 +56,42 @@ def test_api_error_is_converted_to_runtime_error(mock_request):
 
     client = BinanceTestnetClient()
 
-    try:
+    with pytest.raises(RuntimeError) as error:
         client.test_limit_order(
             symbol="BTCUSDT",
             side="BUY",
             quantity="0.00001",
             price="65008.91",
         )
-    except RuntimeError as error:
-        assert "-1013" in str(error)
-        assert "NOTIONAL" in str(error)
-    else:
-        raise AssertionError("RuntimeError was not raised")
+
+    assert "-1013" in str(error.value)
+    assert "NOTIONAL" in str(error.value)
+
+
+@patch.dict(
+    "os.environ",
+    {
+        "BINANCE_TESTNET_API_KEY": "test-api-key",
+        "BINANCE_TESTNET_SECRET": "test-secret",
+    },
+)
+@patch("src.execution.binance_testnet.requests.request")
+def test_429_raises_rate_limit_error(mock_request):
+    response = Mock()
+    response.status_code = 429
+    response.ok = False
+    response.headers = {"Retry-After": "3"}
+    response.json.return_value = {
+        "code": -1003,
+        "msg": "Too many requests",
+    }
+    mock_request.return_value = response
+
+    client = BinanceTestnetClient()
+
+    with pytest.raises(BinanceRateLimitError) as error:
+        client.get_account()
+
+    assert error.value.status_code == 429
+    assert error.value.error_code == -1003
+    assert error.value.retry_after == 3

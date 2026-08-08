@@ -9,8 +9,11 @@ from urllib.parse import urlencode
 
 import requests
 from dotenv import load_dotenv
-from src.execution.order_validator import validate_limit_order
 
+from .api_errors import (
+    BinanceApiError,
+    BinanceRateLimitError,
+)
 
 
 class BinanceTestnetClient:
@@ -28,7 +31,9 @@ class BinanceTestnetClient:
             raise RuntimeError("Testnet credentials are missing")
 
         if not self.api_key.isascii() or not self.secret.isascii():
-            raise RuntimeError("Credentials must contain ASCII characters")
+            raise RuntimeError(
+                "Credentials must contain ASCII characters"
+            )
 
     def _signed_request(
         self,
@@ -61,12 +66,47 @@ class BinanceTestnetClient:
             timeout=15,
         )
 
-        data = response.json()
+        retry_after_header = response.headers.get(
+            "Retry-After"
+        )
+
+        try:
+            retry_after = (
+                float(retry_after_header)
+                if retry_after_header
+                else None
+            )
+        except ValueError:
+            retry_after = None
+
+        try:
+            data = response.json()
+        except ValueError:
+            data = {
+                "code": None,
+                "msg": response.text,
+            }
+
+        if response.status_code in {418, 429}:
+            raise BinanceRateLimitError(
+                status_code=response.status_code,
+                error_code=data.get("code"),
+                message=data.get(
+                    "msg",
+                    "Too many requests",
+                ),
+                retry_after=retry_after,
+            )
 
         if not response.ok:
-            raise RuntimeError(
-                f"Binance API error {data.get('code')}: "
-                f"{data.get('msg')}"
+            raise BinanceApiError(
+                status_code=response.status_code,
+                error_code=data.get("code"),
+                message=data.get(
+                    "msg",
+                    "Unknown Binance API error",
+                ),
+                retry_after=retry_after,
             )
 
         return data
@@ -100,32 +140,6 @@ class BinanceTestnetClient:
         quantity: str,
         price: str,
     ) -> dict[str, Any]:
-        exchange_info = requests.get(
-            f"{self.base_url}/v3/exchangeInfo",
-            params={"symbol": symbol},
-            timeout=15,
-        )
-        exchange_info.raise_for_status()
-
-        symbol_info = exchange_info.json()["symbols"][0]
-
-        filters = {
-            item["filterType"]: item
-            for item in symbol_info["filters"]
-        }
-
-        validation = validate_limit_order(
-            price=price,
-            quantity=quantity,
-            filters=filters,
-        )
-
-        if not validation.valid:
-            raise ValueError(
-                "Invalid order: "
-                + "; ".join(validation.errors)
-            )
-
         return self._signed_request(
             "POST",
             "/v3/order",
@@ -184,6 +198,7 @@ class BinanceTestnetClient:
                 ).lower(),
             },
         )
+
     def get_open_orders(
         self,
         *,
@@ -195,15 +210,4 @@ class BinanceTestnetClient:
             {
                 "symbol": symbol,
             },
-        )
-
-    def sync_order(
-        self,
-        *,
-        symbol: str,
-        order_id: int,
-    ) -> dict[str, Any]:
-        return self.get_order(
-            symbol=symbol,
-            order_id=order_id,
         )
