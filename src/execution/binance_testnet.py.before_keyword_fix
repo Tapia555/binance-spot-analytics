@@ -26,6 +26,7 @@ class BinanceTestnetClient:
         self.base_url = base_url.rstrip("/")
         self.api_key = os.getenv("BINANCE_TESTNET_API_KEY")
         self.secret = os.getenv("BINANCE_TESTNET_SECRET")
+        self._session = requests.Session()
         self.timeout = 10.0
 
         if not self.api_key or not self.secret:
@@ -47,7 +48,7 @@ class BinanceTestnetClient:
         params["timestamp"] = self._timestamp()
         params["signature"] = self._sign(params)
 
-        response = requests.request(
+        response = self._session.request(
             method=method,
             url=f"{self.base_url}{path}",
             params=params,
@@ -61,19 +62,6 @@ class BinanceTestnetClient:
             data = response.json()
         except ValueError:
             data = {}
-
-        if response.status_code in (418, 429):
-            retry_after = response.headers.get("Retry-After")
-
-            raise BinanceRateLimitError(
-                code=data.get("code"),
-                message=data.get(
-                    "msg",
-                    response.text or "Rate limit exceeded",
-                ),
-                status_code=response.status_code,
-                retry_after=retry_after,
-            )
 
         if response.status_code >= 400:
             raise BinanceApiError(
@@ -187,7 +175,7 @@ class BinanceTestnetClient:
         return self._signed_request(
             "GET",
             "/v3/account",
-            params={
+            {
                 "omitZeroBalances": str(
                     omit_zero_balances
                 ).lower(),
