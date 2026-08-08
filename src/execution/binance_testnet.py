@@ -179,6 +179,35 @@ class BinanceTestnetClient:
             },
         )
 
+    def get_exchange_info(
+        self,
+        *,
+        symbol: str,
+    ) -> dict[str, Any]:
+        response = requests.request(
+            method="GET",
+            url=f"{self.base_url}/v3/exchangeInfo",
+            params={"symbol": symbol.upper()},
+            timeout=self.timeout,
+        )
+
+        try:
+            data = response.json()
+        except ValueError:
+            data = {}
+
+        if response.status_code >= 400:
+            raise BinanceApiError(
+                code=data.get("code"),
+                message=data.get(
+                    "msg",
+                    response.text or "HTTP request failed",
+                ),
+                status_code=response.status_code,
+            )
+
+        return data or {}
+
     def get_account(
         self,
         *,
