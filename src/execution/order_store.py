@@ -7,6 +7,7 @@ from src.execution.order_event_parser import (
     parse_execution_report,
 )
 
+from decimal import Decimal
 
 class OrderStore:
     def __init__(self) -> None:
@@ -36,3 +37,26 @@ class OrderStore:
     def remove(self, order_id: int) -> None:
         with self._lock:
             self._orders.pop(order_id, None)
+
+    def apply_rest_order(self, payload: dict) -> OrderUpdate:
+        update = OrderUpdate(
+            symbol=str(payload["symbol"]),
+            order_id=int(payload["orderId"]),
+            status=str(payload["status"]),
+            side=str(payload["side"]),
+            order_type=str(payload["type"]),
+            executed_quantity=Decimal(
+                str(payload["executedQty"])
+            ),
+            cumulative_quote_quantity=Decimal(
+                str(payload["cummulativeQuoteQty"])
+            ),
+            event_time_ms=int(
+                payload.get("updateTime", payload["time"])
+            ),
+        )
+
+        with self._lock:
+            self._orders[update.order_id] = update
+
+        return update

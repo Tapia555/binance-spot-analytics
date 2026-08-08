@@ -47,6 +47,25 @@ class AccountStore:
         with self._lock:
             return list(self._balances.values())
 
+    def apply_snapshot(
+        self,
+        *,
+        balances: dict[str, dict],
+        update_time_ms: int | None,
+    ) -> None:
+        snapshot = {
+            asset: Balance(
+                asset=asset,
+                free=Decimal(str(item["free"])),
+                locked=Decimal(str(item["locked"])),
+            )
+            for asset, item in balances.items()
+        }
+
+        with self._lock:
+            self._balances = snapshot
+            self._last_update_ms = update_time_ms
+
     @property
     def last_update_ms(self) -> int | None:
         with self._lock:

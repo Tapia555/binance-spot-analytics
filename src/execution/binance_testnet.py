@@ -12,7 +12,10 @@ from dotenv import load_dotenv
 
 
 class BinanceTestnetClient:
-    def __init__(self, base_url: str = "https://testnet.binance.vision/api"):
+    def __init__(
+        self,
+        base_url: str = "https://testnet.binance.vision/api",
+    ):
         load_dotenv()
 
         self.base_url = base_url.rstrip("/")
@@ -49,7 +52,10 @@ class BinanceTestnetClient:
             method,
             f"{self.base_url}{path}",
             headers={"X-MBX-APIKEY": self.api_key},
-            params={**signed_params, "signature": signature},
+            params={
+                **signed_params,
+                "signature": signature,
+            },
             timeout=15,
         )
 
@@ -82,4 +88,94 @@ class BinanceTestnetClient:
                 "quantity": quantity,
                 "price": price,
             },
+        )
+
+    def place_limit_order(
+        self,
+        *,
+        symbol: str,
+        side: str,
+        quantity: str,
+        price: str,
+    ) -> dict[str, Any]:
+        return self._signed_request(
+            "POST",
+            "/v3/order",
+            {
+                "symbol": symbol,
+                "side": side,
+                "type": "LIMIT",
+                "timeInForce": "GTC",
+                "quantity": quantity,
+                "price": price,
+                "newOrderRespType": "RESULT",
+            },
+        )
+
+    def get_order(
+        self,
+        *,
+        symbol: str,
+        order_id: int,
+    ) -> dict[str, Any]:
+        return self._signed_request(
+            "GET",
+            "/v3/order",
+            {
+                "symbol": symbol,
+                "orderId": order_id,
+            },
+        )
+
+    def cancel_order(
+        self,
+        *,
+        symbol: str,
+        order_id: int,
+    ) -> dict[str, Any]:
+        return self._signed_request(
+            "DELETE",
+            "/v3/order",
+            {
+                "symbol": symbol,
+                "orderId": order_id,
+            },
+        )
+
+    def get_account(
+        self,
+        *,
+        omit_zero_balances: bool = True,
+    ) -> dict[str, Any]:
+        return self._signed_request(
+            "GET",
+            "/v3/account",
+            {
+                "omitZeroBalances": str(
+                    omit_zero_balances
+                ).lower(),
+            },
+        )
+    def get_open_orders(
+        self,
+        *,
+        symbol: str,
+    ) -> list[dict[str, Any]]:
+        return self._signed_request(
+            "GET",
+            "/v3/openOrders",
+            {
+                "symbol": symbol,
+            },
+        )
+
+    def sync_order(
+        self,
+        *,
+        symbol: str,
+        order_id: int,
+    ) -> dict[str, Any]:
+        return self.get_order(
+            symbol=symbol,
+            order_id=order_id,
         )
