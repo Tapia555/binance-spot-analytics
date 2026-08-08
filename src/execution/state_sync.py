@@ -1,12 +1,8 @@
 from __future__ import annotations
 
 from src.execution.account_store import AccountStore
-from src.execution.execution_state import ExecutionState
-from src.execution.order_store import OrderStore
-
-
-from src.execution.account_store import AccountStore
 from src.execution.binance_testnet import BinanceTestnetClient
+from src.execution.execution_state import ExecutionState
 from src.execution.order_store import OrderStore
 
 
