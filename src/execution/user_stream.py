@@ -40,6 +40,10 @@ class BinanceUserStream:
             hashlib.sha256,
         ).hexdigest()
 
+    def handle_message(self, message: dict[str, Any]) -> None:
+        print(json.dumps(message, indent=2))
+
+
     def subscribe(self) -> None:
         timestamp = int(time.time() * 1000)
 
@@ -78,7 +82,7 @@ class BinanceUserStream:
 
                 message = json.loads(raw_message)
 
-                print(json.dumps(message, indent=2))
+                self.handle_message(message)
 
                 if message.get("status", 0) >= 400:
                     raise RuntimeError(message)
