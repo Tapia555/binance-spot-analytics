@@ -29,6 +29,6 @@ def parse_order_event(payload: dict[str, Any]) -> OrderEvent | None:
         side=payload.get("S"),
         order_type=payload.get("o"),
         price=payload.get("p"),
-        original_quantity=payload.get("q"),
+        original_quantity=payload.get("test_binance_user_stream_order_store.py"),
         executed_quantity=payload.get("z"),
     )

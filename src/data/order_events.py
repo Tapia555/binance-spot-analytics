@@ -37,7 +37,7 @@ def parse_execution_report(payload: dict) -> OrderUpdate:
         side=payload["S"],
         order_type=payload["o"],
         price=float(payload["p"]),
-        quantity=float(payload["q"]),
+        quantity=float(payload["test_binance_user_stream_order_store.py"]),
         executed_quantity=float(payload["z"]),
         event_time=int(payload["E"]),
     )
