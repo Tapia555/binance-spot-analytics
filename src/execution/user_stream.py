@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import hmac
-import json
 import os
 import time
+import json
 from collections.abc import Callable
 from typing import Any
 
@@ -51,7 +51,7 @@ class BinanceUserStream:
         ).hexdigest()
 
     def handle_message(self, message: dict[str, Any]) -> None:
-        print(json.dumps(message, indent=2))
+        return None
 
     def _subscription_request(self) -> dict[str, Any]:
         params: dict[str, Any] = {
@@ -93,7 +93,11 @@ class BinanceUserStream:
                 if message.get("status", 0) >= 400:
                     raise RuntimeError(message)
 
+                if message.get("result") is not None:
+                    continue
+
                 self.on_message(message)
+
 
         finally:
             connection.close()
