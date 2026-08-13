@@ -50,9 +50,11 @@ class OrderStore:
 
         with self._lock:
             previous = self._orders.get(update.order_id)
+            last_transition = self._history.get(update.order_id, [])[-1] if self._history.get(update.order_id) else None
+            if last_transition is not None and update.event_time_ms < last_transition.event_time_ms:
+                return previous if previous is not None else update
 
             self._orders[update.order_id] = update
-
             self._history.setdefault(update.order_id, []).append(
                 OrderTransition(
                     order_id=update.order_id,
@@ -110,6 +112,9 @@ class OrderStore:
         )
 
         with self._lock:
+            previous = self._orders.get(update.order_id)
+            if previous is not None and update.event_time_ms < previous.event_time_ms:
+                return previous
             self._orders[update.order_id] = update
 
         return update
