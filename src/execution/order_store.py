@@ -85,7 +85,15 @@ class OrderStore:
             self._orders.pop(order_id, None)
             self._history.pop(order_id, None)
 
+    def sync_rest_orders(self, payloads: list[dict]) -> None:
+        for payload in payloads:
+            self.apply_rest_order(payload)
+
     def apply_rest_order(self, payload: dict) -> OrderUpdate:
+        update_time = payload.get("updateTime")
+        if update_time is None:
+            update_time = payload["time"]
+
         update = OrderUpdate(
             symbol=str(payload["symbol"]),
             order_id=int(payload["orderId"]),
@@ -98,9 +106,7 @@ class OrderStore:
             cumulative_quote_quantity=Decimal(
                 str(payload["cummulativeQuoteQty"])
             ),
-            event_time_ms=int(
-                payload.get("updateTime", payload["time"])
-            ),
+            event_time_ms=int(update_time),
         )
 
         with self._lock:

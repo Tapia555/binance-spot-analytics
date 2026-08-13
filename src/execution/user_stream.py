@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import hmac
 import os
 import time
@@ -16,6 +17,7 @@ from websocket import WebSocketTimeoutException
 WS_URL = "wss://ws-api.testnet.binance.vision/ws-api/v3"
 
 MessageHandler = Callable[[dict[str, Any]], None]
+ResyncHandler = Callable[[list[dict[str, Any]]], None]
 
 
 class BinanceUserStream:
@@ -23,12 +25,16 @@ class BinanceUserStream:
         self,
         *,
         on_message: MessageHandler | None = None,
+        on_resync: ResyncHandler | None = None,
     ) -> None:
         load_dotenv()
 
         self.api_key = os.getenv("BINANCE_TESTNET_API_KEY")
         self.secret = os.getenv("BINANCE_TESTNET_SECRET")
         self.on_message = on_message or self.handle_message
+        self.on_resync = on_resync
+        self._stop = False
+        self._stop_event = False
 
         if not self.api_key or not self.secret:
             raise RuntimeError("Testnet credentials are missing")
@@ -101,3 +107,21 @@ class BinanceUserStream:
 
         finally:
             connection.close()
+
+
+    def stop(self) -> None:
+        self._stop = True
+
+    def run_forever(self, *, resync: Callable[[], list[dict[str, Any]]] | None = None) -> None:
+        delay = 1
+        while not self._stop:
+            try:
+                self.subscribe()
+                delay = 1
+            except Exception:
+                if self._stop:
+                    break
+                time.sleep(delay)
+                delay = min(delay * 2, 30)
+                if resync is not None and self.on_resync is not None:
+                    self.on_resync(resync())
