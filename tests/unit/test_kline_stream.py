@@ -7,10 +7,7 @@ def test_kline_url():
         interval="1m",
     )
 
-    assert stream.url == (
-        "wss://stream.testnet.binance.vision/ws/"
-        "btcusdt@kline_1m"
-    )
+    assert stream.url == ("wss://stream.testnet.binance.vision/ws/" "btcusdt@kline_1m")
 
 
 def test_parse_kline():

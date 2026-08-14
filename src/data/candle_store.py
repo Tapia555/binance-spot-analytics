@@ -63,8 +63,7 @@ class CandleStore:
         )
 
         self.frame = (
-            self.frame
-            .drop_duplicates(subset=["open_time"], keep="last")
+            self.frame.drop_duplicates(subset=["open_time"], keep="last")
             .sort_values("open_time")
             .tail(self.max_size)
             .reset_index(drop=True)

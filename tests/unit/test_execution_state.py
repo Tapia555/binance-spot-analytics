@@ -51,9 +51,7 @@ def test_state_applies_balance_event():
         },
     }
 
-    assert state.apply_event(event) == (
-        "outboundAccountPosition"
-    )
+    assert state.apply_event(event) == ("outboundAccountPosition")
 
     snapshot = state.snapshot()
 

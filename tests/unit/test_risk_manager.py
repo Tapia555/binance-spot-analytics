@@ -10,7 +10,6 @@ from execution.position_store import Position, PositionStore
 from execution.risk_manager import RiskManager, RiskRejected
 from execution.symbol_rules_service import SymbolRules
 
-
 RULES = SymbolRules(
     symbol="BTCUSDT",
     min_price=Decimal("0.01"),

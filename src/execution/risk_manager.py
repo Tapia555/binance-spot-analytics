@@ -30,7 +30,9 @@ class RiskManager:
         self.positions = positions
         self.max_portfolio_quote_pct = Decimal(max_portfolio_quote_pct)
 
-    def evaluate(self, symbol: str, quote_asset: str, rules: SymbolRules) -> RiskDecision:
+    def evaluate(
+        self, symbol: str, quote_asset: str, rules: SymbolRules
+    ) -> RiskDecision:
         position = self.positions.get(symbol)
         if position is not None and position.is_open:
             return RiskDecision(False, Decimal("0"), "open_position_exists")
@@ -47,7 +49,9 @@ class RiskManager:
 
         return RiskDecision(True, max_notional)
 
-    def require_allowed(self, symbol: str, quote_asset: str, rules: SymbolRules) -> RiskDecision:
+    def require_allowed(
+        self, symbol: str, quote_asset: str, rules: SymbolRules
+    ) -> RiskDecision:
         decision = self.evaluate(symbol=symbol, quote_asset=quote_asset, rules=rules)
         if not decision.allowed:
             raise RiskRejected(decision.reason)

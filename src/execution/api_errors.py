@@ -14,9 +14,7 @@ class BinanceApiError(RuntimeError):
         self.message = message
         self.status_code = status_code
 
-        super().__init__(
-            f"Binance API error {code}: {message}"
-        )
+        super().__init__(f"Binance API error {code}: {message}")
 
 
 class BinanceRateLimitError(BinanceApiError):
@@ -28,11 +26,7 @@ class BinanceRateLimitError(BinanceApiError):
         status_code: int | None = None,
         retry_after: str | int | None = None,
     ) -> None:
-        self.retry_after = (
-            int(retry_after)
-            if retry_after is not None
-            else None
-        )
+        self.retry_after = int(retry_after) if retry_after is not None else None
 
         super().__init__(
             code=code,

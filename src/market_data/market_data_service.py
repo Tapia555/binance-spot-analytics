@@ -19,11 +19,15 @@ class MarketDataService:
     def __init__(self, client: Any) -> None:
         self.client = client
 
-    def get_closes(self, symbol: str, interval: str = "1m", limit: int = 100) -> list[float]:
+    def get_closes(
+        self, symbol: str, interval: str = "1m", limit: int = 100
+    ) -> list[float]:
         klines = self.client.get_klines(symbol=symbol, interval=interval, limit=limit)
         return [float(item[4]) for item in klines]
 
-    def get_candles(self, symbol: str, interval: str = "1m", limit: int = 100) -> list[Candle]:
+    def get_candles(
+        self, symbol: str, interval: str = "1m", limit: int = 100
+    ) -> list[Candle]:
         klines = self.client.get_klines(symbol=symbol, interval=interval, limit=limit)
         candles: list[Candle] = []
         for item in klines:

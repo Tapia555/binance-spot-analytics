@@ -32,9 +32,7 @@ class BinanceTestnetClient:
             raise RuntimeError("Testnet credentials are missing")
 
         if not self.api_key.isascii() or not self.secret.isascii():
-            raise RuntimeError(
-                "Credentials must contain ASCII characters"
-            )
+            raise RuntimeError("Credentials must contain ASCII characters")
 
     def _signed_request(
         self,
@@ -217,9 +215,7 @@ class BinanceTestnetClient:
             "GET",
             "/v3/account",
             params={
-                "omitZeroBalances": str(
-                    omit_zero_balances
-                ).lower(),
+                "omitZeroBalances": str(omit_zero_balances).lower(),
             },
         )
 

@@ -4,7 +4,6 @@ from typing import Any
 
 import pandas as pd
 
-
 CANDLE_COLUMNS = [
     "open_time",
     "open",

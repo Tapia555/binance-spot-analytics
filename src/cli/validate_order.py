@@ -37,9 +37,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.order_type == "LIMIT":
         if args.price is None:
-            raise SystemExit(
-                "--price is required for LIMIT orders"
-            )
+            raise SystemExit("--price is required for LIMIT orders")
 
         price = Decimal(args.price)
 

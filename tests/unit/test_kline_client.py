@@ -85,9 +85,7 @@ def test_kline_client_url():
         base_url="https://testnet.binance.vision/api/",
     )
 
-    assert client.base_url == (
-        "https://testnet.binance.vision/api"
-    )
+    assert client.base_url == ("https://testnet.binance.vision/api")
 
 
 @pytest.mark.asyncio

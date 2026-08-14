@@ -16,5 +16,7 @@ class TradingLoop:
         self.trading_engine = trading_engine
 
     def run_once(self, symbol: str, interval: str = "1m", limit: int = 100) -> Any:
-        closes = self.market_data.get_closes(symbol=symbol, interval=interval, limit=limit)
+        closes = self.market_data.get_closes(
+            symbol=symbol, interval=interval, limit=limit
+        )
         return self.trading_engine.on_closes(symbol, closes)

@@ -4,7 +4,12 @@ from execution.trade_signal import TradeSignal
 
 class RulesStub:
     def get_rules(self, symbol: str):
-        return {"baseAsset": "BTC", "quoteAsset": "USDT", "priceFilter": {"tickSize": "0.01"}, "lotSize": {"stepSize": "0.00001"}}
+        return {
+            "baseAsset": "BTC",
+            "quoteAsset": "USDT",
+            "priceFilter": {"tickSize": "0.01"},
+            "lotSize": {"stepSize": "0.00001"},
+        }
 
 
 class OrderValidatorStub:
@@ -31,7 +36,13 @@ def test_place_limit_order_is_idempotent_for_same_signal():
     rules = RulesStub()
     validator = OrderValidatorStub()
     risk = RiskManagerStub()
-    svc = ExecutionService(client, store=None, symbol_rules_service=rules, order_validator=validator, risk_manager=risk)
+    svc = ExecutionService(
+        client,
+        store=None,
+        symbol_rules_service=rules,
+        order_validator=validator,
+        risk_manager=risk,
+    )
 
     sig = TradeSignal(symbol="BTCUSDT", side="BUY", quantity="0.001", price="100000")
     r1 = svc.place_limit_order(sig)

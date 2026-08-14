@@ -15,9 +15,7 @@ def test_order_status_queries_order(capsys):
         "executedQty": "0.00000000",
     }
 
-    with patch(
-        "cli.order_status.BinanceTestnetClient"
-    ) as client_class:
+    with patch("cli.order_status.BinanceTestnetClient") as client_class:
         client_class.return_value.get_order.return_value = response
 
         result = main(

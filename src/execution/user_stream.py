@@ -13,7 +13,6 @@ import websocket
 from dotenv import load_dotenv
 from websocket import WebSocketTimeoutException
 
-
 WS_URL = "wss://ws-api.testnet.binance.vision/ws-api/v3"
 
 MessageHandler = Callable[[dict[str, Any]], None]
@@ -40,15 +39,10 @@ class BinanceUserStream:
             raise RuntimeError("Testnet credentials are missing")
 
         if not self.api_key.isascii() or not self.secret.isascii():
-            raise RuntimeError(
-                "Credentials must contain ASCII characters"
-            )
+            raise RuntimeError("Credentials must contain ASCII characters")
 
     def _signature(self, params: dict[str, Any]) -> str:
-        payload = "&".join(
-            f"{key}={params[key]}"
-            for key in sorted(params)
-        )
+        payload = "&".join(f"{key}={params[key]}" for key in sorted(params))
 
         return hmac.new(
             self.secret.encode("utf-8"),
@@ -80,9 +74,7 @@ class BinanceUserStream:
         )
 
         try:
-            connection.send(
-                json.dumps(self._subscription_request())
-            )
+            connection.send(json.dumps(self._subscription_request()))
 
             while True:
                 try:
@@ -104,15 +96,15 @@ class BinanceUserStream:
 
                 self.on_message(message)
 
-
         finally:
             connection.close()
-
 
     def stop(self) -> None:
         self._stop = True
 
-    def run_forever(self, *, resync: Callable[[], list[dict[str, Any]]] | None = None) -> None:
+    def run_forever(
+        self, *, resync: Callable[[], list[dict[str, Any]]] | None = None
+    ) -> None:
         delay = 1
         while not self._stop:
             try:

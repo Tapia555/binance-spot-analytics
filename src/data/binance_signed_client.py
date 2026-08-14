@@ -86,9 +86,9 @@ class BinanceSignedClient:
                 return await response.json()
 
     async def get_order(
-            self,
-            symbol: str,
-            order_id: int,
+        self,
+        symbol: str,
+        order_id: int,
     ) -> dict[str, Any]:
         params = self._signed_params(
             {
@@ -105,9 +105,9 @@ class BinanceSignedClient:
 
         async with aiohttp.ClientSession(timeout=timeout) as session:
             async with session.get(
-                    f"{self.base_url}/v3/order",
-                    params=params,
-                    headers=headers,
+                f"{self.base_url}/v3/order",
+                params=params,
+                headers=headers,
             ) as response:
                 response.raise_for_status()
                 return await response.json()

@@ -30,9 +30,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  symbol: {args.symbol.upper()}")
         print(f"  order_id: {args.order_id}")
         print()
-        print(
-            "To cancel this Testnet order, add: --confirm"
-        )
+        print("To cancel this Testnet order, add: --confirm")
         return 0
 
     client = BinanceTestnetClient()

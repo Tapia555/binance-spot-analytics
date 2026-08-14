@@ -12,9 +12,7 @@ def test_status_parser_default_symbol():
 
 
 def test_status_parser_custom_symbol():
-    args = build_parser().parse_args(
-        ["--symbol", "ETHUSDT"]
-    )
+    args = build_parser().parse_args(["--symbol", "ETHUSDT"])
 
     assert args.symbol == "ETHUSDT"
 
@@ -35,11 +33,12 @@ def test_status_main_prints_state(capsys):
         ),
     )
 
-    with patch(
-        "cli.status.StateSynchronizer.sync"
-    ), patch(
-        "cli.status.ExecutionState.snapshot",
-        return_value=snapshot,
+    with (
+        patch("cli.status.StateSynchronizer.sync"),
+        patch(
+            "cli.status.ExecutionState.snapshot",
+            return_value=snapshot,
+        ),
     ):
         result = main([])
 

@@ -6,9 +6,7 @@ from cli.validate_order import main
 
 
 def test_validate_limit_order():
-    with patch(
-        "cli.validate_order.BinanceTestnetClient"
-    ) as client_class:
+    with patch("cli.validate_order.BinanceTestnetClient") as client_class:
         result = main(
             [
                 "--symbol",
@@ -37,9 +35,7 @@ def test_validate_limit_order():
 
 
 def test_market_order_does_not_send_price():
-    with patch(
-        "cli.validate_order.BinanceTestnetClient"
-    ) as client_class:
+    with patch("cli.validate_order.BinanceTestnetClient") as client_class:
         result = main(
             [
                 "--symbol",

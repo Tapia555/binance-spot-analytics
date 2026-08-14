@@ -17,7 +17,9 @@ class WSMarketDataService:
     def __init__(self, ws_client: Any) -> None:
         self.ws_client = ws_client
 
-    def subscribe_kline(self, symbol: str, interval: str, on_update: Callable[[KlineUpdate], None]) -> None:
+    def subscribe_kline(
+        self, symbol: str, interval: str, on_update: Callable[[KlineUpdate], None]
+    ) -> None:
         stream = f"{symbol.lower()}@kline_{interval}"
 
         def handler(message: str | dict[str, Any]) -> None:

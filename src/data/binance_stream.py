@@ -66,4 +66,3 @@ class BinanceKlineStream:
                     return
 
                 await asyncio.sleep(self.reconnect_delay)
-

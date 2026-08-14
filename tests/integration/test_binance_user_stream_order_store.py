@@ -15,15 +15,11 @@ from execution.user_stream import BinanceUserStream
 def test_user_stream_updates_order_store():
     if os.getenv("RUN_TESTNET_USER_STREAM_TEST") != "1":
         pytest.skip(
-            "set RUN_TESTNET_USER_STREAM_TEST=1 "
-            "to run Testnet user stream test"
+            "set RUN_TESTNET_USER_STREAM_TEST=1 " "to run Testnet user stream test"
         )
 
     if os.getenv("CONFIRM_TESTNET_ORDER") != "yes":
-        pytest.skip(
-            "set CONFIRM_TESTNET_ORDER=yes "
-            "to place a Testnet order"
-        )
+        pytest.skip("set CONFIRM_TESTNET_ORDER=yes " "to place a Testnet order")
 
     store = OrderStore()
     client = BinanceTestnetClient()

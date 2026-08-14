@@ -42,9 +42,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.order_type == "LIMIT":
         if args.price is None:
-            raise SystemExit(
-                "--price is required for LIMIT orders"
-            )
+            raise SystemExit("--price is required for LIMIT orders")
         price = Decimal(args.price)
         if price <= 0:
             raise SystemExit("price must be greater than zero")
@@ -62,9 +60,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  price: {args.price}")
 
         print()
-        print(
-            "To send this Testnet order, add: --confirm"
-        )
+        print("To send this Testnet order, add: --confirm")
         return 0
 
     client = BinanceTestnetClient()

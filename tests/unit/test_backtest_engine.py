@@ -5,7 +5,9 @@ from strategy.ma_crossover_strategy import MACrossoverStrategy
 
 
 def test_backtest_engine_detects_trades_and_metrics():
-    strategy = MACrossoverStrategy(fast_period=3, slow_period=5, trend_period=8, rsi_period=5)
+    strategy = MACrossoverStrategy(
+        fast_period=3, slow_period=5, trend_period=8, rsi_period=5
+    )
     engine = BacktestEngine(strategy=strategy)
     closes = [10, 10, 10, 10, 10, 9, 9, 10, 12, 13, 12, 11, 10, 9, 8]
 
@@ -19,7 +21,9 @@ def test_backtest_engine_detects_trades_and_metrics():
 
 
 def test_backtest_engine_no_trades_for_flat_series():
-    strategy = MACrossoverStrategy(fast_period=3, slow_period=5, trend_period=8, rsi_period=5)
+    strategy = MACrossoverStrategy(
+        fast_period=3, slow_period=5, trend_period=8, rsi_period=5
+    )
     engine = BacktestEngine(strategy=strategy)
 
     result = engine.run("BTCUSDT", [10, 10, 10, 10, 10, 10, 10, 10])

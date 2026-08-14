@@ -49,12 +49,12 @@ class MACrossoverStrategy:
         self.rsi_period = rsi_period
 
     def explain(self, closes: Sequence[float]) -> StrategyDebug:
-        fast_prev = self._sma(closes[-(self.fast_period + 1):-1])
-        slow_prev = self._sma(closes[-(self.slow_period + 1):-1])
-        fast_now = self._sma(closes[-self.fast_period:])
-        slow_now = self._sma(closes[-self.slow_period:])
-        trend_ma = self._sma(closes[-self.trend_period:])
-        rsi = self._rsi(closes[-(self.rsi_period + 1):])
+        fast_prev = self._sma(closes[-(self.fast_period + 1) : -1])
+        slow_prev = self._sma(closes[-(self.slow_period + 1) : -1])
+        fast_now = self._sma(closes[-self.fast_period :])
+        slow_now = self._sma(closes[-self.slow_period :])
+        trend_ma = self._sma(closes[-self.trend_period :])
+        rsi = self._rsi(closes[-(self.rsi_period + 1) :])
         price = closes[-1]
         return StrategyDebug(
             fast_prev=fast_prev,
@@ -75,13 +75,25 @@ class MACrossoverStrategy:
 
         debug = self.explain(closes)
 
-        bullish = (not debug.prev_state and debug.now_state) and debug.price > debug.trend_ma and debug.rsi >= 50
-        bearish = (debug.prev_state and not debug.now_state) and debug.price < debug.trend_ma and debug.rsi <= 50
+        bullish = (
+            (not debug.prev_state and debug.now_state)
+            and debug.price > debug.trend_ma
+            and debug.rsi >= 50
+        )
+        bearish = (
+            (debug.prev_state and not debug.now_state)
+            and debug.price < debug.trend_ma
+            and debug.rsi <= 50
+        )
 
         if bullish:
-            return StrategySignal(StrategyAction.BUY, symbol, "bullish_crossover_trend_rsi")
+            return StrategySignal(
+                StrategyAction.BUY, symbol, "bullish_crossover_trend_rsi"
+            )
         if bearish:
-            return StrategySignal(StrategyAction.SELL, symbol, "bearish_crossover_trend_rsi")
+            return StrategySignal(
+                StrategyAction.SELL, symbol, "bearish_crossover_trend_rsi"
+            )
 
         return StrategySignal(StrategyAction.HOLD, symbol, "filtered_or_no_crossover")
 

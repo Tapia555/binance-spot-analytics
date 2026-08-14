@@ -30,9 +30,6 @@ async def test_stream_reconnects_after_timeout():
             second_connection,
         ],
     ):
-        messages = [
-            message
-            async for message in stream.messages(limit=1)
-        ]
+        messages = [message async for message in stream.messages(limit=1)]
 
     assert messages == [{"e": "kline", "s": "BTCUSDT"}]

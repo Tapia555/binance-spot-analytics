@@ -36,9 +36,7 @@ def test_store_replaces_previous_status():
     store = OrderStore()
 
     store.apply_event(execution_event(status="NEW"))
-    canceled = store.apply_event(
-        execution_event(status="CANCELED")
-    )
+    canceled = store.apply_event(execution_event(status="CANCELED"))
 
     assert canceled is not None
     assert store.get(123).status == "CANCELED"

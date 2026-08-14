@@ -28,10 +28,7 @@ class StateSynchronizer:
         account = self.client.get_account()
 
         self.state.account.apply_snapshot(
-            balances={
-                item["asset"]: item
-                for item in account["balances"]
-            },
+            balances={item["asset"]: item for item in account["balances"]},
             update_time_ms=account.get("updateTime"),
         )
 

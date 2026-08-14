@@ -46,7 +46,9 @@ class ExecutionService:
             "quantity": signal.quantity,
             "price": signal.price,
         }
-        signal_hash = hashlib.sha256(json.dumps(signal_dict, sort_keys=True).encode()).hexdigest()
+        signal_hash = hashlib.sha256(
+            json.dumps(signal_dict, sort_keys=True).encode()
+        ).hexdigest()
         if self._last_signal_hash == signal_hash:
             return {"status": "duplicate_skipped"}
         self._last_signal_hash = signal_hash

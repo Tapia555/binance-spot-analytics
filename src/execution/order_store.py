@@ -50,19 +50,22 @@ class OrderStore:
 
         with self._lock:
             previous = self._orders.get(update.order_id)
-            last_transition = self._history.get(update.order_id, [])[-1] if self._history.get(update.order_id) else None
-            if last_transition is not None and update.event_time_ms < last_transition.event_time_ms:
+            last_transition = (
+                self._history.get(update.order_id, [])[-1]
+                if self._history.get(update.order_id)
+                else None
+            )
+            if (
+                last_transition is not None
+                and update.event_time_ms < last_transition.event_time_ms
+            ):
                 return previous if previous is not None else update
 
             self._orders[update.order_id] = update
             self._history.setdefault(update.order_id, []).append(
                 OrderTransition(
                     order_id=update.order_id,
-                    previous_status=(
-                        previous.status
-                        if previous is not None
-                        else None
-                    ),
+                    previous_status=(previous.status if previous is not None else None),
                     current_status=update.status,
                     event_time_ms=update.event_time_ms,
                 )
@@ -102,12 +105,8 @@ class OrderStore:
             status=str(payload["status"]),
             side=str(payload["side"]),
             order_type=str(payload["type"]),
-            executed_quantity=Decimal(
-                str(payload["executedQty"])
-            ),
-            cumulative_quote_quantity=Decimal(
-                str(payload["cummulativeQuoteQty"])
-            ),
+            executed_quantity=Decimal(str(payload["executedQty"])),
+            cumulative_quote_quantity=Decimal(str(payload["cummulativeQuoteQty"])),
             event_time_ms=int(update_time),
         )
 

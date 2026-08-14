@@ -4,10 +4,7 @@ import pytest
 
 from data.binance_stream import BinanceKlineStream
 
-
-RUN_LIVE_TESTS = (
-    os.getenv("RUN_LIVE_TESTS") == "1"
-)
+RUN_LIVE_TESTS = os.getenv("RUN_LIVE_TESTS") == "1"
 
 pytestmark = pytest.mark.skipif(
     not RUN_LIVE_TESTS,
@@ -23,4 +20,3 @@ async def test_binance_kline_stream():
         assert isinstance(message, dict)
         assert message
         break
-

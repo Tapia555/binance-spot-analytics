@@ -16,7 +16,10 @@ class Position:
 
     @property
     def is_open(self) -> bool:
-        return self.status in {"NEW", "PARTIALLY_FILLED", "FILLED"} and self.filled_quantity > 0
+        return (
+            self.status in {"NEW", "PARTIALLY_FILLED", "FILLED"}
+            and self.filled_quantity > 0
+        )
 
 
 class PositionStore:

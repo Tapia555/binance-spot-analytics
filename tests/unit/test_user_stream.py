@@ -41,9 +41,7 @@ def test_subscription_request_has_signature():
 
     request = stream._subscription_request()
 
-    assert request["method"] == (
-        "userDataStream.subscribe.signature"
-    )
+    assert request["method"] == ("userDataStream.subscribe.signature")
     assert request["params"]["apiKey"] == "test-api-key"
     assert request["params"]["signature"]
     assert request["params"]["timestamp"] > 0

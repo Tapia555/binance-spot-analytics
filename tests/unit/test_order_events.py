@@ -24,8 +24,11 @@ def test_parse_execution_report():
 
 
 def test_ignore_non_order_event():
-    assert parse_order_event(
-        {
-            "e": "outboundAccountPosition",
-        }
-    ) is None
+    assert (
+        parse_order_event(
+            {
+                "e": "outboundAccountPosition",
+            }
+        )
+        is None
+    )

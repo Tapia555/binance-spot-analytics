@@ -3,6 +3,7 @@ from live.live_trading_loop import LiveTradingLoop
 
 KlineUpdate = namedtuple("KlineUpdate", "symbol interval is_closed close")
 
+
 class EngineStub:
     def __init__(self):
         self.calls = []
@@ -10,6 +11,7 @@ class EngineStub:
     def on_closes(self, symbol, closes):
         self.calls.append((symbol, list(closes)))
         return {"ok": True}
+
 
 def test_closed_kline_processed_once():
     engine = EngineStub()

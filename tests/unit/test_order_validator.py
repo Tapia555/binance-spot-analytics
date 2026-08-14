@@ -7,7 +7,6 @@ import pytest
 from execution.order_validator import OrderValidationError, OrderValidator
 from execution.symbol_rules_service import SymbolRules
 
-
 RULES = SymbolRules(
     symbol="BTCUSDT",
     min_price=Decimal("0.01"),

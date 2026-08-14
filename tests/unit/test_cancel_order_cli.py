@@ -4,9 +4,7 @@ from cli.cancel_order import main
 
 
 def test_cancel_preview_does_not_send():
-    with patch(
-        "cli.cancel_order.BinanceTestnetClient"
-    ) as client_class:
+    with patch("cli.cancel_order.BinanceTestnetClient") as client_class:
         result = main(
             [
                 "--symbol",
@@ -28,12 +26,8 @@ def test_cancel_confirm_sends_request(capsys):
         "side": "BUY",
     }
 
-    with patch(
-        "cli.cancel_order.BinanceTestnetClient"
-    ) as client_class:
-        client_class.return_value.cancel_order.return_value = (
-            response
-        )
+    with patch("cli.cancel_order.BinanceTestnetClient") as client_class:
+        client_class.return_value.cancel_order.return_value = response
 
         result = main(
             [
