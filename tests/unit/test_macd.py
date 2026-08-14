@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.indicators.macd import macd
+from indicators.macd import macd
 
 
 def test_macd_columns_and_values():

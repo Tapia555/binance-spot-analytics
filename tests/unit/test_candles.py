@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.data.candles import klines_to_dataframe
+from data.candles import klines_to_dataframe
 
 
 def test_klines_to_dataframe():

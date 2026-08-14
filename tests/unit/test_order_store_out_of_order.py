@@ -1,4 +1,4 @@
-from src.execution.order_store import OrderStore
+from execution.order_store import OrderStore
 
 
 def test_apply_event_ignores_older_event():

@@ -1,4 +1,4 @@
-from src.data.kline_stream import KlineStream
+from data.kline_stream import KlineStream
 
 
 def test_kline_url():

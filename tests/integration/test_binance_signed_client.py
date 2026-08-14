@@ -7,7 +7,7 @@ import os
 
 import pytest
 
-from src.data.binance_signed_client import BinanceSignedClient
+from data.binance_signed_client import BinanceSignedClient
 
 
 @pytest.mark.asyncio

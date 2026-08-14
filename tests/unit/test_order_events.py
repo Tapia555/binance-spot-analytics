@@ -1,4 +1,4 @@
-from src.execution.order_events import parse_order_event
+from execution.order_events import parse_order_event
 
 
 def test_parse_execution_report():

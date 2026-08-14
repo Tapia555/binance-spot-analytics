@@ -1,6 +1,6 @@
 from unittest.mock import Mock, patch
 
-from src.execution.user_stream import BinanceUserStream
+from execution.user_stream import BinanceUserStream
 
 
 def test_user_stream_uses_callback():

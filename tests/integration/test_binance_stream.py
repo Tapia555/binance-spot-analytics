@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from src.data.binance_stream import BinanceKlineStream
+from data.binance_stream import BinanceKlineStream
 
 
 RUN_LIVE_TESTS = (

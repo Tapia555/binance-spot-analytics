@@ -4,7 +4,7 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from src.data.kline_client import KlineClient
+from data.kline_client import KlineClient
 
 
 class FakeResponse:
@@ -117,7 +117,7 @@ async def test_fetch_parses_klines(monkeypatch):
         return fake_session
 
     monkeypatch.setattr(
-        "src.data.kline_client.aiohttp.ClientSession",
+        "data.kline_client.aiohttp.ClientSession",
         session_factory,
     )
 

@@ -1,0 +1,2 @@
+folds,avg_test_win_rate,avg_test_max_drawdown,total_oos_points,report_csv,equity_csv
+4,0.0,0.0,4,output/walk_forward_report.csv,output/walk_forward_oos_equity.csv

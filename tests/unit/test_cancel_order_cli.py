@@ -1,11 +1,11 @@
 from unittest.mock import patch
 
-from src.cli.cancel_order import main
+from cli.cancel_order import main
 
 
 def test_cancel_preview_does_not_send():
     with patch(
-        "src.cli.cancel_order.BinanceTestnetClient"
+        "cli.cancel_order.BinanceTestnetClient"
     ) as client_class:
         result = main(
             [
@@ -29,7 +29,7 @@ def test_cancel_confirm_sends_request(capsys):
     }
 
     with patch(
-        "src.cli.cancel_order.BinanceTestnetClient"
+        "cli.cancel_order.BinanceTestnetClient"
     ) as client_class:
         client_class.return_value.cancel_order.return_value = (
             response

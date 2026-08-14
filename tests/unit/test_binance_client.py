@@ -1,6 +1,6 @@
 import pytest
 
-from src.data.binance_client import BinanceClient
+from data.binance_client import BinanceClient
 
 
 @pytest.mark.asyncio

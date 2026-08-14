@@ -2,12 +2,12 @@ from unittest.mock import patch
 
 import pytest
 
-from src.cli.validate_order import main
+from cli.validate_order import main
 
 
 def test_validate_limit_order():
     with patch(
-        "src.cli.validate_order.BinanceTestnetClient"
+        "cli.validate_order.BinanceTestnetClient"
     ) as client_class:
         result = main(
             [
@@ -38,7 +38,7 @@ def test_validate_limit_order():
 
 def test_market_order_does_not_send_price():
     with patch(
-        "src.cli.validate_order.BinanceTestnetClient"
+        "cli.validate_order.BinanceTestnetClient"
     ) as client_class:
         result = main(
             [

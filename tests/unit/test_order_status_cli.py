@@ -1,6 +1,6 @@
 from unittest.mock import patch
 
-from src.cli.order_status import main
+from cli.order_status import main
 
 
 def test_order_status_queries_order(capsys):
@@ -16,7 +16,7 @@ def test_order_status_queries_order(capsys):
     }
 
     with patch(
-        "src.cli.order_status.BinanceTestnetClient"
+        "cli.order_status.BinanceTestnetClient"
     ) as client_class:
         client_class.return_value.get_order.return_value = response
 

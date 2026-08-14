@@ -3,9 +3,9 @@ from __future__ import annotations
 import argparse
 from decimal import Decimal
 
-from src.execution.binance_testnet import BinanceTestnetClient
-from src.execution.execution_state import ExecutionState
-from src.execution.state_sync import StateSynchronizer
+from execution.binance_testnet import BinanceTestnetClient
+from execution.execution_state import ExecutionState
+from execution.state_sync import StateSynchronizer
 
 
 def build_parser() -> argparse.ArgumentParser:

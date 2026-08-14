@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.indicators.moving_average import sma
+from indicators.moving_average import sma
 
 
 def test_sma():

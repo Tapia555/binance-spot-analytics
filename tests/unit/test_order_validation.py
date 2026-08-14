@@ -2,7 +2,7 @@ from decimal import Decimal
 
 import pytest
 
-from src.risk.order_validation import (
+from risk.order_validation import (
     OrderValidationError,
     round_down_to_step,
     validate_limit_order,

@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import pandas as pd
 
-from src.indicators.exponential_average import ema
-from src.strategy.models import Signal, SignalSide
+from indicators.exponential_average import ema
+from strategy.models import Signal, SignalSide
 
 
 class EmaStrategy:

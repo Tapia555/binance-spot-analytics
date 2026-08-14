@@ -4,7 +4,7 @@ import os
 
 import pytest
 
-from src.execution.binance_testnet import BinanceTestnetClient
+from execution.binance_testnet import BinanceTestnetClient
 
 
 @pytest.mark.integration

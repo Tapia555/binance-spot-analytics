@@ -1,6 +1,6 @@
 import pytest
 
-from src.risk.levels import calculate_long_levels
+from risk.levels import calculate_long_levels
 
 
 def test_calculate_long_levels():

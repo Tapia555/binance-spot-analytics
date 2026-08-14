@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from src.execution.execution_state import ExecutionState
+from execution.execution_state import ExecutionState
 
 
 def test_state_applies_order_event():

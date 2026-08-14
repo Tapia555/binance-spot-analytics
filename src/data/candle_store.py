@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from src.data.kline_stream import Kline
+from data.kline_stream import Kline
 
 
 class CandleStore:

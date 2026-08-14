@@ -1,7 +1,7 @@
 import pandas as pd
 
-from src.strategy.ema_strategy import EmaStrategy
-from src.strategy.models import SignalSide
+from strategy.ema_strategy import EmaStrategy
+from strategy.models import SignalSide
 
 
 def test_strategy_holds_with_insufficient_data():

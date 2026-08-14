@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.indicators.exponential_average import ema
+from indicators.exponential_average import ema
 
 
 def test_ema():

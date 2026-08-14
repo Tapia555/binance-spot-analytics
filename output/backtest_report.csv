@@ -1,0 +1,2 @@
+symbol,num_trades,num_buys,num_sells,win_rate,max_drawdown,final_action,trades_csv,equity_csv
+BTCUSDT,2,1,1,0.5,0.1667,SELL,output/backtest_trades.csv,output/backtest_equity_curve.csv

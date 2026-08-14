@@ -4,7 +4,7 @@ import os
 
 import pytest
 
-from src.data.kline_client import KlineClient
+from data.kline_client import KlineClient
 
 
 @pytest.mark.asyncio
@@ -50,8 +50,8 @@ async def test_fetch_real_klines_into_store():
     if os.getenv("RUN_LIVE_TESTS") != "1":
         pytest.skip("set RUN_LIVE_TESTS=1 to call Binance Testnet")
 
-    from src.data.candle_store import CandleStore
-    from src.data.kline_stream import Kline
+    from data.candle_store import CandleStore
+    from data.kline_stream import Kline
 
     client = KlineClient(
         base_url="https://testnet.binance.vision/api",

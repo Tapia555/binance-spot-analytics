@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.indicators.bollinger import bollinger_bands
+from indicators.bollinger import bollinger_bands
 
 
 def test_bollinger_bands():

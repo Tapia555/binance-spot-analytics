@@ -1,4 +1,4 @@
-from src.data.binance_stream import BinanceKlineStream
+from data.binance_stream import BinanceKlineStream
 
 
 def test_stream_url():

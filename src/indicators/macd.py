@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from src.indicators.exponential_average import ema
+from indicators.exponential_average import ema
 
 
 def macd(

@@ -1,4 +1,4 @@
-from src.execution.order_store import OrderStore
+from execution.order_store import OrderStore
 
 
 def event(status: str, event_time: int) -> dict:

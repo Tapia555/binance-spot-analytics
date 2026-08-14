@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import argparse
 
-from src.execution.binance_testnet import BinanceTestnetClient
+from execution.binance_testnet import BinanceTestnetClient
 
 
 def build_parser() -> argparse.ArgumentParser:

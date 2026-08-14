@@ -2,7 +2,7 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from src.data.binance_stream import BinanceKlineStream
+from data.binance_stream import BinanceKlineStream
 
 
 @pytest.mark.asyncio
@@ -24,7 +24,7 @@ async def test_stream_reconnects_after_timeout():
     )
 
     with patch(
-        "src.data.binance_stream.websockets.connect",
+        "data.binance_stream.websockets.connect",
         side_effect=[
             first_connection,
             second_connection,

@@ -1,8 +1,8 @@
 from decimal import Decimal
 from unittest.mock import patch
 
-from src.cli.status import build_parser, main
-from src.execution.execution_state import StateSnapshot
+from cli.status import build_parser, main
+from execution.execution_state import StateSnapshot
 
 
 def test_status_parser_default_symbol():
@@ -36,9 +36,9 @@ def test_status_main_prints_state(capsys):
     )
 
     with patch(
-        "src.cli.status.StateSynchronizer.sync"
+        "cli.status.StateSynchronizer.sync"
     ), patch(
-        "src.cli.status.ExecutionState.snapshot",
+        "cli.status.ExecutionState.snapshot",
         return_value=snapshot,
     ):
         result = main([])

@@ -1,11 +1,11 @@
 from unittest.mock import patch
 
-from src.cli.place_order import main
+from cli.place_order import main
 
 
 def test_preview_does_not_send_order(capsys):
     with patch(
-        "src.cli.place_order.BinanceTestnetClient"
+        "cli.place_order.BinanceTestnetClient"
     ) as client_class:
         result = main(
             [
@@ -39,7 +39,7 @@ def test_confirm_sends_order():
     }
 
     with patch(
-        "src.cli.place_order.BinanceTestnetClient"
+        "cli.place_order.BinanceTestnetClient"
     ) as client_class:
         client_class.return_value._signed_request.return_value = (
             response

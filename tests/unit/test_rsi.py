@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.indicators.rsi import rsi
+from indicators.rsi import rsi
 
 
 def test_rsi_range():

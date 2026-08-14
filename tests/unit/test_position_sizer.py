@@ -2,7 +2,7 @@ from decimal import Decimal
 
 import pytest
 
-from src.risk.position_sizer import calculate_position_size
+from risk.position_sizer import calculate_position_size
 
 
 def test_calculate_position_size():

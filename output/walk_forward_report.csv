@@ -1,0 +1,5 @@
+fold_start,train_len,test_len,train_num_trades,train_win_rate,train_max_drawdown,test_num_trades,test_win_rate,test_max_drawdown,test_final_action
+0,10,5,1,1.0,0.0,0,0.0,0.0,HOLD
+5,10,5,0,0.0,0.0,0,0.0,0.0,HOLD
+10,10,5,1,1.0,0.0,0,0.0,0.0,HOLD
+15,10,5,0,0.0,0.0,0,0.0,0.0,HOLD

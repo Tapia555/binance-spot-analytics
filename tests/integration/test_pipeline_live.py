@@ -4,9 +4,9 @@ import os
 
 import pytest
 
-from src.data.candle_store import CandleStore
-from src.data.kline_client import KlineClient
-from src.strategy.ema_strategy import EmaStrategy
+from data.candle_store import CandleStore
+from data.kline_client import KlineClient
+from strategy.ema_strategy import EmaStrategy
 
 
 @pytest.mark.asyncio
@@ -27,7 +27,7 @@ async def test_live_data_reaches_strategy():
     store = CandleStore(max_size=100)
 
     for row in frame.itertuples(index=False):
-        from src.data.kline_stream import Kline
+        from data.kline_stream import Kline
 
         store.add(
             Kline(

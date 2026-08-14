@@ -1,8 +1,8 @@
 import pandas as pd
 import pytest
 
-from src.data.candle_store import CandleStore
-from src.data.kline_stream import Kline
+from data.candle_store import CandleStore
+from data.kline_stream import Kline
 
 
 def make_kline(

@@ -2,8 +2,8 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from src.execution.api_errors import BinanceRateLimitError
-from src.execution.binance_testnet import BinanceTestnetClient
+from execution.api_errors import BinanceRateLimitError
+from execution.binance_testnet import BinanceTestnetClient
 
 
 @patch.dict(
@@ -13,7 +13,7 @@ from src.execution.binance_testnet import BinanceTestnetClient
         "BINANCE_TESTNET_SECRET": "test-secret",
     },
 )
-@patch("src.execution.binance_testnet.requests.request")
+@patch("execution.binance_testnet.requests.request")
 def test_429_raises_rate_limit_error(mock_request):
     response = Mock()
     response.status_code = 429
@@ -42,7 +42,7 @@ def test_429_raises_rate_limit_error(mock_request):
         "BINANCE_TESTNET_SECRET": "test-secret",
     },
 )
-@patch("src.execution.binance_testnet.requests.request")
+@patch("execution.binance_testnet.requests.request")
 def test_418_raises_rate_limit_error(mock_request):
     response = Mock()
     response.status_code = 418

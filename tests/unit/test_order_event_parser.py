@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from src.execution.order_event_parser import parse_execution_report
+from execution.order_event_parser import parse_execution_report
 
 
 def test_parse_execution_report():

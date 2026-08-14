@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from src.execution.account_store import AccountStore
+from execution.account_store import AccountStore
 
 
 def test_account_store_updates_balances():

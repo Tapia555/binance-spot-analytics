@@ -1,4 +1,4 @@
-from src.execution.binance_testnet import BinanceTestnetClient
+from execution.binance_testnet import BinanceTestnetClient
 
 
 def test_get_open_orders_returns_list():

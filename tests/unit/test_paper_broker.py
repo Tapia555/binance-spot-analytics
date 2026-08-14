@@ -1,6 +1,6 @@
 import pytest
 
-from src.simulation.paper_broker import OrderSide, PaperBroker
+from simulation.paper_broker import OrderSide, PaperBroker
 
 
 def test_buy_and_sell():

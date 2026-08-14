@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.indicators.atr import atr
+from indicators.atr import atr
 
 
 def test_atr():

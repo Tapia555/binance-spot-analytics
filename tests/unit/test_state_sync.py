@@ -1,8 +1,8 @@
 from unittest.mock import Mock
 
-from src.execution.account_store import AccountStore
-from src.execution.order_store import OrderStore
-from src.execution.state_sync import StateSynchronizer
+from execution.account_store import AccountStore
+from execution.order_store import OrderStore
+from execution.state_sync import StateSynchronizer
 
 
 def test_state_sync_loads_account_and_open_orders():
