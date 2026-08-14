@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Sequence, Any
+from collections.abc import Sequence
+from typing import Any
 
 from execution.execution_service import ExecutionService, TradeSignal
 from strategy.ma_crossover_strategy import MACrossoverStrategy, StrategyAction

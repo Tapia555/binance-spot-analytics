@@ -26,8 +26,8 @@ def test_status_main_prints_state(capsys):
                 (),
                 {
                     "asset": "USDT",
-                    "free": Decimal("10000"),
-                    "locked": Decimal("0"),
+                    "free": Decimal(10000),
+                    "locked": Decimal(0),
                 },
             )(),
         ),

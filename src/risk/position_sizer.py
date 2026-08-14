@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import Decimal, ROUND_DOWN
+from decimal import ROUND_DOWN, Decimal
 
 
 @dataclass(frozen=True)
@@ -12,19 +12,19 @@ class PositionPlan:
     quantity: Decimal
 
 
-def _decimal(value: str | float | int) -> Decimal:
+def _decimal(value: str | float) -> Decimal:
     return Decimal(str(value))
 
 
 def calculate_position_size(
-    equity: str | float | int,
-    risk_percent: str | float | int,
-    atr_value: str | float | int,
-    stop_atr_multiplier: str | float | int,
+    equity: str | float,
+    risk_percent: str | float,
+    atr_value: str | float,
+    stop_atr_multiplier: str | float,
     *,
-    entry_price: str | float | int,
-    step_size: str | float | int = "0.00001",
-    max_notional: str | float | int | None = None,
+    entry_price: str | float,
+    step_size: str | float = "0.00001",
+    max_notional: str | float | None = None,
 ) -> PositionPlan:
     equity_decimal = _decimal(equity)
     risk_percent_decimal = _decimal(risk_percent)

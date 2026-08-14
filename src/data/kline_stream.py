@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
-from collections.abc import AsyncIterator, Awaitable, Callable
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 
 import aiohttp
@@ -66,11 +66,7 @@ class KlineStream:
                     on_kline,
                     stop_event=stop_event,
                 )
-            except (
-                aiohttp.ClientError,
-                asyncio.TimeoutError,
-                ConnectionError,
-            ):
+            except (TimeoutError, aiohttp.ClientError, ConnectionError):
                 if stop_event is not None and stop_event.is_set():
                     break
 

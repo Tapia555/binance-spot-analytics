@@ -15,7 +15,7 @@ def test_calculate_position_size():
         step_size="0.00001",
     )
 
-    assert plan.equity == Decimal("1000")
+    assert plan.equity == Decimal(1000)
     assert plan.risk_amount == Decimal("10.00")
     assert plan.stop_distance == Decimal("150.0")
     assert plan.quantity == Decimal("0.06666")

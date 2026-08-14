@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from decimal import Decimal
 
 import pytest
@@ -27,7 +26,7 @@ def build_balances(usdt_free: str) -> BalanceStore:
     store._balances["USDT"] = BalanceRecord(
         asset="USDT",
         free=Decimal(usdt_free),
-        locked=Decimal("0"),
+        locked=Decimal(0),
     )
     return store
 
@@ -40,7 +39,7 @@ def build_positions(opened: bool = False) -> PositionStore:
             side="BUY",
             quantity=Decimal("0.00020"),
             filled_quantity=Decimal("0.00020"),
-            average_price=Decimal("50000"),
+            average_price=Decimal(50000),
             status="FILLED",
         )
     return store
@@ -56,7 +55,7 @@ def test_evaluate_allows_when_balance_sufficient_and_no_position():
     decision = manager.evaluate("BTCUSDT", "USDT", RULES)
 
     assert decision.allowed
-    assert decision.max_notional == Decimal("100")
+    assert decision.max_notional == Decimal(100)
 
 
 def test_evaluate_rejects_when_open_position_exists():

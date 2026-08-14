@@ -28,9 +28,9 @@ def round_price(price: str, tick_size: str) -> str:
     price_decimal = Decimal(price)
     tick_decimal = Decimal(tick_size)
 
-    rounded = (
-        price_decimal / tick_decimal
-    ).to_integral_value(rounding=ROUND_DOWN) * tick_decimal
+    rounded = (price_decimal / tick_decimal).to_integral_value(
+        rounding=ROUND_DOWN
+    ) * tick_decimal
 
     return format(rounded, "f")
 
@@ -59,10 +59,7 @@ def main() -> None:
 
     symbol_info = info_response.json()["symbols"][0]
 
-    filters = {
-        item["filterType"]: item
-        for item in symbol_info["filters"]
-    }
+    filters = {item["filterType"]: item for item in symbol_info["filters"]}
 
     tick_size = filters["PRICE_FILTER"]["tickSize"]
     step_size = filters["LOT_SIZE"]["stepSize"]
@@ -83,9 +80,9 @@ def main() -> None:
 
     required_quantity = min_notional / price_decimal
 
-    quantity_decimal = (
-        required_quantity / step_decimal
-    ).to_integral_value(rounding=ROUND_DOWN) * step_decimal
+    quantity_decimal = (required_quantity / step_decimal).to_integral_value(
+        rounding=ROUND_DOWN
+    ) * step_decimal
 
     if quantity_decimal * price_decimal < min_notional:
         quantity_decimal += step_decimal

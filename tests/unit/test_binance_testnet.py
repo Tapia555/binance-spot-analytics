@@ -2,8 +2,8 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from execution.binance_testnet import BinanceTestnetClient
 from execution.api_errors import BinanceRateLimitError
+from execution.binance_testnet import BinanceTestnetClient
 
 
 @patch.dict(

@@ -10,7 +10,7 @@ from execution.order_store import OrderStore
 from execution.order_validator import OrderValidator
 from execution.position_store import Position, PositionStore
 from execution.risk_manager import RiskManager, RiskRejected
-from execution.symbol_rules_service import SymbolRules, SymbolRulesService
+from execution.symbol_rules_service import SymbolRules
 
 RULES = SymbolRules(
     symbol="BTCUSDT",
@@ -51,7 +51,7 @@ def build_balances(usdt_free: str) -> BalanceStore:
     store._balances["USDT"] = BalanceRecord(
         asset="USDT",
         free=Decimal(usdt_free),
-        locked=Decimal("0"),
+        locked=Decimal(0),
     )
     return store
 
@@ -64,7 +64,7 @@ def build_positions(opened: bool = False) -> PositionStore:
             side="BUY",
             quantity=Decimal("0.00020"),
             filled_quantity=Decimal("0.00020"),
-            average_price=Decimal("50000"),
+            average_price=Decimal(50000),
             status="FILLED",
         )
     return store

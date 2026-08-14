@@ -32,8 +32,8 @@ def test_parse_execution_report():
     assert update.status == "NEW"
     assert update.side == "BUY"
     assert update.order_type == "LIMIT"
-    assert update.executed_quantity == Decimal("0")
-    assert update.cumulative_quote_quantity == Decimal("0")
+    assert update.executed_quantity == Decimal(0)
+    assert update.cumulative_quote_quantity == Decimal(0)
 
 
 def test_rejects_other_event_type():

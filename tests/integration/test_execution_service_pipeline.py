@@ -48,7 +48,7 @@ def build_balances(usdt_free: str) -> BalanceStore:
     store._balances["USDT"] = BalanceRecord(
         asset="USDT",
         free=Decimal(usdt_free),
-        locked=Decimal("0"),
+        locked=Decimal(0),
     )
     return store
 
@@ -61,7 +61,7 @@ def build_positions(opened: bool = False) -> PositionStore:
             side="BUY",
             quantity=Decimal("0.00020"),
             filled_quantity=Decimal("0.00020"),
-            average_price=Decimal("50000"),
+            average_price=Decimal(50000),
             status="FILLED",
         )
     return store

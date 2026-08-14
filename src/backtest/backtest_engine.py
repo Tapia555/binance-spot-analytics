@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Sequence
 
 from strategy.ma_crossover_strategy import MACrossoverStrategy, StrategyAction
 
@@ -75,10 +75,8 @@ class BacktestEngine:
         peak = equity_curve[0] if equity_curve else 1.0
         max_dd = 0.0
         for equity in equity_curve:
-            if equity > peak:
-                peak = equity
+            peak = max(peak, equity)
             if peak > 0:
                 dd = (peak - equity) / peak
-                if dd > max_dd:
-                    max_dd = dd
+                max_dd = max(max_dd, dd)
         return max_dd

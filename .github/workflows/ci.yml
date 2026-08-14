@@ -15,7 +15,8 @@ jobs:
         with:
           python-version: "3.13"
       - run: pip install -e ".[dev]"
-      - run: pip install black flake8
+      - run: pip install black flake8 mypy
       - run: black --check src tests
       - run: flake8 src tests
+      - run: mypy src --ignore-missing-imports
       - run: pytest -vv

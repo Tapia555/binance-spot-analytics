@@ -1,19 +1,19 @@
 from __future__ import annotations
 
-from decimal import Decimal, ROUND_DOWN
+from decimal import ROUND_DOWN, Decimal
 
 
 class OrderValidationError(ValueError):
     pass
 
 
-def _decimal(value: str | float | int) -> Decimal:
+def _decimal(value: str | float) -> Decimal:
     return Decimal(str(value))
 
 
 def round_down_to_step(
-    value: str | float | int,
-    step: str | float | int,
+    value: str | float,
+    step: str | float,
 ) -> Decimal:
     number = _decimal(value)
     increment = _decimal(step)
@@ -26,16 +26,16 @@ def round_down_to_step(
 
 
 def validate_limit_order(
-    price: str | float | int,
-    quantity: str | float | int,
+    price: str | float,
+    quantity: str | float,
     *,
-    min_price: str | float | int,
-    max_price: str | float | int,
-    tick_size: str | float | int,
-    min_qty: str | float | int,
-    max_qty: str | float | int,
-    step_size: str | float | int,
-    min_notional: str | float | int,
+    min_price: str | float,
+    max_price: str | float,
+    tick_size: str | float,
+    min_qty: str | float,
+    max_qty: str | float,
+    step_size: str | float,
+    min_notional: str | float,
 ) -> tuple[Decimal, Decimal]:
     normalized_price = round_down_to_step(price, tick_size)
     normalized_quantity = round_down_to_step(quantity, step_size)

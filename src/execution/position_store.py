@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import Decimal
-from typing import Iterable, Any
+from typing import Any
 
 
 @dataclass
@@ -37,7 +37,7 @@ class PositionStore:
         filled_qty = Decimal(str(event.get("z", "0")))
         cum_quote = Decimal(str(event.get("Z", "0")))
 
-        avg_price = Decimal("0")
+        avg_price = Decimal(0)
         if filled_qty > 0:
             avg_price = cum_quote / filled_qty
 

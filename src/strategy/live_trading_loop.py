@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from collections import deque
-from dataclasses import dataclass
 from typing import Any
 
 from market_data.ws_market_data_service import KlineUpdate

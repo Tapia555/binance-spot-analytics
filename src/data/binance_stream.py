@@ -56,12 +56,7 @@ class BinanceKlineStream:
                         if limit is not None and received >= limit:
                             return
 
-            except (
-                asyncio.TimeoutError,
-                TimeoutError,
-                OSError,
-                websockets.exceptions.WebSocketException,
-            ):
+            except (TimeoutError, OSError, websockets.exceptions.WebSocketException):
                 if limit is not None and received >= limit:
                     return
 

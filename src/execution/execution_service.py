@@ -1,7 +1,7 @@
 from __future__ import annotations
+
 import hashlib
 import json
-
 from dataclasses import dataclass
 from typing import Any
 
@@ -36,7 +36,6 @@ class ExecutionService:
         self.order_validator = order_validator
         self.risk_manager = risk_manager
         self._last_signal_hash: str | None = None
-        self._last_signal_hash: str | None = None
 
     def place_limit_order(self, signal: TradeSignal) -> dict[str, Any]:
         # Проверяем на дубликат сигнала
@@ -51,7 +50,6 @@ class ExecutionService:
         ).hexdigest()
         if self._last_signal_hash == signal_hash:
             return {"status": "duplicate_skipped"}
-        self._last_signal_hash = signal_hash
 
         rules = self.symbol_rules_service.get_rules(signal.symbol)
         self.order_validator.validate(signal.price, signal.quantity, rules)

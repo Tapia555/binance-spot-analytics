@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 import pandas as pd
 import pytest
 
@@ -11,7 +10,7 @@ class FakeResponse:
     def __init__(self, payload: list[list[object]]) -> None:
         self.payload = payload
 
-    async def __aenter__(self) -> "FakeResponse":
+    async def __aenter__(self) -> FakeResponse:
         return self
 
     async def __aexit__(self, *args: object) -> None:
@@ -30,7 +29,7 @@ class FakeSession:
         self.requested_url: str | None = None
         self.requested_params: dict[str, object] | None = None
 
-    async def __aenter__(self) -> "FakeSession":
+    async def __aenter__(self) -> FakeSession:
         return self
 
     async def __aexit__(self, *args: object) -> None:

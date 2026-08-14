@@ -5,7 +5,6 @@ from decimal import Decimal
 from execution.execution_service import ExecutionService, TradeSignal
 from execution.order_store import OrderStore
 from execution.order_validator import OrderValidator
-from execution.risk_manager import RiskManager
 from execution.symbol_rules_service import SymbolRules
 
 RULES = SymbolRules(

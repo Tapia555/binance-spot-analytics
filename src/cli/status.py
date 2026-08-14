@@ -37,7 +37,7 @@ def main(argv: list[str] | None = None) -> int:
     for balance in snapshot.balances:
         total = balance.free + balance.locked
 
-        if total == Decimal("0"):
+        if total == Decimal(0):
             continue
 
         print(

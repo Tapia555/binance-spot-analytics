@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
 from decimal import Decimal
-from typing import Iterable
 
 
 @dataclass(frozen=True)
@@ -22,9 +22,9 @@ class BalanceStore:
 
     def apply_snapshot(self, balances: Iterable[object]) -> None:
         for item in balances:
-            asset = getattr(item, "asset")
-            free = Decimal(str(getattr(item, "free")))
-            locked = Decimal(str(getattr(item, "locked")))
+            asset = item.asset
+            free = Decimal(str(item.free))
+            locked = Decimal(str(item.locked))
             self._balances[asset] = BalanceRecord(asset=asset, free=free, locked=locked)
 
     def get(self, asset: str) -> BalanceRecord | None:

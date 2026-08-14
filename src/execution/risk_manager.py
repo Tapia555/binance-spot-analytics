@@ -35,11 +35,11 @@ class RiskManager:
     ) -> RiskDecision:
         position = self.positions.get(symbol)
         if position is not None and position.is_open:
-            return RiskDecision(False, Decimal("0"), "open_position_exists")
+            return RiskDecision(False, Decimal(0), "open_position_exists")
 
         quote_balance = self.balances.get(quote_asset)
         if quote_balance is None:
-            return RiskDecision(False, Decimal("0"), "missing_quote_balance")
+            return RiskDecision(False, Decimal(0), "missing_quote_balance")
 
         available = quote_balance.free
         max_notional = available * self.max_portfolio_quote_pct

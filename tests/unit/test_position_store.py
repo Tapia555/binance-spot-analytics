@@ -25,7 +25,7 @@ def test_apply_execution_report_creates_position():
     assert pos.side == "BUY"
     assert pos.quantity == Decimal("0.00020")
     assert pos.filled_quantity == Decimal("0.00000")
-    assert pos.average_price == Decimal("0")
+    assert pos.average_price == Decimal(0)
     assert pos.status == "NEW"
     assert not pos.is_open
 
@@ -47,7 +47,7 @@ def test_apply_execution_report_updates_partial_fill():
     pos = store.get("BTCUSDT")
     assert pos is not None
     assert pos.filled_quantity == Decimal("0.00010")
-    assert pos.average_price == Decimal("50000")
+    assert pos.average_price == Decimal(50000)
     assert pos.is_open
 
 
@@ -69,5 +69,5 @@ def test_apply_execution_report_marks_filled():
     assert pos is not None
     assert pos.status == "FILLED"
     assert pos.filled_quantity == Decimal("0.00020")
-    assert pos.average_price == Decimal("50000")
+    assert pos.average_price == Decimal(50000)
     assert pos.is_open

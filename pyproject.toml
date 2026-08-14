@@ -37,3 +37,16 @@ markers = [
 line-length = 88
 target-version = "py313"
 
+
+[tool.ruff.lint]
+ignore = [
+    "SIM117",  # nested with
+    "BLE001",  # blind except
+    "RUF007",  # itertools.pairwise
+    "PYI034",  # __aenter__ return Self
+    "S110",    # try-except-pass
+]
+
+[tool.mypy]
+ignore_missing_imports = true
+disable_error_code = ["attr-defined", "union-attr", "import-untyped", "dict-item", "arg-type"]

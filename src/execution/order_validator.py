@@ -19,7 +19,7 @@ class OrderValidator:
         if rules.max_price is not None and p > rules.max_price:
             raise OrderValidationError("price above max_price")
         if rules.tick_size is not None and not self._is_multiple(
-            p, rules.min_price or Decimal("0"), rules.tick_size
+            p, rules.min_price or Decimal(0), rules.tick_size
         ):
             raise OrderValidationError("price not aligned to tick_size")
 
@@ -28,7 +28,7 @@ class OrderValidator:
         if rules.max_qty is not None and q > rules.max_qty:
             raise OrderValidationError("quantity above max_qty")
         if rules.step_size is not None and not self._is_multiple(
-            q, rules.min_qty or Decimal("0"), rules.step_size
+            q, rules.min_qty or Decimal(0), rules.step_size
         ):
             raise OrderValidationError("quantity not aligned to step_size")
 

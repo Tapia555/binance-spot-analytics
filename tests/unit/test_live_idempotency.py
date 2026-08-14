@@ -1,4 +1,5 @@
 from collections import namedtuple
+
 from live.live_trading_loop import LiveTradingLoop
 
 KlineUpdate = namedtuple("KlineUpdate", "symbol interval is_closed close")
