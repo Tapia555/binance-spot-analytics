@@ -13,3 +13,10 @@ repos:
       - id: mypy
         files: src/
         args: [--config-file, pyproject.toml]
+        additional_dependencies:
+          - aiohttp>=3.10
+          - websockets>=13.0
+          - PyYAML>=6.0
+          - python-dotenv>=1.0
+          - numpy>=2.0
+          - pandas>=2.2
