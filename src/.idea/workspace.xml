@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="985d5376-cb68-4924-a1a9-ebe7914015ba" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backtest/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backtest/backtest_engine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/execution/account_snapshot_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/execution/balance_store.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/execution/position_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/execution/position_store.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/execution/risk_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/execution/symbol_rules_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market_data/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market_data/market_data_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market_data/ws_market_data_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/strategy/live_trading_loop.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/strategy/ma_crossover_strategy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/strategy/trading_engine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/strategy/trading_loop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/cancel_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/cli/cancel_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/order_status.py" beforeDir="false" afterPath="$PROJECT_DIR$/cli/order_status.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/place_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/cli/place_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/cli/status.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/validate_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/cli/validate_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/candle_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/candle_store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execution/execution_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/execution/execution_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execution/execution_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/execution/execution_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execution/order_validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/execution/order_validator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execution/state_sync.py" beforeDir="false" afterPath="$PROJECT_DIR$/execution/state_sync.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/indicators/macd.py" beforeDir="false" afterPath="$PROJECT_DIR$/indicators/macd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategy/ema_strategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/strategy/ema_strategy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/integration/test_binance_order_lifecycle.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/integration/test_binance_order_lifecycle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/integration/test_binance_signed_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/integration/test_binance_signed_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/integration/test_binance_stream.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/integration/test_binance_stream.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/integration/test_binance_user_stream_order_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/integration/test_binance_user_stream_order_store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/integration/test_kline_client_live.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/integration/test_kline_client_live.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/integration/test_pipeline_live.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/integration/test_pipeline_live.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_account_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_account_store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_api_errors.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_api_errors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_atr.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_atr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_binance_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_binance_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_binance_stream_reconnect.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_binance_stream_reconnect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_binance_stream_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_binance_stream_url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_binance_testnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_binance_testnet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_binance_testnet_get_open_orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_binance_testnet_get_open_orders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_bollinger.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_bollinger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_cancel_order_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_cancel_order_cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_candle_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_candle_store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_candles.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_candles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_ema_strategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_ema_strategy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_execution_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_execution_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_execution_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_execution_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_exponential_average.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_exponential_average.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_kline_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_kline_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_kline_stream.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_kline_stream.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_macd.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_macd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_moving_average.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_moving_average.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_order_event_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_order_event_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_order_events.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_order_events.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_order_history.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_order_history.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_order_status_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_order_status_cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_order_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_order_store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_order_store_out_of_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_order_store_out_of_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_order_store_sync_rest_orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_order_store_sync_rest_orders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_order_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_order_validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_order_validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_order_validator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_paper_broker.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_paper_broker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_place_order_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_place_order_cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_position_sizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_position_sizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_risk_levels.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_risk_levels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_rsi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_rsi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_state_sync.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_state_sync.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_status_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_status_cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_user_stream.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_user_stream.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/unit/test_validate_order_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/unit/test_validate_order_cli.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="3Hb25ZWmbbOWMnftUHa7cly7a2R" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="985d5376-cb68-4924-a1a9-ebe7914015ba" name="Changes" comment="" />
+      <created>1786122266167</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1786122266167</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

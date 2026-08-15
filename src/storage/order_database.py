@@ -35,7 +35,8 @@ class OrderDatabase:
 
     def _init_db(self) -> None:
         with sqlite3.connect(self.db_path) as conn:
-            conn.execute("""
+            conn.execute(
+                """
                 CREATE TABLE IF NOT EXISTS orders (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     symbol TEXT NOT NULL,
@@ -49,7 +50,8 @@ class OrderDatabase:
                     binance_order_id INTEGER,
                     strategy_signal TEXT
                 )
-            """)
+            """
+            )
             conn.execute("CREATE INDEX IF NOT EXISTS idx_symbol ON orders(symbol)")
             conn.execute("CREATE INDEX IF NOT EXISTS idx_status ON orders(status)")
             conn.commit()
@@ -70,13 +72,24 @@ class OrderDatabase:
                 INSERT INTO orders (symbol, side, order_type, quantity, price, status, created_at, updated_at, strategy_signal)
                 VALUES (?, ?, ?, ?, ?, 'PENDING', ?, ?, ?)
                 """,
-                (symbol, side, order_type, str(quantity), str(price), now, now, strategy_signal),
+                (
+                    symbol,
+                    side,
+                    order_type,
+                    str(quantity),
+                    str(price),
+                    now,
+                    now,
+                    strategy_signal,
+                ),
             )
             conn.commit()
             order_id = cursor.lastrowid
             return order_id if order_id is not None else 0
 
-    def update_status(self, order_id: int, status: str, binance_order_id: Optional[int] = None) -> None:
+    def update_status(
+        self, order_id: int, status: str, binance_order_id: Optional[int] = None
+    ) -> None:
         now = datetime.utcnow().isoformat()
         with sqlite3.connect(self.db_path) as conn:
             if binance_order_id is not None:

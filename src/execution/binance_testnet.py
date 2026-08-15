@@ -139,13 +139,20 @@ class BinanceTestnetClient:
     async def cancel_order(self, symbol: str, order_id: int) -> Dict[str, Any]:
         """Отменяет ордер."""
         return await self._request(
-            "DELETE", "/api/v3/order", params={"symbol": symbol, "orderId": order_id}, signed=True
+            "DELETE",
+            "/api/v3/order",
+            params={"symbol": symbol, "orderId": order_id},
+            signed=True,
         )
 
-    async def get_open_orders(self, symbol: Optional[str] = None) -> List[Dict[str, Any]]:
+    async def get_open_orders(
+        self, symbol: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
         """Получает открытые ордера."""
         params = {"symbol": symbol} if symbol else {}
-        return await self._request("GET", "/api/v3/openOrders", params=params, signed=True)
+        return await self._request(
+            "GET", "/api/v3/openOrders", params=params, signed=True
+        )
 
     async def get_klines(
         self,

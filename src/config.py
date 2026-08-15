@@ -75,8 +75,12 @@ def load_config(config_path: str = "config.yaml") -> Settings:
         bot=BotConfig(
             symbol=data.get("bot", {}).get("symbol", "BTCUSDT"),
             testnet=data.get("bot", {}).get("testnet", True),
-            base_url=data.get("bot", {}).get("base_url", "https://testnet.binance.vision"),
-            ws_url=data.get("bot", {}).get("ws_url", "wss://stream.testnet.binance.vision/ws"),
+            base_url=data.get("bot", {}).get(
+                "base_url", "https://testnet.binance.vision"
+            ),
+            ws_url=data.get("bot", {}).get(
+                "ws_url", "wss://stream.testnet.binance.vision/ws"
+            ),
         ),
         strategy=StrategyConfig(
             name=data.get("strategy", {}).get("name", "ma_crossover"),
@@ -87,7 +91,9 @@ def load_config(config_path: str = "config.yaml") -> Settings:
         ),
         risk=RiskConfig(
             max_portfolio_pct=data.get("risk", {}).get("max_portfolio_pct", 0.10),
-            max_loss_per_trade_pct=data.get("risk", {}).get("max_loss_per_trade_pct", 0.02),
+            max_loss_per_trade_pct=data.get("risk", {}).get(
+                "max_loss_per_trade_pct", 0.02
+            ),
             stop_loss_pct=data.get("risk", {}).get("stop_loss_pct", 0.02),
             take_profit_pct=data.get("risk", {}).get("take_profit_pct", 0.04),
         ),
