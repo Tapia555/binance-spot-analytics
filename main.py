@@ -28,8 +28,8 @@ async def main():
     
     # Правильно передаём параметры
     kline_stream = KlineStream(
-        symbol=config.SYMBOL,
-        timeframe=config.TIMEFRAME
+        symbol=config.symbol,
+        timeframe=config.timeframe
     )
     strategy = MACrossoverStrategy()
     executor = BinanceTestnetClient(config)
