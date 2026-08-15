@@ -30,13 +30,12 @@ async def main():
     executor = BinanceTestnetClient(config)
     db = OrderDatabase()
     
-    await market_data.start()
-    
-    async for kline in market_data.klines():
-        signal = strategy.update(kline)
-        if signal:
-            await executor.execute(signal)
-            db.save(signal)
+    async with market_data:
+        async for kline in market_data.klines():
+            signal = strategy.update(kline)
+            if signal:
+                await executor.execute(signal)
+                db.save(signal)
 
 if __name__ == "__main__":
     asyncio.run(main())
