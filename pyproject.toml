@@ -1,52 +1,24 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "binance-spot-analytics"
+name = "crypto-bot"
 version = "0.1.0"
-description = "Analytical Binance Spot BTCUSDT strategy"
-requires-python = ">=3.13"
+description = "Crypto Trading Bot"
+requires-python = ">=3.11"
 dependencies = [
-    "aiohttp>=3.10",
-    "numpy>=2.0",
-    "pandas>=2.2",
-    "PyYAML>=6.0",
-    "python-dotenv>=1.0",
-    "websockets>=13.0"
+    "python-binance==1.0.19",
+    "python-dotenv==1.0.0",
+    "pyyaml==6.0.1",
+    "requests==2.31.0",
+    "aiohttp==3.9.1",
+    "pandas==2.1.4",
+    "numpy==1.26.2",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.0",
-    "pytest-asyncio>=0.24",
-    "ruff>=0.8"
+    "pytest>=7.0",
+    "pre-commit>=3.0",
 ]
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.pytest.ini_options]
-asyncio_mode = "strict"
-testpaths = ["tests"]
-markers = [
-    "integration: tests that call Binance Testnet",
-]
-
-[tool.ruff]
-line-length = 88
-target-version = "py313"
-
-
-[tool.ruff.lint]
-ignore = [
-    "SIM117",  # nested with
-    "BLE001",  # blind except
-    "RUF007",  # itertools.pairwise
-    "PYI034",  # __aenter__ return Self
-    "S110",    # try-except-pass
-]
-
-[tool.mypy]
-ignore_missing_imports = true
-disable_error_code = ["attr-defined", "union-attr", "import-untyped", "dict-item", "arg-type"]
