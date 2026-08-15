@@ -1,34 +1,51 @@
 from __future__ import annotations
 
-from collections.abc import Iterable
-from dataclasses import dataclass
 from decimal import Decimal
-
-
-@dataclass(frozen=True)
-class BalanceRecord:
-    asset: str
-    free: Decimal
-    locked: Decimal
-
-    @property
-    def total(self) -> Decimal:
-        return self.free + self.locked
+from typing import Dict
 
 
 class BalanceStore:
+    """Хранит балансы по активам (в памяти)."""
+
     def __init__(self) -> None:
-        self._balances: dict[str, BalanceRecord] = {}
+        self._balances: Dict[str, Decimal] = {}
+        self._locked: Dict[str, Decimal] = {}
 
-    def apply_snapshot(self, balances: Iterable[object]) -> None:
-        for item in balances:
-            asset = item.asset
-            free = Decimal(str(item.free))
-            locked = Decimal(str(item.locked))
-            self._balances[asset] = BalanceRecord(asset=asset, free=free, locked=locked)
+    def set(self, asset: str, free: str, locked: str = "0") -> None:
+        self._balances[asset] = Decimal(free)
+        self._locked[asset] = Decimal(locked)
 
-    def get(self, asset: str) -> BalanceRecord | None:
-        return self._balances.get(asset)
+    def get_free(self, asset: str) -> Decimal:
+        return self._balances.get(asset, Decimal("0"))
 
-    def all(self) -> dict[str, BalanceRecord]:
-        return dict(self._balances)
+    def get_locked(self, asset: str) -> Decimal:
+        return self._locked.get(asset, Decimal("0"))
+
+    def get_total(self, asset: str) -> Decimal:
+        return self.get_free(asset) + self.get_locked(asset)
+
+    def update(self, asset: str, free: str, locked: str) -> None:
+        self._balances[asset] = Decimal(free)
+        self._locked[asset] = Decimal(locked)
+
+    def lock(self, asset: str, amount: Decimal) -> bool:
+        """Блокирует баланс для ордера."""
+        if self.get_free(asset) >= amount:
+            self._balances[asset] -= amount
+            self._locked[asset] = self.get_locked(asset) + amount
+            return True
+        return False
+
+    def unlock(self, asset: str, amount: Decimal) -> None:
+        """Разблокирует баланс."""
+        if self._locked.get(asset, Decimal("0")) >= amount:
+            self._locked[asset] -= amount
+            self._balances[asset] += amount
+
+    def __repr__(self) -> str:
+        items = []
+        for asset in self._balances:
+            free = self.get_free(asset)
+            locked = self.get_locked(asset)
+            items.append(f"{asset}: free={free}, locked={locked}")
+        return "BalanceStore(" + ", ".join(items) + ")"

@@ -2,59 +2,46 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import Decimal
-from typing import Any
+from typing import Dict, List, Optional
 
 
 @dataclass
 class Position:
     symbol: str
-    side: str
+    side: str  # "BUY" или "SELL"
     quantity: Decimal
-    filled_quantity: Decimal
-    average_price: Decimal
-    status: str
-
-    @property
-    def is_open(self) -> bool:
-        return (
-            self.status in {"NEW", "PARTIALLY_FILLED", "FILLED"}
-            and self.filled_quantity > 0
-        )
+    entry_price: Decimal
+    unrealized_pnl: Decimal = Decimal("0")
+    realized_pnl: Decimal = Decimal("0")
 
 
 class PositionStore:
+    """Хранит открытые позиции."""
+
     def __init__(self) -> None:
-        self._positions: dict[str, Position] = {}
+        self._positions: Dict[str, Position] = {}
 
-    def apply_execution_report(self, event: dict[str, Any]) -> None:
-        symbol = event.get("s")
-        if not symbol:
-            return
-
-        side = event.get("S", "")
-        status = event.get("X", "")
-        qty = Decimal(str(event.get("q", "0")))
-        filled_qty = Decimal(str(event.get("z", "0")))
-        cum_quote = Decimal(str(event.get("Z", "0")))
-
-        avg_price = Decimal(0)
-        if filled_qty > 0:
-            avg_price = cum_quote / filled_qty
-
-        self._positions[symbol] = Position(
-            symbol=symbol,
-            side=side,
-            quantity=qty,
-            filled_quantity=filled_qty,
-            average_price=avg_price,
-            status=status,
-        )
-
-    def get(self, symbol: str) -> Position | None:
+    def get(self, symbol: str) -> Optional[Position]:
         return self._positions.get(symbol)
 
-    def all(self) -> dict[str, Position]:
-        return dict(self._positions)
+    def set(self, position: Position) -> None:
+        if position.quantity > 0:
+            self._positions[position.symbol] = position
+        elif position.symbol in self._positions:
+            del self._positions[position.symbol]
 
-    def open_positions(self) -> list[Position]:
-        return [p for p in self._positions.values() if p.is_open]
+    def close(self, symbol: str) -> Optional[Position]:
+        """Закрывает позицию и возвращает её."""
+        return self._positions.pop(symbol, None)
+
+    def all(self) -> List[Position]:
+        return list(self._positions.values())
+
+    def __repr__(self) -> str:
+        if not self._positions:
+            return "PositionStore(no positions)"
+        items = [
+            f"{p.symbol}: {p.side} {p.quantity}@{p.entry_price}"
+            for p in self._positions.values()
+        ]
+        return "PositionStore(" + ", ".join(items) + ")"

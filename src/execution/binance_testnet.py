@@ -1,242 +1,169 @@
 from __future__ import annotations
 
-import hashlib
-import hmac
-import os
-import time
-from typing import Any
-from urllib.parse import urlencode
+import asyncio
+import logging
+from typing import Any, Dict, List, Optional
 
-import requests
-from dotenv import load_dotenv
+import aiohttp
+from aiohttp import ClientError, ClientTimeout
 
-from .api_errors import (
-    BinanceApiError,
-    BinanceRateLimitError,
-)
+logger = logging.getLogger(__name__)
+
+
+class BinanceAPIError(Exception):
+    def __init__(self, code: int, msg: str):
+        self.code = code
+        self.msg = msg
+        super().__init__(f"Binance API error {code}: {msg}")
+
+
+class BinanceRateLimitError(BinanceAPIError):
+    pass
 
 
 class BinanceTestnetClient:
     def __init__(
         self,
-        base_url: str = "https://testnet.binance.vision/api",
-    ):
-        load_dotenv()
+        base_url: str = "https://testnet.binance.vision",
+        api_key: Optional[str] = None,
+        secret_key: Optional[str] = None,
+        timeout: float = 10.0,
+        max_retries: int = 3,
+        retry_delay: float = 1.0,
+    ) -> None:
+        self.base_url = base_url
+        self.api_key = api_key
+        self.secret_key = secret_key
+        self.timeout = ClientTimeout(total=timeout)
+        self.max_retries = max_retries
+        self.retry_delay = retry_delay
+        self._session: Optional[aiohttp.ClientSession] = None
 
-        self.base_url = base_url.rstrip("/")
-        self.api_key = os.getenv("BINANCE_TESTNET_API_KEY")
-        self.secret = os.getenv("BINANCE_TESTNET_SECRET")
-        self.timeout = 10.0
+    async def _get_session(self) -> aiohttp.ClientSession:
+        if self._session is None or self._session.closed:
+            self._session = aiohttp.ClientSession(timeout=self.timeout)
+        return self._session
 
-        if not self.api_key or not self.secret:
-            raise RuntimeError("Testnet credentials are missing")
+    async def close(self) -> None:
+        if self._session and not self._session.closed:
+            await self._session.close()
 
-        if not self.api_key.isascii() or not self.secret.isascii():
-            raise RuntimeError("Credentials must contain ASCII characters")
-
-    def _signed_request(
+    async def _request(
         self,
         method: str,
         path: str,
-        *,
-        params: dict | None = None,
-    ):
-        params = dict(params or {})
-        params["timestamp"] = self._timestamp()
-        params["signature"] = self._sign(params)
+        params: Optional[Dict[str, Any]] = None,
+        data: Optional[Dict[str, Any]] = None,
+        signed: bool = False,
+    ) -> Dict[str, Any]:
+        session = await self._get_session()
+        url = f"{self.base_url}{path}"
 
-        response = requests.request(
-            method=method,
-            url=f"{self.base_url}{path}",
-            params=params,
-            headers={
-                "X-MBX-APIKEY": self.api_key,
-            },
-            timeout=self.timeout,
-        )
+        for attempt in range(self.max_retries):
+            try:
+                if signed:
+                    if params is None:
+                        params = {}
+                    params["timestamp"] = int(asyncio.get_event_loop().time() * 1000)
 
-        try:
-            data = response.json()
-        except ValueError:
-            data = {}
+                async with session.request(
+                    method,
+                    url,
+                    params=params,
+                    json=data,
+                    headers={"X-MBX-APIKEY": self.api_key} if self.api_key else {},
+                ) as resp:
+                    result = await resp.json()
 
-        if response.status_code in (418, 429):
-            retry_after = response.headers.get("Retry-After")
+                    if resp.status >= 400:
+                        code = result.get("code", resp.status)
+                        msg = result.get("msg", str(result))
 
-            raise BinanceRateLimitError(
-                code=data.get("code"),
-                message=data.get(
-                    "msg",
-                    response.text or "Rate limit exceeded",
-                ),
-                status_code=response.status_code,
-                retry_after=retry_after,
-            )
+                        if code in (-1003, -1015, 429):
+                            raise BinanceRateLimitError(code, msg)
 
-        if response.status_code >= 400:
-            raise BinanceApiError(
-                code=data.get("code"),
-                message=data.get(
-                    "msg",
-                    response.text or "HTTP request failed",
-                ),
-            )
+                        raise BinanceAPIError(code, msg)
 
-        if isinstance(data, dict) and "code" in data:
-            raise BinanceApiError(
-                code=data.get("code"),
-                message=data.get(
-                    "msg",
-                    "Binance API request failed",
-                ),
-            )
+                    return result
 
-        return data or {}
+            except (ClientError, asyncio.TimeoutError) as e:
+                logger.warning(f"Request failed (attempt {attempt + 1}): {e}")
+                if attempt < self.max_retries - 1:
+                    await asyncio.sleep(self.retry_delay * (attempt + 1))
+                else:
+                    raise
 
-    def _timestamp(self) -> int:
-        return int(time.time() * 1000)
+            except BinanceRateLimitError as e:
+                logger.warning(f"Rate limit hit (attempt {attempt + 1}): {e}")
+                if attempt < self.max_retries - 1:
+                    await asyncio.sleep(self.retry_delay * (attempt + 1) * 2)
+                else:
+                    raise
 
-    def _sign(self, params: dict) -> str:
-        query_string = urlencode(params, doseq=True)
-        return hmac.new(
-            self.secret.encode("ascii"),
-            query_string.encode("ascii"),
-            hashlib.sha256,
-        ).hexdigest()
+        raise BinanceAPIError(-1, "Max retries exceeded")
 
-    def test_limit_order(
+    async def get_account_balance(self, asset: str = "USDT") -> Dict[str, Any]:
+        """Получает баланс счёта."""
+        return await self._request("GET", "/api/v3/account")
+
+    async def get_symbol_rules(self, symbol: str) -> Dict[str, Any]:
+        """Получает правила для символа."""
+        data = await self._request("GET", "/api/v3/exchangeInfo")
+        for s in data.get("symbols", []):
+            if s["symbol"] == symbol:
+                return s
+        raise ValueError(f"Symbol {symbol} not found")
+
+    async def create_order(
         self,
-        *,
         symbol: str,
         side: str,
+        order_type: str,
         quantity: str,
-        price: str,
-    ) -> dict[str, Any]:
-        return self._signed_request(
-            "POST",
-            "/v3/order/test",
-            params={
-                "symbol": symbol,
-                "side": side,
-                "type": "LIMIT",
-                "timeInForce": "GTC",
-                "quantity": quantity,
-                "price": price,
-            },
+        price: Optional[str] = None,
+        time_in_force: str = "GTC",
+    ) -> Dict[str, Any]:
+        """Создаёт ордер."""
+        data = {
+            "symbol": symbol,
+            "side": side,
+            "type": order_type,
+            "quantity": quantity,
+            "timeInForce": time_in_force,
+        }
+        if price:
+            data["price"] = price
+
+        return await self._request("POST", "/api/v3/order", data=data, signed=True)
+
+    async def cancel_order(self, symbol: str, order_id: int) -> Dict[str, Any]:
+        """Отменяет ордер."""
+        return await self._request(
+            "DELETE", "/api/v3/order", params={"symbol": symbol, "orderId": order_id}, signed=True
         )
 
-    def place_limit_order(
+    async def get_open_orders(self, symbol: Optional[str] = None) -> List[Dict[str, Any]]:
+        """Получает открытые ордера."""
+        params = {"symbol": symbol} if symbol else {}
+        return await self._request("GET", "/api/v3/openOrders", params=params, signed=True)
+
+    async def get_klines(
         self,
-        *,
         symbol: str,
-        side: str,
-        quantity: str,
-        price: str,
-    ) -> dict[str, Any]:
-        return self._signed_request(
-            "POST",
-            "/v3/order",
-            params={
-                "symbol": symbol,
-                "side": side,
-                "type": "LIMIT",
-                "timeInForce": "GTC",
-                "quantity": quantity,
-                "price": price,
-                "newOrderRespType": "RESULT",
-            },
-        )
+        interval: str,
+        limit: int = 100,
+        start_time: Optional[int] = None,
+        end_time: Optional[int] = None,
+    ) -> List[List[Any]]:
+        """Получает клайн-данные."""
+        params = {
+            "symbol": symbol,
+            "interval": interval,
+            "limit": limit,
+        }
+        if start_time:
+            params["startTime"] = start_time
+        if end_time:
+            params["endTime"] = end_time
 
-    def get_order(
-        self,
-        *,
-        symbol: str,
-        order_id: int,
-    ) -> dict[str, Any]:
-        return self._signed_request(
-            "GET",
-            "/v3/order",
-            params={
-                "symbol": symbol,
-                "orderId": order_id,
-            },
-        )
-
-    def cancel_order(
-        self,
-        *,
-        symbol: str,
-        order_id: int,
-    ) -> dict[str, Any]:
-        return self._signed_request(
-            "DELETE",
-            "/v3/order",
-            params={
-                "symbol": symbol,
-                "orderId": order_id,
-            },
-        )
-
-    def get_exchange_info(
-        self,
-        *,
-        symbol: str,
-    ) -> dict[str, Any]:
-        response = requests.request(
-            method="GET",
-            url=f"{self.base_url}/v3/exchangeInfo",
-            params={"symbol": symbol.upper()},
-            timeout=self.timeout,
-        )
-
-        try:
-            data = response.json()
-        except ValueError:
-            data = {}
-
-        if response.status_code >= 400:
-            raise BinanceApiError(
-                code=data.get("code"),
-                message=data.get(
-                    "msg",
-                    response.text or "HTTP request failed",
-                ),
-                status_code=response.status_code,
-            )
-
-        return data or {}
-
-    def get_account(
-        self,
-        *,
-        omit_zero_balances: bool = True,
-    ) -> dict[str, Any]:
-        return self._signed_request(
-            "GET",
-            "/v3/account",
-            params={
-                "omitZeroBalances": str(omit_zero_balances).lower(),
-            },
-        )
-
-    def get_open_orders(
-        self,
-        *,
-        symbol: str,
-    ) -> list[dict[str, Any]]:
-        return self._signed_request(
-            "GET",
-            "/v3/openOrders",
-            params={
-                "symbol": symbol,
-            },
-        )
-
-    def test_order(self, **params):
-        result = self._signed_request(
-            "POST",
-            "/api/v3/order/test",
-            params=params,
-        )
-
-        return result or {}
+        return await self._request("GET", "/api/v3/klines", params=params)

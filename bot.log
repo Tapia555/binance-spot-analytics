@@ -1,0 +1,95 @@
+2026-08-15 21:25:55,685 [INFO] __main__: Starting bot for BTCUSDT on testnet
+2026-08-15 21:25:55,685 [INFO] __main__: Strategy: MA Crossover (fast=10, slow=20)
+2026-08-15 21:25:55,685 [INFO] __main__: Loading historical klines...
+2026-08-15 21:25:56,131 [INFO] __main__: Loaded 200 historical candles
+2026-08-15 21:25:56,132 [INFO] __main__: Starting kline stream...
+2026-08-15 21:25:56,132 [INFO] __main__: Waiting for trading signals...
+2026-08-15 21:26:00,742 [INFO] __main__: ✅ Candle closed: 63061.26
+2026-08-15 21:26:34,766 [INFO] __main__: Shutdown signal received
+2026-08-15 21:26:39,221 [INFO] __main__: Shutdown signal received
+2026-08-15 21:27:39,409 [INFO] 🤖 Starting bot for BTCUSDT on testnet
+2026-08-15 21:27:39,409 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
+2026-08-15 21:27:39,409 [INFO] 📥 Loading historical klines...
+2026-08-15 21:27:39,782 [INFO] ✅ Loaded 200 historical candles
+2026-08-15 21:27:39,783 [INFO] 🚀 Starting kline stream...
+2026-08-15 21:27:39,783 [INFO] ⏳ Waiting for trading signals...
+2026-08-15 21:28:00,756 [INFO] ✅ Candle closed: 63061.27
+2026-08-15 21:28:00,759 [INFO] 📊 Strategy: HOLD | fast=63057.23, slow=63075.56, trend=63085.39, rsi=14.1, price=63061.27, bullish=False
+2026-08-15 21:28:00,760 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 21:29:00,866 [INFO] ✅ Candle closed: 63050.07
+2026-08-15 21:29:00,867 [INFO] 📊 Strategy: HOLD | fast=63055.92, slow=63073.28, trend=63085.39, rsi=14.1, price=63050.07, bullish=False
+2026-08-15 21:29:00,867 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 21:30:16,310 [INFO] 🛑 Shutdown signal received
+2026-08-15 21:30:19,611 [INFO] 🏁 Bot stopped
+2026-08-15 21:52:43,095 [INFO] 🤖 Starting bot for BTCUSDT on testnet
+2026-08-15 21:52:43,096 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
+2026-08-15 21:52:43,096 [INFO] 📥 Loading historical klines...
+2026-08-15 21:52:43,755 [INFO] ✅ Loaded 200 historical candles
+2026-08-15 21:52:43,756 [INFO] 🚀 Starting kline stream...
+2026-08-15 21:52:43,756 [INFO] ⏳ Waiting for trading signals...
+2026-08-15 21:53:01,243 [INFO] ✅ Candle closed: 63045.96
+2026-08-15 21:53:01,244 [INFO] 📊 Strategy: HOLD | fast=63048.01, slow=63049.03, trend=63083.70, rsi=1.2, price=63045.96, bullish=False
+2026-08-15 21:53:01,245 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 21:54:00,371 [INFO] ✅ Candle closed: 63046.97
+2026-08-15 21:54:00,372 [INFO] 📊 Strategy: HOLD | fast=63047.80, slow=63048.93, trend=63083.47, rsi=20.4, price=63046.97, bullish=False
+2026-08-15 21:54:00,373 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 21:54:33,251 [INFO] 🛑 Shutdown signal received
+2026-08-15 21:54:34,419 [INFO] 🏁 Bot stopped
+2026-08-15 22:03:18,895 [INFO] 🤖 Starting bot for BTCUSDT on testnet
+2026-08-15 22:03:18,895 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
+2026-08-15 22:03:18,895 [INFO] 📥 Loading historical klines...
+2026-08-15 22:03:19,277 [INFO] ✅ Loaded 200 historical candles
+2026-08-15 22:03:19,279 [INFO] 🚀 Starting kline stream...
+2026-08-15 22:03:19,279 [INFO] ⏳ Waiting for trading signals...
+2026-08-15 22:05:00,871 [INFO] ✅ Candle closed: 63066.0
+2026-08-15 22:05:00,872 [INFO] 📊 Strategy: HOLD | fast=63059.55, slow=63053.93, trend=63080.62, rsi=100.0, price=63066.00, bullish=True
+2026-08-15 22:05:00,873 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 22:06:00,459 [INFO] ✅ Candle closed: 63065.99
+2026-08-15 22:06:00,460 [INFO] 📊 Strategy: HOLD | fast=63060.93, slow=63054.73, trend=63080.37, rsi=100.0, price=63065.99, bullish=True
+2026-08-15 22:06:00,460 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 22:07:00,427 [INFO] ✅ Candle closed: 63066.37
+2026-08-15 22:07:00,428 [INFO] 📊 Strategy: HOLD | fast=63061.95, slow=63055.56, trend=63080.13, rsi=100.0, price=63066.37, bullish=True
+2026-08-15 22:07:00,428 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 22:07:47,664 [INFO] 🛑 Shutdown signal received
+2026-08-15 22:07:59,627 [INFO] 🏁 Bot stopped
+2026-08-15 22:39:32,429 [INFO] 🤖 Starting bot for BTCUSDT on testnet
+2026-08-15 22:39:32,429 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
+2026-08-15 22:39:32,430 [INFO] 📥 Loading historical klines...
+2026-08-15 22:39:32,807 [INFO] ✅ Loaded 200 historical candles
+2026-08-15 22:39:32,808 [INFO] 🚀 Starting kline stream...
+2026-08-15 22:39:32,808 [INFO] ⏳ Waiting for trading signals...
+2026-08-15 22:40:00,558 [INFO] ✅ Candle closed: 63116.08
+2026-08-15 22:40:00,558 [INFO] 📊 Strategy: HOLD | fast=63107.97, slow=63109.09, trend=63081.52, rsi=65.2, price=63116.08, bullish=False
+2026-08-15 22:40:00,559 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 22:41:00,390 [INFO] ✅ Candle closed: 63116.07
+2026-08-15 22:41:00,391 [INFO] 📊 Strategy: HOLD | fast=63109.44, slow=63109.47, trend=63081.69, rsi=65.2, price=63116.07, bullish=False
+2026-08-15 22:41:00,391 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 22:42:01,162 [INFO] ✅ Candle closed: 63115.6
+2026-08-15 22:42:01,163 [INFO] 📊 Strategy: BUY | fast=63110.82, slow=63109.58, trend=63081.84, rsi=64.4, price=63115.60, bullish=True
+2026-08-15 22:42:01,164 [INFO] 📝 Reason: bullish_crossover_trend_rsi
+2026-08-15 22:42:31,629 [ERROR] Failed to send Telegram message: Connection timeout to host https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage
+2026-08-15 22:43:42,250 [INFO] 🛑 Shutdown signal received
+2026-08-15 22:43:46,521 [INFO] 🏁 Bot stopped
+2026-08-15 22:56:52,514 [INFO] 🤖 Starting bot for BTCUSDT on testnet
+2026-08-15 22:56:52,515 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
+2026-08-15 22:56:52,515 [INFO] 📥 Loading historical klines...
+2026-08-15 22:56:52,964 [INFO] ✅ Loaded 200 historical candles
+2026-08-15 22:56:52,965 [INFO] 🚀 Starting kline stream...
+2026-08-15 22:56:52,966 [INFO] ⏳ Waiting for trading signals...
+2026-08-15 22:57:00,607 [INFO] ✅ Candle closed: 63126.08
+2026-08-15 22:57:00,609 [INFO] 📊 Strategy: HOLD | fast=63123.22, slow=63120.01, trend=63082.88, rsi=99.7, price=63126.08, bullish=True
+2026-08-15 22:57:00,609 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 22:59:01,057 [INFO] ✅ Candle closed: 63126.08
+2026-08-15 22:59:01,059 [INFO] 📊 Strategy: HOLD | fast=63124.09, slow=63120.06, trend=63083.02, rsi=99.7, price=63126.08, bullish=True
+2026-08-15 22:59:01,059 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 23:00:00,432 [INFO] ✅ Candle closed: 63126.07
+2026-08-15 23:00:00,433 [INFO] 📊 Strategy: HOLD | fast=63124.60, slow=63120.56, trend=63083.17, rsi=99.7, price=63126.07, bullish=True
+2026-08-15 23:00:00,434 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 23:03:01,128 [INFO] ✅ Candle closed: 63123.36
+2026-08-15 23:03:01,130 [INFO] 📊 Strategy: HOLD | fast=63124.43, slow=63120.79, trend=63083.29, rsi=79.3, price=63123.36, bullish=True
+2026-08-15 23:03:01,131 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 23:04:01,278 [INFO] ✅ Candle closed: 63123.36
+2026-08-15 23:04:01,279 [INFO] 📊 Strategy: HOLD | fast=63124.53, slow=63121.18, trend=63083.42, rsi=76.2, price=63123.36, bullish=True
+2026-08-15 23:04:01,280 [INFO] 📝 Reason: filtered_or_no_crossover
+2026-08-15 23:04:38,824 [INFO] 🛑 Shutdown signal received
+2026-08-15 23:04:41,631 [INFO] 🏁 Bot stopped

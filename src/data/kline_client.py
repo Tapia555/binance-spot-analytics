@@ -9,7 +9,7 @@ import pandas as pd
 class KlineClient:
     def __init__(
         self,
-        base_url: str = "https://testnet.binance.vision/api",
+        base_url: str = "https://testnet.binance.vision",
     ) -> None:
         self.base_url = base_url.rstrip("/")
 
@@ -32,7 +32,7 @@ class KlineClient:
 
         async with aiohttp.ClientSession(timeout=timeout) as session:
             async with session.get(
-                f"{self.base_url}/v3/klines",
+                f"{self.base_url}/api/v3/klines",
                 params=params,
             ) as response:
                 response.raise_for_status()
