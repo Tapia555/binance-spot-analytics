@@ -1,7 +1,6 @@
 import sys
 from pathlib import Path
 
-# Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 import asyncio
@@ -13,27 +12,22 @@ load_dotenv()
 from config import load_config
 from market_data.ws_market_data_service import WSMarketDataService
 from strategy.ma_crossover_strategy import MACrossoverStrategy
-from execution.execution_service import ExecutionService
+from execution.binance_testnet import BinanceTestnetClient
 from storage.order_database import OrderDatabase
 
-# Setup logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s [%(levelname)s] %(message)s',
-    handlers=[
-        logging.StreamHandler(),
-        logging.FileHandler('bot.log')
-    ]
+    handlers=[logging.StreamHandler(), logging.FileHandler('bot.log')]
 )
 logger = logging.getLogger(__name__)
 
 async def main():
     logger.info("🚀 Starting crypto bot...")
-    
     config = load_config()
     market_data = WSMarketDataService(config)
     strategy = MACrossoverStrategy()
-    executor = ExecutionService(config)
+    executor = BinanceTestnetClient(config)
     db = OrderDatabase()
     
     await market_data.start()
