@@ -12,7 +12,7 @@ load_dotenv()
 
 from config import load_config
 from data.kline_stream import KlineStream
-from strategy.ma_crossover import MACrossoverStrategy
+from strategy.ma_crossover_strategy import MACrossoverStrategy
 from execution.binance_testnet import BinanceTestnetExecutor
 from storage.order_database import OrderDatabase
 
