@@ -25,7 +25,12 @@ logger = logging.getLogger(__name__)
 async def main():
     logger.info("Starting crypto bot...")
     config = load_config()
-    kline_stream = KlineStream(config)
+    
+    # Правильно передаём параметры
+    kline_stream = KlineStream(
+        symbol=config.SYMBOL,
+        timeframe=config.TIMEFRAME
+    )
     strategy = MACrossoverStrategy()
     executor = BinanceTestnetClient(config)
     db = OrderDatabase()
@@ -40,4 +45,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
