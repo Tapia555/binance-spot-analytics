@@ -1,18 +1,8 @@
 import sys
-import os
 from pathlib import Path
 
-# Debug
-print(f"Working dir: {os.getcwd()}")
-print(f"Files: {os.listdir('.')}")
-if Path('src').exists():
-    print(f"src files: {os.listdir('src')}")
-
 # Add src to path
-src_path = Path(__file__).parent / "src"
-if src_path.exists():
-    sys.path.insert(0, str(src_path))
-    print(f"Added to path: {src_path}")
+sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 import asyncio
 import logging
@@ -20,17 +10,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-try:
-    from config import load_config
-    from data.kline_collector import KlineCollector
-    from strategy.ma_crossover import MACrossoverStrategy
-    from execution.binance_testnet import BinanceTestnetExecutor
-    from storage.order_database import OrderDatabase
-    from notifications.telegram import TelegramNotifier
-except ImportError as e:
-    print(f"Import error: {e}")
-    print(f"sys.path: {sys.path}")
-    raise
+# Imports from src
+from config import load_config
+from data.kline_collector import KlineCollector
+from strategy.ma_crossover import MACrossoverStrategy
+from execution.binance_testnet import BinanceTestnetExecutor
+from storage.order_database import OrderDatabase
+from notifications.telegram import TelegramNotifier
 
 # Setup logging
 logging.basicConfig(
@@ -43,4 +29,22 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ... остальной код ...
+async def main():
+    logger.info("🚀 Starting crypto bot...")
+    
+    config = load_config()
+    collector = KlineCollector(config)
+    strategy = MACrossoverStrategy()
+    executor = BinanceTestnetExecutor(config)
+    db = OrderDatabase()
+    
+    await collector.start()
+    
+    async for kline in collector.klines():
+        signal = strategy.update(kline.close)
+        if signal:
+            await executor.execute(signal)
+            db.save(signal)
+
+if __name__ == "__main__":
+    asyncio.run(main())
