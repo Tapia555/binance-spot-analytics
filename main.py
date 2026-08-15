@@ -11,9 +11,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from config import load_config
-from data.kline_stream import KlineStream
+from market_data.ws_market_data_service import WSMarketDataService
 from strategy.ma_crossover_strategy import MACrossoverStrategy
-from execution.binance_testnet import BinanceTestnetExecutor
+from execution.execution_service import ExecutionService
 from storage.order_database import OrderDatabase
 
 # Setup logging
@@ -31,14 +31,14 @@ async def main():
     logger.info("🚀 Starting crypto bot...")
     
     config = load_config()
-    kline_stream = KlineStream(config)
+    market_data = WSMarketDataService(config)
     strategy = MACrossoverStrategy()
-    executor = BinanceTestnetExecutor(config)
+    executor = ExecutionService(config)
     db = OrderDatabase()
     
-    await kline_stream.start()
+    await market_data.start()
     
-    async for kline in kline_stream.klines():
+    async for kline in market_data.klines():
         signal = strategy.update(kline)
         if signal:
             await executor.execute(signal)
