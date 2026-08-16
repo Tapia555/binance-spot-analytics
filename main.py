@@ -26,6 +26,9 @@ async def main():
     logger.info("Starting crypto bot...")
     config = load_config()
     
+    logger.info(f"Symbol: {config.bot.symbol}")
+    logger.info(f"Testnet: {config.bot.testnet}")
+    
     kline_stream = KlineStream(
         symbol=config.bot.symbol,
         interval="1m"
@@ -40,10 +43,16 @@ async def main():
     db = OrderDatabase()
     
     closes = []
+    kline_count = 0
     
     async def on_kline(kline: Kline):
+        nonlocal kline_count
+        kline_count += 1
+        
         if kline.closed:
             closes.append(kline.close)
+            logger.info(f"Kline #{kline_count}: {kline.close} (closed={kline.closed})")
+            
             signal = strategy.generate(symbol=config.bot.symbol, closes=closes)
             if signal.action.value != "HOLD":
                 logger.info(f"Signal: {signal.action.value} - {signal.reason}")
