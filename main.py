@@ -26,10 +26,9 @@ async def main():
     logger.info("Starting crypto bot...")
     config = load_config()
     
-    # Правильно передаём параметры
     kline_stream = KlineStream(
-        symbol=config.symbol,
-        timeframe=config.timeframe
+        symbol=config.bot.symbol,
+        timeframe="1m"
     )
     strategy = MACrossoverStrategy()
     executor = BinanceTestnetClient(config)
