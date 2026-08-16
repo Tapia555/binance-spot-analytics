@@ -28,7 +28,7 @@ async def main():
     
     kline_stream = KlineStream(
         symbol=config.bot.symbol,
-        timeframe="1m"
+        interval="1m"
     )
     strategy = MACrossoverStrategy()
     executor = BinanceTestnetClient(config)
