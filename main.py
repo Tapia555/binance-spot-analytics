@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from config import load_config
-from data.kline_stream import KlineStream
+from data.kline_stream import KlineStream, Kline
 from strategy.ma_crossover_strategy import MACrossoverStrategy
 from execution.binance_testnet import BinanceTestnetClient
 from storage.order_database import OrderDatabase
@@ -30,15 +30,25 @@ async def main():
         symbol=config.bot.symbol,
         interval="1m"
     )
-    strategy = MACrossoverStrategy()
+    strategy = MACrossoverStrategy(
+        fast_period=config.strategy.fast_period,
+        slow_period=config.strategy.slow_period,
+        trend_period=config.strategy.trend_period,
+        rsi_period=config.strategy.rsi_period,
+    )
     executor = BinanceTestnetClient(config)
     db = OrderDatabase()
     
-    async def on_kline(kline):
-        signal = strategy.update(kline)
-        if signal:
-            await executor.execute(signal)
-            db.save(signal)
+    closes = []
+    
+    async def on_kline(kline: Kline):
+        if kline.closed:
+            closes.append(kline.close)
+            signal = strategy.generate(symbol=config.bot.symbol, closes=closes)
+            if signal.action.value != "HOLD":
+                logger.info(f"Signal: {signal.action.value} - {signal.reason}")
+                await executor.execute(signal)
+                db.save(signal)
     
     await kline_stream.listen(on_kline)
 
