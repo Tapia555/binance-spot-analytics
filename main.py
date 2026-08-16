@@ -34,13 +34,13 @@ async def main():
     executor = BinanceTestnetClient(config)
     db = OrderDatabase()
     
-    await kline_stream.start()
-    
-    async for kline in kline_stream.klines():
+    async def on_kline(kline):
         signal = strategy.update(kline)
         if signal:
             await executor.execute(signal)
             db.save(signal)
+    
+    await kline_stream.listen(on_kline)
 
 if __name__ == "__main__":
     asyncio.run(main())
