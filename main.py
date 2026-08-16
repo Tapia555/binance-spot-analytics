@@ -14,8 +14,8 @@ from data.kline_stream import KlineStream, Kline
 from strategy.ma_crossover_strategy import MACrossoverStrategy
 from execution.binance_testnet import BinanceTestnetClient
 from storage.order_database import OrderDatabase
-from telegram.notifier import TelegramNotifier
-from telegram.bot_handler import TelegramBotHandler
+from tg.notifier import TelegramNotifier
+from tg.bot_handler import TelegramBotHandler
 
 logging.basicConfig(
     level=logging.INFO,
