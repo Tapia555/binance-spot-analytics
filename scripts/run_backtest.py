@@ -13,7 +13,9 @@ from config import load_config
 from data.kline_client import KlineClient
 from strategy.ma_crossover_strategy import MACrossoverStrategy
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 
@@ -116,8 +118,14 @@ async def run_backtest(
         losing_trades=len(losing_trades),
         total_pnl=total_pnl,
         win_rate=len(winning_trades) / len(trades) if trades else 0,
-        avg_win=sum(winning_trades) / len(winning_trades) if winning_trades else Decimal("0"),
-        avg_loss=sum(losing_trades) / len(losing_trades) if losing_trades else Decimal("0"),
+        avg_win=(
+            sum(winning_trades) / len(winning_trades)
+            if winning_trades
+            else Decimal("0")
+        ),
+        avg_loss=(
+            sum(losing_trades) / len(losing_trades) if losing_trades else Decimal("0")
+        ),
         max_drawdown=max_drawdown,
     )
 
