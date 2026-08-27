@@ -2,8 +2,8 @@ import asyncio
 import logging
 from typing import Awaitable, Callable, Optional
 
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, ContextTypes, CallbackQueryHandler
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
+from telegram.ext import Application, CommandHandler, ContextTypes, CallbackQueryHandler, MessageHandler, filters
 
 logger = logging.getLogger(__name__)
 
@@ -33,8 +33,21 @@ class TelegramBotHandler:
         self.on_emergency = on_emergency
         self.on_restart = on_restart
         self._app = None
+        
+        # Постоянные кнопки (всегда видны под полем ввода)
+        self.keyboard = ReplyKeyboardMarkup(
+            [
+                [KeyboardButton("▶️ Запустить"), KeyboardButton("⏹️ Остановить")],
+                [KeyboardButton("📊 Статус"), KeyboardButton("💼 Ордера")],
+                [KeyboardButton("📈 Баланс"), KeyboardButton("📜 Сделки")],
+                [KeyboardButton("⚙️ Настройки"), KeyboardButton("🔔 Уведомления")],
+                [KeyboardButton("🚨 Тревога"), KeyboardButton("🔄 Перезапуск")],
+            ],
+            resize_keyboard=True,  # Подстроить под размер экрана
+        )
 
     async def _start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        # Отправляем сообщение с кнопками
         keyboard = [
             [InlineKeyboardButton("▶️ Запустить", callback_data="start"), InlineKeyboardButton("⏹️ Остановить", callback_data="stop")],
             [InlineKeyboardButton("📊 Статус", callback_data="status"), InlineKeyboardButton("💼 Ордера", callback_data="orders")],
@@ -44,6 +57,39 @@ class TelegramBotHandler:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await update.message.reply_text("🤖 Crypto Trading Bot\n\nВыберите действие:", reply_markup=reply_markup)
+
+    async def _handle_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        text = update.message.text
+        
+        if text == "▶️ Запустить":
+            await self.on_start()
+            await update.message.reply_text("✅ Торговля запущена")
+        elif text == "⏹️ Остановить":
+            await self.on_stop()
+            await update.message.reply_text("⏹️ Торговля остановлена")
+        elif text == "📊 Статус":
+            status = await self.on_status()
+            await update.message.reply_text(f"📊 Статус:\n{status}")
+        elif text == "💼 Ордера":
+            orders = await self.on_orders()
+            await update.message.reply_text(f"💼 Открытые ордера:\n{orders}")
+        elif text == "📈 Баланс":
+            balance = await self.on_balance()
+            await update.message.reply_text(f"📈 Баланс:\n{balance}")
+        elif text == "📜 Сделки":
+            trades = await self.on_trades()
+            await update.message.reply_text(f"📜 Последние сделки:\n{trades}")
+        elif text == "⚙️ Настройки":
+            settings = await self.on_settings()
+            await update.message.reply_text(f"⚙️ Настройки:\n{settings}")
+        elif text == "🔔 Уведомления":
+            await update.message.reply_text("🔔 Уведомления: ВКЛ\n\n(В разработке)")
+        elif text == "🚨 Тревога":
+            emergency = await self.on_emergency()
+            await update.message.reply_text(f"🚨 Тревога:\n{emergency}")
+        elif text == "🔄 Перезапуск":
+            await update.message.reply_text("🔄 Перезапуск...")
+            await self.on_restart()
 
     async def _callback_handler(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         query = update.callback_query
@@ -83,6 +129,7 @@ class TelegramBotHandler:
         self._app = Application.builder().token(self.bot_token).build()
         self._app.add_handler(CommandHandler("start", self._start_command))
         self._app.add_handler(CallbackQueryHandler(self._callback_handler))
+        self._app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self._handle_text))
         
         logger.info("Telegram bot polling started")
         
