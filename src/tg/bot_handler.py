@@ -33,13 +33,13 @@ class TelegramBotHandler:
         logger.info("Received /start command")
         if self.on_start:
             await self.on_start()
-        await update.message.reply_text("🚀 Bot started!")
+        await update.message.reply_text("🚀 Trading started!")
 
     async def stop_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         logger.info("Received /stop command")
         if self.on_stop:
             await self.on_stop()
-        await update.message.reply_text("⏹️ Bot stopped!")
+        await update.message.reply_text("⏹️ Trading stopped!")
 
     async def status_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         logger.info("Received /status command")
@@ -52,8 +52,8 @@ class TelegramBotHandler:
     async def help_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         help_text = (
             "🤖 <b>Bot Commands</b>\n\n"
-            "/start - Start the bot\n"
-            "/stop - Stop the bot\n"
+            "/start - Start trading\n"
+            "/stop - Stop trading\n"
             "/status - Check bot status\n"
             "/help - Show this help"
         )
@@ -72,4 +72,11 @@ class TelegramBotHandler:
         self.application.add_handler(CommandHandler("help", self.help_command))
         
         logger.info("Telegram bot started")
-        await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+        
+        await self.application.initialize()
+        await self.application.start()
+        await self.application.updater.start_polling(allowed_updates=Update.ALL_TYPES)
+        
+        # Keep running
+        while True:
+            await asyncio.sleep(1)
