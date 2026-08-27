@@ -2,12 +2,14 @@ import asyncio
 import logging
 from typing import Awaitable, Callable, Optional
 
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, MenuButtonCommands, WebAppInfo
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import (
     Application,
     CommandHandler,
     ContextTypes,
     CallbackQueryHandler,
+    MessageHandler,
+    filters,
 )
 
 logger = logging.getLogger(__name__)
@@ -38,6 +40,18 @@ class TelegramBotHandler:
         self.on_emergency = on_emergency
         self.on_restart = on_restart
         self._app: Optional[Application] = None
+        
+        # Постоянные кнопки
+        self.main_keyboard = ReplyKeyboardMarkup(
+            [
+                [KeyboardButton("▶️ Start"), KeyboardButton("⏹️ Stop")],
+                [KeyboardButton("📊 Status"), KeyboardButton("💼 Orders")],
+                [KeyboardButton("📈 Balance"), KeyboardButton("📜 Trades")],
+                [KeyboardButton("⚙️ Settings"), KeyboardButton("🔔 Notifications")],
+                [KeyboardButton("🚨 Emergency"), KeyboardButton("🔄 Restart")],
+            ],
+            resize_keyboard=True,
+        )
 
     async def _start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard = [
@@ -67,6 +81,39 @@ class TelegramBotHandler:
             "🤖 Crypto Trading Bot\n\nВыберите действие:",
             reply_markup=reply_markup,
         )
+
+    async def _handle_button(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        text = update.message.text
+        
+        if text == "▶️ Start":
+            await self.on_start()
+            await update.message.reply_text("✅ Trading started")
+        elif text == "⏹️ Stop":
+            await self.on_stop()
+            await update.message.reply_text("⏹️ Trading stopped")
+        elif text == "📊 Status":
+            status = await self.on_status()
+            await update.message.reply_text(f"📊 Status:\n{status}")
+        elif text == "💼 Orders":
+            orders = await self.on_orders()
+            await update.message.reply_text(f"💼 Open Orders:\n{orders}")
+        elif text == "📈 Balance":
+            balance = await self.on_balance()
+            await update.message.reply_text(f"📈 Balance:\n{balance}")
+        elif text == "📜 Trades":
+            trades = await self.on_trades()
+            await update.message.reply_text(f"📜 Recent Trades:\n{trades}")
+        elif text == "⚙️ Settings":
+            settings = await self.on_settings()
+            await update.message.reply_text(f"⚙️ Settings:\n{settings}")
+        elif text == "🔔 Notifications":
+            await update.message.reply_text("🔔 Notifications: ON\n\n(Coming soon)")
+        elif text == "🚨 Emergency":
+            emergency = await self.on_emergency()
+            await update.message.reply_text(f"🚨 Emergency:\n{emergency}")
+        elif text == "🔄 Restart":
+            await update.message.reply_text("🔄 Restarting...")
+            await self.on_restart()
 
     async def _callback_handler(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         query = update.callback_query
@@ -102,37 +149,17 @@ class TelegramBotHandler:
             await query.edit_message_text("🔄 Restarting...")
             await self.on_restart()
 
-    async def _set_menu_button(self, context: ContextTypes.DEFAULT_TYPE):
-        """Устанавливает Menu Button с командами."""
-        await context.bot.set_chat_menu_button(
-            menu_button=MenuButtonCommands(commands=[
-                {"command": "start", "text": "▶️ Start"},
-                {"command": "stop", "text": "⏹️ Stop"},
-                {"command": "status", "text": "📊 Status"},
-                {"command": "orders", "text": "💼 Orders"},
-                {"command": "balance", "text": "📈 Balance"},
-                {"command": "trades", "text": "📜 Trades"},
-                {"command": "settings", "text": "⚙️ Settings"},
-                {"command": "emergency", "text": "🚨 Emergency"},
-                {"command": "restart", "text": "🔄 Restart"},
-            ])
-        )
-
     async def run(self) -> None:
         self._app = Application.builder().token(self.bot_token).build()
         
+        # Команды
         self._app.add_handler(CommandHandler("start", self._start_command))
+        
+        # Callback (inline кнопки)
         self._app.add_handler(CallbackQueryHandler(self._callback_handler))
         
-        # Добавляем обработчики для команд меню
-        self._app.add_handler(CommandHandler("stop", lambda u, c: self._callback_from_command(u, c, "stop")))
-        self._app.add_handler(CommandHandler("status", lambda u, c: self._callback_from_command(u, c, "status")))
-        self._app.add_handler(CommandHandler("orders", lambda u, c: self._callback_from_command(u, c, "orders")))
-        self._app.add_handler(CommandHandler("balance", lambda u, c: self._callback_from_command(u, c, "balance")))
-        self._app.add_handler(CommandHandler("trades", lambda u, c: self._callback_from_command(u, c, "trades")))
-        self._app.add_handler(CommandHandler("settings", lambda u, c: self._callback_from_command(u, c, "settings")))
-        self._app.add_handler(CommandHandler("emergency", lambda u, c: self._callback_from_command(u, c, "emergency")))
-        self._app.add_handler(CommandHandler("restart", lambda u, c: self._callback_from_command(u, c, "restart")))
+        # Текст (постоянные кнопки)
+        self._app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self._handle_button))
         
         logger.info("Telegram bot polling started")
         
@@ -149,33 +176,3 @@ class TelegramBotHandler:
             await self._app.updater.stop()
             await self._app.stop()
             await self._app.shutdown()
-
-    async def _callback_from_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE, action: str):
-        """Обрабатывает команды из меню как callback."""
-        if action == "start":
-            await self.on_start()
-            await update.message.reply_text("✅ Trading started")
-        elif action == "stop":
-            await self.on_stop()
-            await update.message.reply_text("⏹️ Trading stopped")
-        elif action == "status":
-            status = await self.on_status()
-            await update.message.reply_text(f"📊 Status:\n{status}")
-        elif action == "orders":
-            orders = await self.on_orders()
-            await update.message.reply_text(f"💼 Open Orders:\n{orders}")
-        elif action == "balance":
-            balance = await self.on_balance()
-            await update.message.reply_text(f"📈 Balance:\n{balance}")
-        elif action == "trades":
-            trades = await self.on_trades()
-            await update.message.reply_text(f"📜 Recent Trades:\n{trades}")
-        elif action == "settings":
-            settings = await self.on_settings()
-            await update.message.reply_text(f"⚙️ Settings:\n{settings}")
-        elif action == "emergency":
-            emergency = await self.on_emergency()
-            await update.message.reply_text(f"🚨 Emergency:\n{emergency}")
-        elif action == "restart":
-            await update.message.reply_text("🔄 Restarting...")
-            await self.on_restart()
