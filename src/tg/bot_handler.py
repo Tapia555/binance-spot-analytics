@@ -34,7 +34,6 @@ class TelegramBotHandler:
         self.on_restart = on_restart
         self._app = None
         
-        # Постоянные кнопки (всегда видны под полем ввода)
         self.keyboard = ReplyKeyboardMarkup(
             [
                 [KeyboardButton("▶️ Запустить"), KeyboardButton("⏹️ Остановить")],
@@ -43,53 +42,46 @@ class TelegramBotHandler:
                 [KeyboardButton("⚙️ Настройки"), KeyboardButton("🔔 Уведомления")],
                 [KeyboardButton("🚨 Тревога"), KeyboardButton("🔄 Перезапуск")],
             ],
-            resize_keyboard=True,  # Подстроить под размер экрана
+            resize_keyboard=True,
         )
 
     async def _start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        # Отправляем сообщение с кнопками
-        keyboard = [
-            [InlineKeyboardButton("▶️ Запустить", callback_data="start"), InlineKeyboardButton("⏹️ Остановить", callback_data="stop")],
-            [InlineKeyboardButton("📊 Статус", callback_data="status"), InlineKeyboardButton("💼 Ордера", callback_data="orders")],
-            [InlineKeyboardButton("📈 Баланс", callback_data="balance"), InlineKeyboardButton("📜 Сделки", callback_data="trades")],
-            [InlineKeyboardButton("⚙️ Настройки", callback_data="settings"), InlineKeyboardButton("🔔 Уведомления", callback_data="notifications")],
-            [InlineKeyboardButton("🚨 Тревога", callback_data="emergency"), InlineKeyboardButton("🔄 Перезапуск", callback_data="restart")],
-        ]
-        reply_markup = InlineKeyboardMarkup(keyboard)
-        await update.message.reply_text("🤖 Crypto Trading Bot\n\nВыберите действие:", reply_markup=reply_markup)
+        await update.message.reply_text(
+            "🤖 Crypto Trading Bot\n\nНажми на кнопку внизу или выбери в меню:",
+            reply_markup=self.keyboard,
+        )
 
     async def _handle_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         text = update.message.text
         
         if text == "▶️ Запустить":
             await self.on_start()
-            await update.message.reply_text("✅ Торговля запущена")
+            await update.message.reply_text("✅ Торговля запущена", reply_markup=self.keyboard)
         elif text == "⏹️ Остановить":
             await self.on_stop()
-            await update.message.reply_text("⏹️ Торговля остановлена")
+            await update.message.reply_text("⏹️ Торговля остановлена", reply_markup=self.keyboard)
         elif text == "📊 Статус":
             status = await self.on_status()
-            await update.message.reply_text(f"📊 Статус:\n{status}")
+            await update.message.reply_text(f"📊 Статус:\n{status}", reply_markup=self.keyboard)
         elif text == "💼 Ордера":
             orders = await self.on_orders()
-            await update.message.reply_text(f"💼 Открытые ордера:\n{orders}")
+            await update.message.reply_text(f"💼 Открытые ордера:\n{orders}", reply_markup=self.keyboard)
         elif text == "📈 Баланс":
             balance = await self.on_balance()
-            await update.message.reply_text(f"📈 Баланс:\n{balance}")
+            await update.message.reply_text(f"📈 Баланс:\n{balance}", reply_markup=self.keyboard)
         elif text == "📜 Сделки":
             trades = await self.on_trades()
-            await update.message.reply_text(f"📜 Последние сделки:\n{trades}")
+            await update.message.reply_text(f"📜 Последние сделки:\n{trades}", reply_markup=self.keyboard)
         elif text == "⚙️ Настройки":
             settings = await self.on_settings()
-            await update.message.reply_text(f"⚙️ Настройки:\n{settings}")
+            await update.message.reply_text(f"⚙️ Настройки:\n{settings}", reply_markup=self.keyboard)
         elif text == "🔔 Уведомления":
-            await update.message.reply_text("🔔 Уведомления: ВКЛ\n\n(В разработке)")
+            await update.message.reply_text("🔔 Уведомления: ВКЛ\n\n(В разработке)", reply_markup=self.keyboard)
         elif text == "🚨 Тревога":
             emergency = await self.on_emergency()
-            await update.message.reply_text(f"🚨 Тревога:\n{emergency}")
+            await update.message.reply_text(f"🚨 Тревога:\n{emergency}", reply_markup=self.keyboard)
         elif text == "🔄 Перезапуск":
-            await update.message.reply_text("🔄 Перезапуск...")
-            await self.on_restart()
+            await update.message.reply_text("🔄 Перезапуск...", reply_markup=self.keyboard)
 
     async def _callback_handler(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         query = update.callback_query
