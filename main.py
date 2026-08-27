@@ -40,10 +40,16 @@ class TradingBot:
             trend_period=config.strategy.trend_period,
             rsi_period=config.strategy.rsi_period,
         )
+        
+        api_key = os.getenv("BINANCE_API_KEY")
+        secret_key = os.getenv("BINANCE_SECRET_KEY")
+        logger.info(f"API Key: {api_key[:10]}..." if api_key else "API Key: None")
+        logger.info(f"Secret Key: {secret_key[:10]}..." if secret_key else "Secret Key: None")
+        
         self.executor = BinanceTestnetClient(
             base_url=config.bot.base_url,
-            api_key=os.getenv("BINANCE_API_KEY"),
-            secret_key=os.getenv("BINANCE_SECRET_KEY"),
+            api_key=api_key,
+            secret_key=secret_key,
         )
         self.db = OrderDatabase()
         self.closes = []
@@ -159,6 +165,7 @@ class TradingBot:
                     balances.append(f"{b['asset']}: {free}")
             return "\n".join(balances) if balances else "No balances"
         except Exception as e:
+            logger.error(f"Balance error: {e}")
             return f"Error: {e}"
 
     async def get_trades(self) -> str:
@@ -181,7 +188,6 @@ class TradingBot:
 
     async def emergency_sell(self) -> str:
         try:
-            # Закрыть все позиции
             orders = await self.executor.get_open_orders(self.config.bot.symbol)
             for order in orders:
                 await self.executor.cancel_order(self.config.bot.symbol, order["orderId"])
