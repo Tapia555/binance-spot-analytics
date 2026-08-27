@@ -39,7 +39,8 @@ class TelegramBotHandler:
                 [KeyboardButton("▶️ Запустить"), KeyboardButton("⏹️ Остановить")],
                 [KeyboardButton("📊 Статус"), KeyboardButton("💼 Ордера")],
                 [KeyboardButton("📈 Баланс"), KeyboardButton("📜 Сделки")],
-                [KeyboardButton("⚙️ Настройки")],
+                [KeyboardButton("⚙️ Настройки"), KeyboardButton("🔔 Уведомления")],
+                [KeyboardButton("🚨 Тревога"), KeyboardButton("🔄 Перезапуск")],
             ],
             resize_keyboard=True,
         )
@@ -71,6 +72,13 @@ class TelegramBotHandler:
         elif text == "⚙️ Настройки":
             settings = await self.on_settings()
             await update.message.reply_text(f"⚙️ Настройки:\n{settings}", reply_markup=self.keyboard)
+        elif text == "🔔 Уведомления":
+            await update.message.reply_text("🔔 Уведомления: ВКЛ", reply_markup=self.keyboard)
+        elif text == "🚨 Тревога":
+            emergency = await self.on_emergency()
+            await update.message.reply_text(f"🚨 Тревога:\n{emergency}", reply_markup=self.keyboard)
+        elif text == "🔄 Перезапуск":
+            await update.message.reply_text("🔄 Перезапуск...", reply_markup=self.keyboard)
 
     async def run(self) -> None:
         self._app = Application.builder().token(self.bot_token).build()
