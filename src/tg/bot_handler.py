@@ -110,11 +110,18 @@ class TelegramBotHandler:
         
         logger.info("Telegram bot polling started")
         
-        # Запускаем polling в background task
-        asyncio.create_task(self._app.initialize())
+        # Запускаем updater вручную внутри существующего loop
+        await self._app.initialize()
         await self._app.start()
         await self._app.updater.start_polling(allowed_updates=Update.ALL_TYPES)
         
         # Держим loop running
-        while True:
-            await asyncio.sleep(1)
+        try:
+            while True:
+                await asyncio.sleep(1)
+        except asyncio.CancelledError:
+            logger.info("Bot handler cancelled")
+        finally:
+            await self._app.updater.stop()
+            await self._app.stop()
+            await self._app.shutdown()
