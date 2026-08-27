@@ -115,9 +115,7 @@ async def main():
     
     bot = TradingBot(config)
     
-    # НЕ авто-старт — ждём /start
-    # await bot.start_trading()
-    
+    # Ждём команду /start
     await bot.run()
 
 
