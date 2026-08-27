@@ -11,7 +11,7 @@ load_dotenv()
 
 from config import load_config
 from data.kline_stream import KlineStream, Kline
-from strategy.ma_crossover_strategy import MACrossoverStrategy
+from strategy.ma_crossover_strategy import MACrossoverStrategy, StrategyAction
 from execution.binance_testnet import BinanceTestnetClient
 from storage.order_database import OrderDatabase
 from tg.notifier import TelegramNotifier
@@ -39,7 +39,11 @@ class TradingBot:
             trend_period=config.strategy.trend_period,
             rsi_period=config.strategy.rsi_period,
         )
-        self.executor = BinanceTestnetClient(config)
+        self.executor = BinanceTestnetClient(
+            base_url=config.bot.base_url,
+            api_key=None,  # Из env
+            secret_key=None,  # Из env
+        )
         self.db = OrderDatabase()
         self.closes = []
         self.trades_count = 0
@@ -76,8 +80,10 @@ class TradingBot:
                     symbol=self.config.bot.symbol,
                     closes=self.closes
                 )
-                if signal.action.value != "HOLD":
+                if signal.action != StrategyAction.HOLD:
                     logger.info(f"Signal: {signal.action.value} - {signal.reason}")
+                    
+                    # Уведомление
                     self.notifier.notify_trade(
                         action=signal.action.value,
                         symbol=signal.symbol,
@@ -85,6 +91,30 @@ class TradingBot:
                         amount=0.001,
                         reason=signal.reason,
                     )
+                    
+                    # Исполнение ордера
+                    try:
+                        quantity = "0.001"  # Тестовое количество
+                        if signal.action == StrategyAction.BUY:
+                            order = await self.executor.create_order(
+                                symbol=signal.symbol,
+                                side="BUY",
+                                order_type="MARKET",
+                                quantity=quantity,
+                            )
+                            logger.info(f"Order executed: {order}")
+                        else:
+                            order = await self.executor.create_order(
+                                symbol=signal.symbol,
+                                side="SELL",
+                                order_type="MARKET",
+                                quantity=quantity,
+                            )
+                            logger.info(f"Order executed: {order}")
+                    except Exception as e:
+                        logger.error(f"Order failed: {e}")
+                        self.notifier.send_message(f"❌ Order failed: {e}")
+                    
                     self.db.save(signal)
                     self.trades_count += 1
         
@@ -114,8 +144,6 @@ async def main():
     config = load_config()
     
     bot = TradingBot(config)
-    
-    # Ждём команду /start
     await bot.run()
 
 
