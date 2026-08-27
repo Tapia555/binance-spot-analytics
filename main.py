@@ -5,6 +5,7 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 import asyncio
 import logging
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -41,8 +42,8 @@ class TradingBot:
         )
         self.executor = BinanceTestnetClient(
             base_url=config.bot.base_url,
-            api_key=None,  # Из env
-            secret_key=None,  # Из env
+            api_key=os.getenv("BINANCE_API_KEY"),
+            secret_key=os.getenv("BINANCE_SECRET_KEY"),
         )
         self.db = OrderDatabase()
         self.closes = []
@@ -60,6 +61,12 @@ class TradingBot:
             on_start=self.start_trading,
             on_stop=self.stop_trading,
             on_status=self.get_status,
+            on_orders=self.get_orders,
+            on_balance=self.get_balance,
+            on_trades=self.get_trades,
+            on_settings=self.get_settings,
+            on_emergency=self.emergency_sell,
+            on_restart=self.restart_bot,
         )
 
     async def start_trading(self):
@@ -83,7 +90,6 @@ class TradingBot:
                 if signal.action != StrategyAction.HOLD:
                     logger.info(f"Signal: {signal.action.value} - {signal.reason}")
                     
-                    # Уведомление
                     self.notifier.notify_trade(
                         action=signal.action.value,
                         symbol=signal.symbol,
@@ -92,9 +98,8 @@ class TradingBot:
                         reason=signal.reason,
                     )
                     
-                    # Исполнение ордера
                     try:
-                        quantity = "0.001"  # Тестовое количество
+                        quantity = "0.001"
                         if signal.action == StrategyAction.BUY:
                             order = await self.executor.create_order(
                                 symbol=signal.symbol,
@@ -134,6 +139,61 @@ class TradingBot:
             f"Symbol: {self.config.bot.symbol}\n"
             f"Trades: {self.trades_count}"
         )
+
+    async def get_orders(self) -> str:
+        try:
+            orders = await self.executor.get_open_orders(self.config.bot.symbol)
+            if not orders:
+                return "No open orders"
+            return "\n".join([f"{o['side']} {o['quantity']} @ {o.get('price', 'MARKET')}" for o in orders])
+        except Exception as e:
+            return f"Error: {e}"
+
+    async def get_balance(self) -> str:
+        try:
+            account = await self.executor.get_account_balance()
+            balances = []
+            for b in account.get("balances", []):
+                free = float(b["free"])
+                if free > 0:
+                    balances.append(f"{b['asset']}: {free}")
+            return "\n".join(balances) if balances else "No balances"
+        except Exception as e:
+            return f"Error: {e}"
+
+    async def get_trades(self) -> str:
+        try:
+            trades = self.db.get_all()
+            if not trades:
+                return "No trades"
+            recent = trades[-10:]
+            return "\n".join([f"{t['action']} {t['symbol']} @ {t['price']} - {t['reason']}" for t in recent])
+        except Exception as e:
+            return f"Error: {e}"
+
+    async def get_settings(self) -> str:
+        return (
+            f"Fast MA: {self.strategy.fast_period}\n"
+            f"Slow MA: {self.strategy.slow_period}\n"
+            f"Trend MA: {self.strategy.trend_period}\n"
+            f"RSI: {self.strategy.rsi_period}"
+        )
+
+    async def emergency_sell(self) -> str:
+        try:
+            # Закрыть все позиции
+            orders = await self.executor.get_open_orders(self.config.bot.symbol)
+            for order in orders:
+                await self.executor.cancel_order(self.config.bot.symbol, order["orderId"])
+            return f"Cancelled {len(orders)} orders"
+        except Exception as e:
+            return f"Error: {e}"
+
+    async def restart_bot(self):
+        logger.info("Restarting bot...")
+        await self.stop_trading()
+        await asyncio.sleep(2)
+        await self.start_trading()
 
     async def run(self):
         await self.bot_handler.run()
