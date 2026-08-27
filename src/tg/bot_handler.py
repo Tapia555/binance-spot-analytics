@@ -2,8 +2,8 @@ import asyncio
 import logging
 from typing import Awaitable, Callable, Optional
 
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
-from telegram.ext import Application, CommandHandler, ContextTypes, CallbackQueryHandler
+from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
+from telegram.ext import Application, CommandHandler, ContextTypes
 
 logger = logging.getLogger(__name__)
 
@@ -45,75 +45,47 @@ class TelegramBotHandler:
         )
 
     async def _start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        await update.message.reply_text(
-            "🤖 Crypto Trading Bot",
-            reply_markup=self.keyboard,
-        )
+        await update.message.reply_text("🤖 Crypto Trading Bot", reply_markup=self.keyboard)
 
-    async def _handle_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+    async def _handle_button(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         text = update.message.text
-        keyboard = self.keyboard
         
         if text == "▶️ Запустить":
             await self.on_start()
-            await update.message.reply_text("✅ Торговля запущена", reply_markup=keyboard)
+            await update.message.reply_text("✅ Торговля запущена", reply_markup=self.keyboard)
         elif text == "⏹️ Остановить":
             await self.on_stop()
-            await update.message.reply_text("⏹️ Торговля остановлена", reply_markup=keyboard)
+            await update.message.reply_text("⏹️ Торговля остановлена", reply_markup=self.keyboard)
         elif text == "📊 Статус":
             status = await self.on_status()
-            await update.message.reply_text(f"📊 Статус:\n{status}", reply_markup=keyboard)
+            await update.message.reply_text(f"📊 Статус:\n{status}", reply_markup=self.keyboard)
         elif text == "💼 Ордера":
             orders = await self.on_orders()
-            await update.message.reply_text(f"💼 Открытые ордера:\n{orders}", reply_markup=keyboard)
+            await update.message.reply_text(f"💼 Ордера:\n{orders}", reply_markup=self.keyboard)
         elif text == "📈 Баланс":
             balance = await self.on_balance()
-            await update.message.reply_text(f"📈 Баланс:\n{balance}", reply_markup=keyboard)
+            await update.message.reply_text(f"📈 Баланс:\n{balance}", reply_markup=self.keyboard)
         elif text == "📜 Сделки":
             trades = await self.on_trades()
-            await update.message.reply_text(f"📜 Последние сделки:\n{trades}", reply_markup=keyboard)
+            await update.message.reply_text(f"📜 Сделки:\n{trades}", reply_markup=self.keyboard)
         elif text == "⚙️ Настройки":
             settings = await self.on_settings()
-            await update.message.reply_text(f"⚙️ Настройки:\n{settings}", reply_markup=keyboard)
-        elif text == "🚨 Тревога":
-            emergency = await self.on_emergency()
-            await update.message.reply_text(f"🚨 Тревога:\n{emergency}", reply_markup=keyboard)
-        elif text == "🔄 Перезапуск":
-            await update.message.reply_text("🔄 Перезапуск...", reply_markup=keyboard)
-        elif text == "🔔 Уведомления":
-            await update.message.reply_text("🔔 Уведомления: ВКЛ", reply_markup=keyboard)
+            await update.message.reply_text(f"⚙️ Настройки:\n{settings}", reply_markup=self.keyboard)
 
     async def run(self) -> None:
         self._app = Application.builder().token(self.bot_token).build()
         self._app.add_handler(CommandHandler("start", self._start_command))
         
-        async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
-            await self._handle_text(update, context)
-        
-        self._app.add_handler(CommandHandler("запустить", lambda u, c: self._handle_text_cmd(u, c, "▶️ Запустить")))
-        self._app.add_handler(CommandHandler("остановить", lambda u, c: self._handle_text_cmd(u, c, "⏹️ Остановить")))
-        self._app.add_handler(CommandHandler("статус", lambda u, c: self._handle_text_cmd(u, c, "📊 Статус")))
-        self._app.add_handler(CommandHandler("ордера", lambda u, c: self._handle_text_cmd(u, c, "💼 Ордера")))
-        self._app.add_handler(CommandHandler("баланс", lambda u, c: self._handle_text_cmd(u, c, "📈 Баланс")))
-        self._app.add_handler(CommandHandler("сделки", lambda u, c: self._handle_text_cmd(u, c, "📜 Сделки")))
-        self._app.add_handler(CommandHandler("настройки", lambda u, c: self._handle_text_cmd(u, c, "⚙️ Настройки")))
-        
-        logger.info("Telegram bot polling started")
+        logger.info("Telegram bot started")
         
         await self._app.initialize()
         await self._app.start()
-        await self._app.updater.start_polling(allowed_updates=Update.ALL_TYPES)
+        await self._app.updater.start_polling()
         
         try:
             while True:
                 await asyncio.sleep(1)
-        except asyncio.CancelledError:
-            logger.info("Bot handler cancelled")
         finally:
             await self._app.updater.stop()
             await self._app.stop()
             await self._app.shutdown()
-    
-    async def _handle_text_cmd(self, update: Update, context: ContextTypes.DEFAULT_TYPE, text: str):
-        update.message.text = text
-        await self._handle_text(update, context)
