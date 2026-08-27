@@ -3,12 +3,7 @@ import logging
 from typing import Awaitable, Callable, Optional
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import (
-    Application,
-    CommandHandler,
-    ContextTypes,
-    CallbackQueryHandler,
-)
+from telegram.ext import Application, CommandHandler, ContextTypes, CallbackQueryHandler
 
 logger = logging.getLogger(__name__)
 
@@ -17,15 +12,15 @@ class TelegramBotHandler:
     def __init__(
         self,
         bot_token: str,
-        on_start: Callable[[], Awaitable[None]],
-        on_stop: Callable[[], Awaitable[None]],
-        on_status: Callable[[], Awaitable[str]],
-        on_orders: Callable[[], Awaitable[str]],
-        on_balance: Callable[[], Awaitable[str]],
-        on_trades: Callable[[], Awaitable[str]],
-        on_settings: Callable[[], Awaitable[str]],
-        on_emergency: Callable[[], Awaitable[str]],
-        on_restart: Callable[[], Awaitable[None]],
+        on_start,
+        on_stop,
+        on_status,
+        on_orders,
+        on_balance,
+        on_trades,
+        on_settings,
+        on_emergency,
+        on_restart,
     ) -> None:
         self.bot_token = bot_token
         self.on_start = on_start
@@ -37,36 +32,18 @@ class TelegramBotHandler:
         self.on_settings = on_settings
         self.on_emergency = on_emergency
         self.on_restart = on_restart
-        self._app: Optional[Application] = None
+        self._app = None
 
     async def _start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard = [
-            [
-                InlineKeyboardButton("▶️ Start", callback_data="start"),
-                InlineKeyboardButton("⏹️ Stop", callback_data="stop"),
-            ],
-            [
-                InlineKeyboardButton("📊 Status", callback_data="status"),
-                InlineKeyboardButton("💼 Orders", callback_data="orders"),
-            ],
-            [
-                InlineKeyboardButton("📈 Balance", callback_data="balance"),
-                InlineKeyboardButton("📜 Trades", callback_data="trades"),
-            ],
-            [
-                InlineKeyboardButton("⚙️ Settings", callback_data="settings"),
-                InlineKeyboardButton("🔔 Notifications", callback_data="notifications"),
-            ],
-            [
-                InlineKeyboardButton("🚨 Emergency", callback_data="emergency"),
-                InlineKeyboardButton("🔄 Restart", callback_data="restart"),
-            ],
+            [InlineKeyboardButton("▶️ Start", callback_data="start"), InlineKeyboardButton("⏹️ Stop", callback_data="stop")],
+            [InlineKeyboardButton("📊 Status", callback_data="status"), InlineKeyboardButton("💼 Orders", callback_data="orders")],
+            [InlineKeyboardButton("📈 Balance", callback_data="balance"), InlineKeyboardButton("📜 Trades", callback_data="trades")],
+            [InlineKeyboardButton("⚙️ Settings", callback_data="settings"), InlineKeyboardButton("🔔 Notifications", callback_data="notifications")],
+            [InlineKeyboardButton("🚨 Emergency", callback_data="emergency"), InlineKeyboardButton("🔄 Restart", callback_data="restart")],
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await update.message.reply_text(
-            "🤖 Crypto Trading Bot\n\nНажми на кнопку:",
-            reply_markup=reply_markup,
-        )
+        await update.message.reply_text("🤖 Crypto Trading Bot\n\nНажми на кнопку:", reply_markup=reply_markup)
 
     async def _callback_handler(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         query = update.callback_query
@@ -94,7 +71,7 @@ class TelegramBotHandler:
             settings = await self.on_settings()
             await query.edit_message_text(f"⚙️ Settings:\n{settings}")
         elif query.data == "notifications":
-            await query.edit_message_text("🔔 Notifications: ON\n\n(Coming soon)")
+            await query.edit_message_text("🔔 Notifications: ON")
         elif query.data == "emergency":
             emergency = await self.on_emergency()
             await query.edit_message_text(f"🚨 Emergency:\n{emergency}")
@@ -104,7 +81,6 @@ class TelegramBotHandler:
 
     async def run(self) -> None:
         self._app = Application.builder().token(self.bot_token).build()
-        
         self._app.add_handler(CommandHandler("start", self._start_command))
         self._app.add_handler(CallbackQueryHandler(self._callback_handler))
         
