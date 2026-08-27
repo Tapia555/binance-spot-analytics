@@ -3,7 +3,7 @@ import logging
 from typing import Awaitable, Callable, Optional
 
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
 logger = logging.getLogger(__name__)
 
@@ -83,6 +83,7 @@ class TelegramBotHandler:
     async def run(self) -> None:
         self._app = Application.builder().token(self.bot_token).build()
         self._app.add_handler(CommandHandler("start", self._start_command))
+        self._app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self._handle_button))
         
         logger.info("Telegram bot started")
         
