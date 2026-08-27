@@ -2,14 +2,12 @@ import asyncio
 import logging
 from typing import Awaitable, Callable, Optional
 
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application,
     CommandHandler,
     ContextTypes,
     CallbackQueryHandler,
-    MessageHandler,
-    filters,
 )
 
 logger = logging.getLogger(__name__)
@@ -40,18 +38,6 @@ class TelegramBotHandler:
         self.on_emergency = on_emergency
         self.on_restart = on_restart
         self._app: Optional[Application] = None
-        
-        # Постоянные кнопки
-        self.main_keyboard = ReplyKeyboardMarkup(
-            [
-                [KeyboardButton("▶️ Start"), KeyboardButton("⏹️ Stop")],
-                [KeyboardButton("📊 Status"), KeyboardButton("💼 Orders")],
-                [KeyboardButton("📈 Balance"), KeyboardButton("📜 Trades")],
-                [KeyboardButton("⚙️ Settings"), KeyboardButton("🔔 Notifications")],
-                [KeyboardButton("🚨 Emergency"), KeyboardButton("🔄 Restart")],
-            ],
-            resize_keyboard=True,
-        )
 
     async def _start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard = [
@@ -78,42 +64,9 @@ class TelegramBotHandler:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await update.message.reply_text(
-            "🤖 Crypto Trading Bot\n\nВыберите действие:",
+            "🤖 Crypto Trading Bot\n\nНажми на кнопку:",
             reply_markup=reply_markup,
         )
-
-    async def _handle_button(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        text = update.message.text
-        
-        if text == "▶️ Start":
-            await self.on_start()
-            await update.message.reply_text("✅ Trading started")
-        elif text == "⏹️ Stop":
-            await self.on_stop()
-            await update.message.reply_text("⏹️ Trading stopped")
-        elif text == "📊 Status":
-            status = await self.on_status()
-            await update.message.reply_text(f"📊 Status:\n{status}")
-        elif text == "💼 Orders":
-            orders = await self.on_orders()
-            await update.message.reply_text(f"💼 Open Orders:\n{orders}")
-        elif text == "📈 Balance":
-            balance = await self.on_balance()
-            await update.message.reply_text(f"📈 Balance:\n{balance}")
-        elif text == "📜 Trades":
-            trades = await self.on_trades()
-            await update.message.reply_text(f"📜 Recent Trades:\n{trades}")
-        elif text == "⚙️ Settings":
-            settings = await self.on_settings()
-            await update.message.reply_text(f"⚙️ Settings:\n{settings}")
-        elif text == "🔔 Notifications":
-            await update.message.reply_text("🔔 Notifications: ON\n\n(Coming soon)")
-        elif text == "🚨 Emergency":
-            emergency = await self.on_emergency()
-            await update.message.reply_text(f"🚨 Emergency:\n{emergency}")
-        elif text == "🔄 Restart":
-            await update.message.reply_text("🔄 Restarting...")
-            await self.on_restart()
 
     async def _callback_handler(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         query = update.callback_query
@@ -152,14 +105,8 @@ class TelegramBotHandler:
     async def run(self) -> None:
         self._app = Application.builder().token(self.bot_token).build()
         
-        # Команды
         self._app.add_handler(CommandHandler("start", self._start_command))
-        
-        # Callback (inline кнопки)
         self._app.add_handler(CallbackQueryHandler(self._callback_handler))
-        
-        # Текст (постоянные кнопки)
-        self._app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self._handle_button))
         
         logger.info("Telegram bot polling started")
         
