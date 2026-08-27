@@ -94,7 +94,6 @@ class TelegramBotHandler:
             settings = await self.on_settings()
             await query.edit_message_text(f"⚙️ Settings:\n{settings}")
         elif query.data == "notifications":
-            # Заглушка
             await query.edit_message_text("🔔 Notifications: ON\n\n(Coming soon)")
         elif query.data == "emergency":
             emergency = await self.on_emergency()
@@ -110,4 +109,12 @@ class TelegramBotHandler:
         self._app.add_handler(CallbackQueryHandler(self._callback_handler))
         
         logger.info("Telegram bot polling started")
-        await self._app.run_polling(allowed_updates=Update.ALL_TYPES)
+        
+        # Запускаем polling в background task
+        asyncio.create_task(self._app.initialize())
+        await self._app.start()
+        await self._app.updater.start_polling(allowed_updates=Update.ALL_TYPES)
+        
+        # Держим loop running
+        while True:
+            await asyncio.sleep(1)
