@@ -106,7 +106,6 @@ class TradingBot:
         )
 
     async def run(self):
-        # Start Telegram bot
         await self.bot_handler.run()
 
 
@@ -116,10 +115,9 @@ async def main():
     
     bot = TradingBot(config)
     
-    # Auto-start trading
-    await bot.start_trading()
+    # НЕ авто-старт — ждём /start
+    # await bot.start_trading()
     
-    # Run Telegram bot
     await bot.run()
 
 
