@@ -36,14 +36,14 @@ class TelegramBotHandler:
 
     async def _start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard = [
-            [InlineKeyboardButton("▶️ Start", callback_data="start"), InlineKeyboardButton("⏹️ Stop", callback_data="stop")],
-            [InlineKeyboardButton("📊 Status", callback_data="status"), InlineKeyboardButton("💼 Orders", callback_data="orders")],
-            [InlineKeyboardButton("📈 Balance", callback_data="balance"), InlineKeyboardButton("📜 Trades", callback_data="trades")],
-            [InlineKeyboardButton("⚙️ Settings", callback_data="settings"), InlineKeyboardButton("🔔 Notifications", callback_data="notifications")],
-            [InlineKeyboardButton("🚨 Emergency", callback_data="emergency"), InlineKeyboardButton("🔄 Restart", callback_data="restart")],
+            [InlineKeyboardButton("▶️ Запустить", callback_data="start"), InlineKeyboardButton("⏹️ Остановить", callback_data="stop")],
+            [InlineKeyboardButton("📊 Статус", callback_data="status"), InlineKeyboardButton("💼 Ордера", callback_data="orders")],
+            [InlineKeyboardButton("📈 Баланс", callback_data="balance"), InlineKeyboardButton("📜 Сделки", callback_data="trades")],
+            [InlineKeyboardButton("⚙️ Настройки", callback_data="settings"), InlineKeyboardButton("🔔 Уведомления", callback_data="notifications")],
+            [InlineKeyboardButton("🚨 Тревога", callback_data="emergency"), InlineKeyboardButton("🔄 Перезапуск", callback_data="restart")],
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await update.message.reply_text("🤖 Crypto Trading Bot\n\nНажми на кнопку:", reply_markup=reply_markup)
+        await update.message.reply_text("🤖 Crypto Trading Bot\n\nВыберите действие:", reply_markup=reply_markup)
 
     async def _callback_handler(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         query = update.callback_query
@@ -51,32 +51,32 @@ class TelegramBotHandler:
         
         if query.data == "start":
             await self.on_start()
-            await query.edit_message_text("✅ Trading started")
+            await query.edit_message_text("✅ Торговля запущена")
         elif query.data == "stop":
             await self.on_stop()
-            await query.edit_message_text("⏹️ Trading stopped")
+            await query.edit_message_text("⏹️ Торговля остановлена")
         elif query.data == "status":
             status = await self.on_status()
-            await query.edit_message_text(f"📊 Status:\n{status}")
+            await query.edit_message_text(f"📊 Статус:\n{status}")
         elif query.data == "orders":
             orders = await self.on_orders()
-            await query.edit_message_text(f"💼 Open Orders:\n{orders}")
+            await query.edit_message_text(f"💼 Открытые ордера:\n{orders}")
         elif query.data == "balance":
             balance = await self.on_balance()
-            await query.edit_message_text(f"📈 Balance:\n{balance}")
+            await query.edit_message_text(f"📈 Баланс:\n{balance}")
         elif query.data == "trades":
             trades = await self.on_trades()
-            await query.edit_message_text(f"📜 Recent Trades:\n{trades}")
+            await query.edit_message_text(f"📜 Последние сделки:\n{trades}")
         elif query.data == "settings":
             settings = await self.on_settings()
-            await query.edit_message_text(f"⚙️ Settings:\n{settings}")
+            await query.edit_message_text(f"⚙️ Настройки:\n{settings}")
         elif query.data == "notifications":
-            await query.edit_message_text("🔔 Notifications: ON")
+            await query.edit_message_text("🔔 Уведомления: ВКЛ\n\n(В разработке)")
         elif query.data == "emergency":
             emergency = await self.on_emergency()
-            await query.edit_message_text(f"🚨 Emergency:\n{emergency}")
+            await query.edit_message_text(f"🚨 Тревога:\n{emergency}")
         elif query.data == "restart":
-            await query.edit_message_text("🔄 Restarting...")
+            await query.edit_message_text("🔄 Перезапуск...")
             await self.on_restart()
 
     async def run(self) -> None:
