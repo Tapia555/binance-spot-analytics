@@ -43,6 +43,7 @@ class TradingBot:
         self.db = OrderDatabase()
         self.closes = []
         self.trades_count = 0
+        self.trading_task = None
         
         self.notifier = TelegramNotifier(
             bot_token=config.telegram.bot_token,
@@ -69,6 +70,8 @@ class TradingBot:
         async def on_kline(kline: Kline):
             if kline.closed:
                 self.closes.append(kline.close)
+                logger.info(f"Kline: {kline.close}")
+                
                 signal = self.strategy.generate(
                     symbol=self.config.bot.symbol,
                     closes=self.closes
@@ -85,12 +88,15 @@ class TradingBot:
                     self.db.save(signal)
                     self.trades_count += 1
         
-        await self.kline_stream.listen(on_kline)
+        self.trading_task = asyncio.create_task(self.kline_stream.listen(on_kline))
 
     async def stop_trading(self):
         self.is_running = False
         logger.info("Stopping trading...")
         self.notifier.notify_stop()
+        
+        if self.trading_task:
+            self.trading_task.cancel()
 
     async def get_status(self) -> str:
         return (
@@ -100,9 +106,8 @@ class TradingBot:
         )
 
     async def run(self):
-        telegram_task = asyncio.create_task(self.bot_handler.run())
-        await self.start_trading()
-        await telegram_task
+        # Start Telegram bot
+        await self.bot_handler.run()
 
 
 async def main():
@@ -110,6 +115,11 @@ async def main():
     config = load_config()
     
     bot = TradingBot(config)
+    
+    # Auto-start trading
+    await bot.start_trading()
+    
+    # Run Telegram bot
     await bot.run()
 
 
