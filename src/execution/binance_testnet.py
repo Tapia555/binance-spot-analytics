@@ -1,8 +1,12 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
+import hmac
 import logging
+import time
 from typing import Any, Dict, List, Optional
+from urllib.parse import urlencode
 
 import aiohttp
 from aiohttp import ClientError, ClientTimeout
@@ -48,6 +52,15 @@ class BinanceTestnetClient:
         if self._session and not self._session.closed:
             await self._session.close()
 
+    def _sign(self, params: Dict[str, Any]) -> str:
+        query_string = urlencode(params)
+        signature = hmac.new(
+            self.secret_key.encode("utf-8"),
+            query_string.encode("utf-8"),
+            hashlib.sha256,
+        ).hexdigest()
+        return signature
+
     async def _request(
         self,
         method: str,
@@ -64,7 +77,9 @@ class BinanceTestnetClient:
                 if signed:
                     if params is None:
                         params = {}
-                    params["timestamp"] = int(asyncio.get_event_loop().time() * 1000)
+                    params["timestamp"] = int(time.time() * 1000)
+                    params["recvWindow"] = 5000
+                    params["signature"] = self._sign(params)
 
                 async with session.request(
                     method,
@@ -103,11 +118,9 @@ class BinanceTestnetClient:
         raise BinanceAPIError(-1, "Max retries exceeded")
 
     async def get_account_balance(self, asset: str = "USDT") -> Dict[str, Any]:
-        """Получает баланс счёта."""
         return await self._request("GET", "/api/v3/account")
 
     async def get_symbol_rules(self, symbol: str) -> Dict[str, Any]:
-        """Получает правила для символа."""
         data = await self._request("GET", "/api/v3/exchangeInfo")
         for s in data.get("symbols", []):
             if s["symbol"] == symbol:
@@ -123,7 +136,6 @@ class BinanceTestnetClient:
         price: Optional[str] = None,
         time_in_force: str = "GTC",
     ) -> Dict[str, Any]:
-        """Создаёт ордер."""
         data = {
             "symbol": symbol,
             "side": side,
@@ -137,7 +149,6 @@ class BinanceTestnetClient:
         return await self._request("POST", "/api/v3/order", data=data, signed=True)
 
     async def cancel_order(self, symbol: str, order_id: int) -> Dict[str, Any]:
-        """Отменяет ордер."""
         return await self._request(
             "DELETE",
             "/api/v3/order",
@@ -148,7 +159,6 @@ class BinanceTestnetClient:
     async def get_open_orders(
         self, symbol: Optional[str] = None
     ) -> List[Dict[str, Any]]:
-        """Получает открытые ордера."""
         params = {"symbol": symbol} if symbol else {}
         return await self._request(
             "GET", "/api/v3/openOrders", params=params, signed=True
@@ -162,7 +172,6 @@ class BinanceTestnetClient:
         start_time: Optional[int] = None,
         end_time: Optional[int] = None,
     ) -> List[List[Any]]:
-        """Получает клайн-данные."""
         params = {
             "symbol": symbol,
             "interval": interval,
