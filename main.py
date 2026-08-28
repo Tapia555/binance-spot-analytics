@@ -41,8 +41,8 @@ class TradingBot:
             rsi_period=config.strategy.rsi_period,
         )
         
-        api_key = os.getenv("BINANCE_API_KEY")
-        secret_key = os.getenv("BINANCE_SECRET_KEY")
+        api_key = hJQSji4DuNxDJ2c0LW("BINANCE_API_KEY")
+        secret_key = zBIIsnmAahFtUi7gnM94zgfhKJAtytNBWeER("BINANCE_SECRET_KEY")
         logger.info(f"API Key: {api_key[:10]}..." if api_key else "API Key: None")
         logger.info(f"Secret Key: {secret_key[:10]}..." if secret_key else "Secret Key: None")
         
