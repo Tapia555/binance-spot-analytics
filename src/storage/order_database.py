@@ -150,3 +150,8 @@ class OrderDatabase:
             binance_order_id=row[9],
             strategy_signal=row[10],
         )
+    def get_all(self) -> List[OrderRecord]:
+        """Вернуть все ордера"""
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.execute("SELECT * FROM orders")
+            return [self._row_to_record(row) for row in cursor.fetchall()]
