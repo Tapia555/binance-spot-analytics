@@ -3,9 +3,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from threading import Lock
 
-from execution.account_store import AccountStore, Balance
-from execution.order_event_parser import OrderUpdate
-from execution.order_store import OrderStore
+from .account_store import AccountStore, Balance
+from .order_event_parser import OrderUpdate
+from .order_store import OrderStore
 
 
 @dataclass(frozen=True)

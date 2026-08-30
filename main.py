@@ -13,7 +13,7 @@ load_dotenv()
 from config import load_config
 from data.kline_stream import KlineStream, Kline
 from strategy.ma_crossover_strategy import MACrossoverStrategy, StrategyAction
-from execution.binance_testnet import BinanceTestnetClient
+from execution.bybit_client import BybitClient
 from storage.order_database import OrderDatabase
 from tg.notifier import TelegramNotifier
 from tg.bot_handler import TelegramBotHandler
@@ -41,15 +41,16 @@ class TradingBot:
             rsi_period=config.strategy.rsi_period,
         )
         
-        api_key = hJQSji4DuNxDJ2c0LW("BINANCE_API_KEY")
-        secret_key = zBIIsnmAahFtUi7gnM94zgfhKJAtytNBWeER("BINANCE_SECRET_KEY")
+        api_key = os.getenv("BYBIT_API_KEY")
+        secret_key = os.getenv("BYBIT_API_SECRET")
         logger.info(f"API Key: {api_key[:10]}..." if api_key else "API Key: None")
         logger.info(f"Secret Key: {secret_key[:10]}..." if secret_key else "Secret Key: None")
         
-        self.executor = BinanceTestnetClient(
-            base_url=config.bot.base_url,
+        self.executor = BybitClient(
+            
             api_key=api_key,
-            secret_key=secret_key,
+            api_secret=secret_key,
+            testnet=True,
         )
         self.db = OrderDatabase()
         self.closes = []
@@ -158,11 +159,22 @@ class TradingBot:
     async def get_balance(self) -> str:
         try:
             account = await self.executor.get_account_balance()
+            logger.info(f"FULL ACCOUNT: {account}")
+            if not account:
+                return "API returned None"
+            result = account.get("result")
+            logger.info(f"RESULT: {result}")
+            if not result:
+                return "No result in response"
+            list_data = result.get("list")
+            logger.info(f"LIST: {list_data}")
+            if not list_data:
+                return "No list in result"
             balances = []
-            for b in account.get("balances", []):
-                free = float(b["free"])
+            for coin in list_data[0].get("coin", []):
+                free = float(coin.get("available", 0))
                 if free > 0:
-                    balances.append(f"{b['asset']}: {free}")
+                    balances.append(f"{coin['coin']}: {free}")
             return "\n".join(balances) if balances else "No balances"
         except Exception as e:
             logger.error(f"Balance error: {e}")

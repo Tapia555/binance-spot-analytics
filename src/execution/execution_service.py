@@ -5,11 +5,11 @@ import json
 from dataclasses import dataclass
 from typing import Any
 
-from execution.binance_testnet import BinanceTestnetClient
-from execution.order_store import OrderStore
-from execution.order_validator import OrderValidator
-from execution.risk_manager import RiskManager
-from execution.symbol_rules_service import SymbolRulesService
+from .bybit_client import BybitClient
+from .order_store import OrderStore
+from .order_validator import OrderValidator
+from .risk_manager import RiskManager
+from .symbol_rules_service import SymbolRulesService
 
 
 @dataclass(frozen=True)

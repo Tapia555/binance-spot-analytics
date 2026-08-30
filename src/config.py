@@ -147,3 +147,7 @@ def _default_settings() -> Settings:
         log_level="INFO",
         log_file="bot.log",
     )
+
+
+# Глобальный settings объект
+settings = load_config()

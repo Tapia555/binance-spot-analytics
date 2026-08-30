@@ -21,6 +21,7 @@ class TelegramBotHandler:
         on_settings,
         on_emergency,
         on_restart,
+        on_pnl=None,
     ) -> None:
         self.bot_token = bot_token
         self.on_start = on_start
@@ -32,6 +33,7 @@ class TelegramBotHandler:
         self.on_settings = on_settings
         self.on_emergency = on_emergency
         self.on_restart = on_restart
+        self.on_pnl = on_pnl
         self._app = None
         
         self.keyboard = ReplyKeyboardMarkup(
@@ -39,7 +41,7 @@ class TelegramBotHandler:
                 [KeyboardButton("▶️ Запустить"), KeyboardButton("⏹️ Остановить")],
                 [KeyboardButton("📊 Статус"), KeyboardButton("💼 Ордера")],
                 [KeyboardButton("📈 Баланс"), KeyboardButton("📜 Сделки")],
-                [KeyboardButton("⚙️ Настройки"), KeyboardButton("🔔 Уведомления")],
+                [KeyboardButton("📊 PNL"), KeyboardButton("⚙️ Настройки")],
                 [KeyboardButton("🚨 Тревога"), KeyboardButton("🔄 Перезапуск")],
             ],
             resize_keyboard=True,
@@ -70,11 +72,15 @@ class TelegramBotHandler:
         elif text == "📜 Сделки":
             trades = await self.on_trades()
             await update.message.reply_text(f"📜 Сделки:\n{trades}", reply_markup=self.keyboard)
+        elif text == "📊 PNL":
+            if self.on_pnl:
+                pnl = await self.on_pnl()
+                await update.message.reply_text(f"📊 PNL:\n{pnl}", reply_markup=self.keyboard)
+            else:
+                await update.message.reply_text("📊 PNL: N/A", reply_markup=self.keyboard)
         elif text == "⚙️ Настройки":
             settings = await self.on_settings()
             await update.message.reply_text(f"⚙️ Настройки:\n{settings}", reply_markup=self.keyboard)
-        elif text == "🔔 Уведомления":
-            await update.message.reply_text("🔔 Уведомления: ВКЛ", reply_markup=self.keyboard)
         elif text == "🚨 Тревога":
             emergency = await self.on_emergency()
             await update.message.reply_text(f"🚨 Тревога:\n{emergency}", reply_markup=self.keyboard)

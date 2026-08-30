@@ -1,192 +1,541 @@
-2026-08-15 21:25:55,685 [INFO] __main__: Starting bot for BTCUSDT on testnet
-2026-08-15 21:25:55,685 [INFO] __main__: Strategy: MA Crossover (fast=10, slow=20)
-2026-08-15 21:25:55,685 [INFO] __main__: Loading historical klines...
-2026-08-15 21:25:56,131 [INFO] __main__: Loaded 200 historical candles
-2026-08-15 21:25:56,132 [INFO] __main__: Starting kline stream...
-2026-08-15 21:25:56,132 [INFO] __main__: Waiting for trading signals...
-2026-08-15 21:26:00,742 [INFO] __main__: ✅ Candle closed: 63061.26
-2026-08-15 21:26:34,766 [INFO] __main__: Shutdown signal received
-2026-08-15 21:26:39,221 [INFO] __main__: Shutdown signal received
-2026-08-15 21:27:39,409 [INFO] 🤖 Starting bot for BTCUSDT on testnet
-2026-08-15 21:27:39,409 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
-2026-08-15 21:27:39,409 [INFO] 📥 Loading historical klines...
-2026-08-15 21:27:39,782 [INFO] ✅ Loaded 200 historical candles
-2026-08-15 21:27:39,783 [INFO] 🚀 Starting kline stream...
-2026-08-15 21:27:39,783 [INFO] ⏳ Waiting for trading signals...
-2026-08-15 21:28:00,756 [INFO] ✅ Candle closed: 63061.27
-2026-08-15 21:28:00,759 [INFO] 📊 Strategy: HOLD | fast=63057.23, slow=63075.56, trend=63085.39, rsi=14.1, price=63061.27, bullish=False
-2026-08-15 21:28:00,760 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 21:29:00,866 [INFO] ✅ Candle closed: 63050.07
-2026-08-15 21:29:00,867 [INFO] 📊 Strategy: HOLD | fast=63055.92, slow=63073.28, trend=63085.39, rsi=14.1, price=63050.07, bullish=False
-2026-08-15 21:29:00,867 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 21:30:16,310 [INFO] 🛑 Shutdown signal received
-2026-08-15 21:30:19,611 [INFO] 🏁 Bot stopped
-2026-08-15 21:52:43,095 [INFO] 🤖 Starting bot for BTCUSDT on testnet
-2026-08-15 21:52:43,096 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
-2026-08-15 21:52:43,096 [INFO] 📥 Loading historical klines...
-2026-08-15 21:52:43,755 [INFO] ✅ Loaded 200 historical candles
-2026-08-15 21:52:43,756 [INFO] 🚀 Starting kline stream...
-2026-08-15 21:52:43,756 [INFO] ⏳ Waiting for trading signals...
-2026-08-15 21:53:01,243 [INFO] ✅ Candle closed: 63045.96
-2026-08-15 21:53:01,244 [INFO] 📊 Strategy: HOLD | fast=63048.01, slow=63049.03, trend=63083.70, rsi=1.2, price=63045.96, bullish=False
-2026-08-15 21:53:01,245 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 21:54:00,371 [INFO] ✅ Candle closed: 63046.97
-2026-08-15 21:54:00,372 [INFO] 📊 Strategy: HOLD | fast=63047.80, slow=63048.93, trend=63083.47, rsi=20.4, price=63046.97, bullish=False
-2026-08-15 21:54:00,373 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 21:54:33,251 [INFO] 🛑 Shutdown signal received
-2026-08-15 21:54:34,419 [INFO] 🏁 Bot stopped
-2026-08-15 22:03:18,895 [INFO] 🤖 Starting bot for BTCUSDT on testnet
-2026-08-15 22:03:18,895 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
-2026-08-15 22:03:18,895 [INFO] 📥 Loading historical klines...
-2026-08-15 22:03:19,277 [INFO] ✅ Loaded 200 historical candles
-2026-08-15 22:03:19,279 [INFO] 🚀 Starting kline stream...
-2026-08-15 22:03:19,279 [INFO] ⏳ Waiting for trading signals...
-2026-08-15 22:05:00,871 [INFO] ✅ Candle closed: 63066.0
-2026-08-15 22:05:00,872 [INFO] 📊 Strategy: HOLD | fast=63059.55, slow=63053.93, trend=63080.62, rsi=100.0, price=63066.00, bullish=True
-2026-08-15 22:05:00,873 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 22:06:00,459 [INFO] ✅ Candle closed: 63065.99
-2026-08-15 22:06:00,460 [INFO] 📊 Strategy: HOLD | fast=63060.93, slow=63054.73, trend=63080.37, rsi=100.0, price=63065.99, bullish=True
-2026-08-15 22:06:00,460 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 22:07:00,427 [INFO] ✅ Candle closed: 63066.37
-2026-08-15 22:07:00,428 [INFO] 📊 Strategy: HOLD | fast=63061.95, slow=63055.56, trend=63080.13, rsi=100.0, price=63066.37, bullish=True
-2026-08-15 22:07:00,428 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 22:07:47,664 [INFO] 🛑 Shutdown signal received
-2026-08-15 22:07:59,627 [INFO] 🏁 Bot stopped
-2026-08-15 22:39:32,429 [INFO] 🤖 Starting bot for BTCUSDT on testnet
-2026-08-15 22:39:32,429 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
-2026-08-15 22:39:32,430 [INFO] 📥 Loading historical klines...
-2026-08-15 22:39:32,807 [INFO] ✅ Loaded 200 historical candles
-2026-08-15 22:39:32,808 [INFO] 🚀 Starting kline stream...
-2026-08-15 22:39:32,808 [INFO] ⏳ Waiting for trading signals...
-2026-08-15 22:40:00,558 [INFO] ✅ Candle closed: 63116.08
-2026-08-15 22:40:00,558 [INFO] 📊 Strategy: HOLD | fast=63107.97, slow=63109.09, trend=63081.52, rsi=65.2, price=63116.08, bullish=False
-2026-08-15 22:40:00,559 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 22:41:00,390 [INFO] ✅ Candle closed: 63116.07
-2026-08-15 22:41:00,391 [INFO] 📊 Strategy: HOLD | fast=63109.44, slow=63109.47, trend=63081.69, rsi=65.2, price=63116.07, bullish=False
-2026-08-15 22:41:00,391 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 22:42:01,162 [INFO] ✅ Candle closed: 63115.6
-2026-08-15 22:42:01,163 [INFO] 📊 Strategy: BUY | fast=63110.82, slow=63109.58, trend=63081.84, rsi=64.4, price=63115.60, bullish=True
-2026-08-15 22:42:01,164 [INFO] 📝 Reason: bullish_crossover_trend_rsi
-2026-08-15 22:42:31,629 [ERROR] Failed to send Telegram message: Connection timeout to host https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage
-2026-08-15 22:43:42,250 [INFO] 🛑 Shutdown signal received
-2026-08-15 22:43:46,521 [INFO] 🏁 Bot stopped
-2026-08-15 22:56:52,514 [INFO] 🤖 Starting bot for BTCUSDT on testnet
-2026-08-15 22:56:52,515 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
-2026-08-15 22:56:52,515 [INFO] 📥 Loading historical klines...
-2026-08-15 22:56:52,964 [INFO] ✅ Loaded 200 historical candles
-2026-08-15 22:56:52,965 [INFO] 🚀 Starting kline stream...
-2026-08-15 22:56:52,966 [INFO] ⏳ Waiting for trading signals...
-2026-08-15 22:57:00,607 [INFO] ✅ Candle closed: 63126.08
-2026-08-15 22:57:00,609 [INFO] 📊 Strategy: HOLD | fast=63123.22, slow=63120.01, trend=63082.88, rsi=99.7, price=63126.08, bullish=True
-2026-08-15 22:57:00,609 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 22:59:01,057 [INFO] ✅ Candle closed: 63126.08
-2026-08-15 22:59:01,059 [INFO] 📊 Strategy: HOLD | fast=63124.09, slow=63120.06, trend=63083.02, rsi=99.7, price=63126.08, bullish=True
-2026-08-15 22:59:01,059 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:00:00,432 [INFO] ✅ Candle closed: 63126.07
-2026-08-15 23:00:00,433 [INFO] 📊 Strategy: HOLD | fast=63124.60, slow=63120.56, trend=63083.17, rsi=99.7, price=63126.07, bullish=True
-2026-08-15 23:00:00,434 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:03:01,128 [INFO] ✅ Candle closed: 63123.36
-2026-08-15 23:03:01,130 [INFO] 📊 Strategy: HOLD | fast=63124.43, slow=63120.79, trend=63083.29, rsi=79.3, price=63123.36, bullish=True
-2026-08-15 23:03:01,131 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:04:01,278 [INFO] ✅ Candle closed: 63123.36
-2026-08-15 23:04:01,279 [INFO] 📊 Strategy: HOLD | fast=63124.53, slow=63121.18, trend=63083.42, rsi=76.2, price=63123.36, bullish=True
-2026-08-15 23:04:01,280 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:04:38,824 [INFO] 🛑 Shutdown signal received
-2026-08-15 23:04:41,631 [INFO] 🏁 Bot stopped
-2026-08-15 23:09:32,500 [INFO] 🤖 Starting bot for BTCUSDT on testnet
-2026-08-15 23:09:32,500 [INFO] 📊 Strategy: MA Crossover (fast=10, slow=20, trend=200)
-2026-08-15 23:09:32,500 [INFO] 📥 Loading historical klines...
-2026-08-15 23:09:32,948 [INFO] ✅ Loaded 200 historical candles
-2026-08-15 23:09:32,950 [INFO] 🚀 Starting kline stream...
-2026-08-15 23:09:32,950 [INFO] ⏳ Waiting for trading signals...
-2026-08-15 23:10:01,323 [INFO] ✅ Candle closed: 63099.41
-2026-08-15 23:10:01,325 [INFO] 📊 Strategy: HOLD | fast=63111.47, slow=63118.22, trend=63084.07, rsi=0.0, price=63099.41, bullish=False
-2026-08-15 23:10:01,325 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:11:00,672 [INFO] ✅ Candle closed: 63080.15
-2026-08-15 23:11:00,673 [INFO] 📊 Strategy: HOLD | fast=63105.22, slow=63115.15, trend=63083.89, rsi=0.0, price=63080.15, bullish=False
-2026-08-15 23:11:00,674 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:14:00,737 [INFO] ✅ Candle closed: 63078.63
-2026-08-15 23:14:00,738 [INFO] 📊 Strategy: HOLD | fast=63100.60, slow=63112.88, trend=63083.79, rsi=0.0, price=63078.63, bullish=False
-2026-08-15 23:14:00,739 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:15:00,641 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:15:00,642 [INFO] 📊 Strategy: HOLD | fast=63096.12, slow=63110.69, trend=63083.70, rsi=0.0, price=63078.62, bullish=False
-2026-08-15 23:15:00,642 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:18:00,666 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:18:00,668 [INFO] 📊 Strategy: HOLD | fast=63091.65, slow=63108.32, trend=63083.61, rsi=0.0, price=63078.62, bullish=False
-2026-08-15 23:18:00,668 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:19:00,904 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:19:00,905 [INFO] 📊 Strategy: HOLD | fast=63087.82, slow=63105.95, trend=63083.52, rsi=0.0, price=63078.62, bullish=False
-2026-08-15 23:19:00,906 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:20:00,998 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:20:00,999 [INFO] 📊 Strategy: HOLD | fast=63085.01, slow=63103.57, trend=63083.43, rsi=0.0, price=63078.62, bullish=False
-2026-08-15 23:20:01,000 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:21:00,597 [INFO] ✅ Candle closed: 63078.63
-2026-08-15 23:21:00,598 [INFO] 📊 Strategy: HOLD | fast=63082.93, slow=63101.20, trend=63083.34, rsi=0.0, price=63078.63, bullish=False
-2026-08-15 23:21:00,599 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:22:00,799 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:22:00,800 [INFO] 📊 Strategy: HOLD | fast=63080.85, slow=63098.83, trend=63083.25, rsi=0.0, price=63078.62, bullish=False
-2026-08-15 23:22:00,801 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:23:00,396 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:23:00,397 [INFO] 📊 Strategy: HOLD | fast=63078.78, slow=63096.46, trend=63083.16, rsi=0.0, price=63078.62, bullish=False
-2026-08-15 23:23:00,398 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:24:00,418 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:24:00,419 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63094.08, trend=63083.07, rsi=0.0, price=63078.62, bullish=False
-2026-08-15 23:24:00,419 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:25:00,820 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:25:00,822 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63091.85, trend=63082.98, rsi=0.0, price=63078.62, bullish=False
-2026-08-15 23:25:00,822 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:26:00,624 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:26:00,627 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63089.61, trend=63082.89, rsi=0.0, price=63078.62, bullish=False
-2026-08-15 23:26:00,627 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:27:01,145 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:27:01,146 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63087.37, trend=63082.80, rsi=0.0, price=63078.62, bullish=False
-2026-08-15 23:27:01,146 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:28:01,255 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:28:01,255 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63085.13, trend=63082.71, rsi=0.6, price=63078.62, bullish=False
-2026-08-15 23:28:01,256 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:29:01,261 [INFO] ✅ Candle closed: 63078.63
-2026-08-15 23:29:01,262 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63083.22, trend=63082.62, rsi=50.0, price=63078.63, bullish=False
-2026-08-15 23:29:01,262 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:30:00,438 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:30:00,439 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63081.82, trend=63082.53, rsi=50.0, price=63078.62, bullish=False
-2026-08-15 23:30:00,439 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:31:01,280 [INFO] ✅ Candle closed: 63078.63
-2026-08-15 23:31:01,281 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63080.78, trend=63082.44, rsi=60.0, price=63078.63, bullish=False
-2026-08-15 23:31:01,281 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:32:00,669 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:32:00,671 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63079.74, trend=63082.35, rsi=50.0, price=63078.62, bullish=False
-2026-08-15 23:32:00,671 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:33:00,606 [INFO] ✅ Candle closed: 63078.63
-2026-08-15 23:33:00,609 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63078.70, trend=63082.27, rsi=57.1, price=63078.63, bullish=False
-2026-08-15 23:33:00,609 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:34:01,298 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:34:01,299 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63078.62, trend=63082.18, rsi=42.9, price=63078.62, bullish=True
-2026-08-15 23:34:01,300 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:35:01,100 [INFO] ✅ Candle closed: 63078.63
-2026-08-15 23:35:01,102 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63078.62, trend=63082.09, rsi=57.1, price=63078.63, bullish=True
-2026-08-15 23:35:01,102 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:36:01,211 [INFO] ✅ Candle closed: 63078.63
-2026-08-15 23:36:01,212 [INFO] 📊 Strategy: HOLD | fast=63078.63, slow=63078.62, trend=63082.00, rsi=57.1, price=63078.63, bullish=True
-2026-08-15 23:36:01,213 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:37:00,455 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:37:00,455 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63078.62, trend=63081.91, rsi=50.0, price=63078.62, bullish=True
-2026-08-15 23:37:00,456 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:38:00,504 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:38:00,507 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63078.62, trend=63081.82, rsi=50.0, price=63078.62, bullish=True
-2026-08-15 23:38:00,507 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:39:00,437 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:39:00,438 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63078.62, trend=63081.73, rsi=50.0, price=63078.62, bullish=True
-2026-08-15 23:39:00,439 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:40:00,794 [INFO] ✅ Candle closed: 63078.63
-2026-08-15 23:40:00,794 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63078.62, trend=63081.62, rsi=55.6, price=63078.63, bullish=True
-2026-08-15 23:40:00,795 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:41:01,212 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:41:01,213 [INFO] 📊 Strategy: HOLD | fast=63078.62, slow=63078.62, trend=63081.51, rsi=50.0, price=63078.62, bullish=True
-2026-08-15 23:41:01,213 [INFO] 📝 Reason: filtered_or_no_crossover
-2026-08-15 23:42:00,834 [INFO] ✅ Candle closed: 63078.62
-2026-08-15 23:42:00,835 [INFO] 📊 Strategy: SELL | fast=63078.62, slow=63078.62, trend=63081.40, rsi=44.4, price=63078.62, bullish=False
-2026-08-15 23:42:00,835 [INFO] 📝 Reason: bearish_crossover_trend_rsi
-2026-08-15 23:42:03,894 [ERROR] Telegram API error: 400 - {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
-2026-08-16 00:55:13,924 [INFO] Starting crypto bot...
-2026-08-16 00:56:43,615 [INFO] Starting crypto bot...
-2026-08-16 00:57:46,793 [INFO] Starting crypto bot...
+nohup: ignoring input
+2026-08-30 01:26:03,119 [INFO] Starting crypto bot...
+2026-08-30 01:26:03,124 [INFO] API Key: JAdCfKjbwb...
+2026-08-30 01:26:03,124 [INFO] Secret Key: umh6sLTRvW...
+2026-08-30 01:26:03,255 [INFO] Telegram bot started
+2026-08-30 01:26:03,434 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getMe "HTTP/1.1 200 OK"
+2026-08-30 01:26:03,436 [INFO] Application started
+2026-08-30 01:26:03,475 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/deleteWebhook "HTTP/1.1 200 OK"
+2026-08-30 01:26:05,580 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:26:05,582 [INFO] Button pressed: ▶️ Запустить
+2026-08-30 01:26:05,582 [INFO] Starting trading...
+2026-08-30 01:26:05,757 [INFO] Telegram: 🚀 <b>Bot Started</b>...
+2026-08-30 01:26:05,830 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-30 01:26:07,109 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:26:07,110 [INFO] Button pressed: 📈 Баланс
+2026-08-30 01:26:07,332 [INFO] RAW RESULT: {'retCode': 10003, 'retMsg': 'API key is invalid.', 'result': {}, 'retExtInfo': {}, 'time': 1788053167252}
+2026-08-30 01:26:07,332 [INFO] API RESPONSE: {'retCode': 10003, 'retMsg': 'API key is invalid.', 'result': {}, 'retExtInfo': {}, 'time': 1788053167252}
+2026-08-30 01:26:07,332 [INFO] FULL ACCOUNT: {'retCode': 10003, 'retMsg': 'API key is invalid.', 'result': {}, 'retExtInfo': {}, 'time': 1788053167252}
+2026-08-30 01:26:07,332 [INFO] RESULT: {}
+2026-08-30 01:26:07,392 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-30 01:26:09,928 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:26:09,929 [INFO] Button pressed: 📈 Баланс
+2026-08-30 01:26:10,098 [INFO] RAW RESULT: {'retCode': 10003, 'retMsg': 'API key is invalid.', 'result': {}, 'retExtInfo': {}, 'time': 1788053170018}
+2026-08-30 01:26:10,098 [INFO] API RESPONSE: {'retCode': 10003, 'retMsg': 'API key is invalid.', 'result': {}, 'retExtInfo': {}, 'time': 1788053170018}
+2026-08-30 01:26:10,098 [INFO] FULL ACCOUNT: {'retCode': 10003, 'retMsg': 'API key is invalid.', 'result': {}, 'retExtInfo': {}, 'time': 1788053170018}
+2026-08-30 01:26:10,098 [INFO] RESULT: {}
+2026-08-30 01:26:10,159 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-30 01:26:19,971 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:26:30,020 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:26:40,095 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:26:50,142 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:27:00,182 [INFO] Kline: 78010.25
+2026-08-30 01:27:00,194 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:27:10,237 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:27:20,294 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:27:30,339 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:27:40,389 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:27:50,441 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:28:00,364 [INFO] Kline: 78018.69
+2026-08-30 01:28:00,486 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:28:10,553 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:28:20,641 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:28:30,683 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:28:40,729 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:28:50,778 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:29:00,286 [INFO] Kline: 78016.17
+2026-08-30 01:29:00,824 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:29:10,874 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:29:20,966 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:29:31,024 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:29:41,071 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:29:51,147 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:30:00,368 [INFO] Kline: 78016.16
+2026-08-30 01:30:01,198 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:30:11,247 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:30:21,293 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:30:31,346 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:30:41,392 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:30:51,439 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:31:00,666 [INFO] Kline: 78006.24
+2026-08-30 01:31:01,482 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:31:11,528 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:31:21,572 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:31:31,620 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:31:41,675 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:31:51,726 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:32:00,306 [INFO] Kline: 78000.72
+2026-08-30 01:32:01,777 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:32:11,821 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:32:21,866 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:32:31,914 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:32:41,957 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:32:52,005 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:33:00,160 [INFO] Kline: 78029.98
+2026-08-30 01:33:02,052 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:33:12,105 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:33:22,151 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:33:32,198 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:33:42,243 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:33:52,287 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:34:00,735 [INFO] Kline: 78016.65
+2026-08-30 01:34:02,329 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:34:12,375 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:34:22,419 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:34:32,477 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:34:42,521 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:34:52,565 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:35:00,408 [INFO] Kline: 78009.19
+2026-08-30 01:35:02,615 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:35:12,662 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:35:22,714 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:35:32,760 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:35:42,803 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:35:52,846 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:36:00,310 [INFO] Kline: 78008.0
+2026-08-30 01:36:02,897 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:36:12,943 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:36:22,985 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:36:33,030 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:36:43,076 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:36:53,125 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:37:00,617 [INFO] Kline: 78016.6
+2026-08-30 01:37:03,174 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:37:13,217 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:37:23,267 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:37:24,736 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:37:24,738 [INFO] Button pressed: 📊 Статус
+2026-08-30 01:37:24,919 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-30 01:37:34,781 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:37:44,840 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:37:54,883 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:38:00,189 [INFO] Kline: 78043.55
+2026-08-30 01:38:04,930 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:38:14,974 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:38:25,017 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:38:35,059 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:38:45,106 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:38:55,151 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:39:01,102 [INFO] Kline: 78043.7
+2026-08-30 01:39:05,194 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:39:15,246 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:39:25,289 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:39:35,337 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:39:45,383 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:39:55,433 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:40:00,880 [INFO] Kline: 78045.0
+2026-08-30 01:40:05,489 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:40:15,543 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:40:25,592 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:40:35,633 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:40:45,675 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:40:55,720 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:41:00,138 [INFO] Kline: 78055.36
+2026-08-30 01:41:05,764 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:41:15,809 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:41:25,851 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:41:35,908 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:41:45,952 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:41:56,007 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:42:00,657 [INFO] Kline: 78055.35
+2026-08-30 01:42:06,055 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:42:16,102 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:42:26,145 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:42:36,193 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:42:46,236 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:42:56,282 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:43:00,427 [INFO] Kline: 78048.27
+2026-08-30 01:43:06,326 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:43:16,380 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:43:26,426 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:43:36,468 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:43:46,516 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:43:56,558 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:44:00,480 [INFO] Kline: 78066.59
+2026-08-30 01:44:06,603 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:44:16,645 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:44:26,706 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:44:36,755 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:44:46,797 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:44:56,840 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:45:00,159 [INFO] Kline: 78061.66
+2026-08-30 01:45:06,888 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:45:16,930 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:45:26,977 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:45:37,024 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:45:47,068 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:45:57,115 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:45:57,158 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:45:57,160 [INFO] Button pressed: 🔄 Перезапуск
+2026-08-30 01:45:57,338 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-30 01:45:59,378 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:45:59,380 [INFO] Button pressed: ▶️ Запустить
+2026-08-30 01:45:59,380 [INFO] Already running
+2026-08-30 01:45:59,442 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-30 01:46:00,500 [INFO] Kline: 78108.11
+2026-08-30 01:46:09,422 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:46:17,188 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:46:17,452 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-30 01:46:27,245 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:46:37,291 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:46:47,334 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:46:57,382 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:47:00,928 [INFO] Kline: 78109.49
+2026-08-30 01:47:07,429 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:47:17,477 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:47:27,518 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:47:37,561 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:47:47,613 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:47:57,654 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:48:00,316 [INFO] Kline: 78103.95
+2026-08-30 01:48:07,704 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:48:17,750 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:48:27,796 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:48:37,842 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:48:47,898 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:48:57,940 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:49:00,258 [INFO] Kline: 78100.7
+2026-08-30 01:49:07,983 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:49:18,031 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:49:28,075 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:49:38,119 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:49:48,164 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:49:58,212 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:50:00,652 [INFO] Kline: 78112.56
+2026-08-30 01:50:08,260 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:50:18,306 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:50:28,353 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:50:38,395 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:50:48,437 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:50:58,479 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:51:00,599 [INFO] Kline: 78117.11
+2026-08-30 01:51:08,527 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:51:18,573 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:51:28,621 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:51:38,665 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:51:48,712 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:51:58,757 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:52:00,488 [INFO] Kline: 78117.12
+2026-08-30 01:52:08,803 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:52:18,847 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:52:28,897 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:52:38,942 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:52:48,988 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:52:59,035 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:53:00,459 [INFO] Kline: 78086.65
+2026-08-30 01:53:09,081 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:53:19,127 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:53:29,170 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:53:39,212 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:53:49,256 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:53:59,303 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:54:00,638 [INFO] Kline: 78072.68
+2026-08-30 01:54:09,348 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:54:19,390 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:54:29,444 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:54:39,491 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:54:49,546 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:54:59,589 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:55:01,177 [INFO] Kline: 78078.97
+2026-08-30 01:55:09,633 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:55:19,721 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:55:29,769 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:55:39,809 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:55:49,858 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:55:59,905 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:56:00,634 [INFO] Kline: 78068.0
+2026-08-30 01:56:09,953 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:56:20,001 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:56:30,043 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:56:40,086 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:56:50,132 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:57:00,174 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:57:00,409 [INFO] Kline: 78063.99
+2026-08-30 01:57:10,220 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:57:20,267 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:57:30,310 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:57:40,356 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:57:50,400 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:58:00,157 [INFO] Kline: 78052.01
+2026-08-30 01:58:00,452 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:58:10,500 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:58:20,542 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:58:30,584 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:58:40,625 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:58:50,668 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:59:00,441 [INFO] Kline: 78084.0
+2026-08-30 01:59:00,712 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:59:10,759 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:59:20,801 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:59:30,849 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:59:40,897 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 01:59:50,939 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:00:00,367 [INFO] Kline: 78081.49
+2026-08-30 02:00:00,986 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:00:11,032 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:00:21,080 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:00:31,125 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:00:41,176 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:00:51,224 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:01:00,286 [INFO] Kline: 78085.41
+2026-08-30 02:01:01,266 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:01:11,313 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:01:21,361 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:01:31,406 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:01:41,454 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:01:51,505 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:02:00,310 [INFO] Kline: 78085.41
+2026-08-30 02:02:01,549 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:02:11,599 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:02:21,641 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:02:31,684 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:02:41,731 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:02:51,775 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:03:00,389 [INFO] Kline: 78100.67
+2026-08-30 02:03:01,826 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:03:11,876 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:03:21,923 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:03:31,969 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:03:42,014 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:03:52,068 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:04:00,282 [INFO] Kline: 78123.04
+2026-08-30 02:04:02,114 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:04:12,162 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:04:22,211 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:04:32,264 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:04:42,309 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:04:52,354 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:05:00,462 [INFO] Kline: 78127.03
+2026-08-30 02:05:02,402 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:05:12,445 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:05:22,489 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:05:32,532 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:05:42,577 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:05:52,630 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:06:00,302 [INFO] Kline: 78114.52
+2026-08-30 02:06:02,679 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:06:12,729 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:06:22,771 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:06:32,825 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:06:36,269 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:06:36,271 [INFO] Button pressed: ▶️ Запустить
+2026-08-30 02:06:36,271 [INFO] Already running
+2026-08-30 02:06:36,467 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-30 02:06:37,735 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:06:37,737 [INFO] Button pressed: 📊 Статус
+2026-08-30 02:06:37,798 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-30 02:06:47,786 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:06:57,832 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:07:00,379 [INFO] Kline: 78078.01
+2026-08-30 02:07:07,874 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:07:17,922 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:07:27,975 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:07:38,017 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:07:48,060 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:07:58,100 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:08:00,271 [INFO] Kline: 78077.19
+2026-08-30 02:08:08,148 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:08:13,089 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:08:13,091 [INFO] Button pressed: 📈 Баланс
+2026-08-30 02:08:13,346 [INFO] RAW RESULT: {'retCode': 10003, 'retMsg': 'API key is invalid.', 'result': {}, 'retExtInfo': {}, 'time': 1788055693261}
+2026-08-30 02:08:13,346 [INFO] API RESPONSE: {'retCode': 10003, 'retMsg': 'API key is invalid.', 'result': {}, 'retExtInfo': {}, 'time': 1788055693261}
+2026-08-30 02:08:13,346 [INFO] FULL ACCOUNT: {'retCode': 10003, 'retMsg': 'API key is invalid.', 'result': {}, 'retExtInfo': {}, 'time': 1788055693261}
+2026-08-30 02:08:13,346 [INFO] RESULT: {}
+2026-08-30 02:08:13,696 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/sendMessage "HTTP/1.1 200 OK"
+2026-08-30 02:08:23,149 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:08:33,205 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:08:43,260 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:08:53,318 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:09:00,305 [INFO] Kline: 78086.35
+2026-08-30 02:09:03,371 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:09:13,416 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:09:23,458 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:09:33,501 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:09:43,559 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:09:53,609 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:10:00,281 [INFO] Kline: 78074.82
+2026-08-30 02:10:03,664 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:10:13,710 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:10:23,763 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:10:33,810 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:10:43,870 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:10:53,912 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:11:00,280 [INFO] Kline: 78083.06
+2026-08-30 02:11:03,970 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:11:14,013 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:11:24,061 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:11:34,104 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:11:44,147 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:11:54,192 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:12:00,277 [INFO] Kline: 78074.83
+2026-08-30 02:12:04,237 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:12:14,280 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:12:24,324 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:12:34,368 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:12:44,424 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:12:54,467 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:13:00,506 [INFO] Kline: 78081.03
+2026-08-30 02:13:04,512 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:13:14,562 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:13:24,606 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:13:34,651 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:13:44,695 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:13:54,742 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:14:00,820 [INFO] Kline: 78086.32
+2026-08-30 02:14:04,790 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:14:14,832 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:14:24,879 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:14:34,921 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:14:44,970 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:14:55,014 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:15:00,571 [INFO] Kline: 78086.33
+2026-08-30 02:15:05,057 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:15:15,100 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:15:25,143 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:15:35,188 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:15:45,234 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:15:55,274 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 200 OK"
+2026-08-30 02:16:00,267 [INFO] Kline: 78056.01
+2026-08-30 02:16:05,122 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 409 Conflict"
+2026-08-30 02:16:05,123 [ERROR] Exception happened while polling for updates.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 680, in get_updates
+    updates = await super().get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 4767, in get_updates
+    await self._post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 712, in _post
+    return await self._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 378, in _do_post
+    return await super()._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 741, in _do_post
+    result = await request.post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-08-30 02:16:10,227 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 409 Conflict"
+2026-08-30 02:16:10,228 [ERROR] Exception happened while polling for updates.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 680, in get_updates
+    updates = await super().get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 4767, in get_updates
+    await self._post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 712, in _post
+    return await self._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 378, in _do_post
+    return await super()._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 741, in _do_post
+    result = await request.post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-08-30 02:16:16,313 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 409 Conflict"
+2026-08-30 02:16:16,314 [ERROR] Exception happened while polling for updates.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 680, in get_updates
+    updates = await super().get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 4767, in get_updates
+    await self._post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 712, in _post
+    return await self._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 378, in _do_post
+    return await super()._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 741, in _do_post
+    result = await request.post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-08-30 02:16:23,903 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 409 Conflict"
+2026-08-30 02:16:23,904 [ERROR] Exception happened while polling for updates.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 680, in get_updates
+    updates = await super().get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 4767, in get_updates
+    await self._post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 712, in _post
+    return await self._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 378, in _do_post
+    return await super()._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 741, in _do_post
+    result = await request.post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-08-30 02:16:30,744 [INFO] HTTP Request: POST https://api.telegram.org/bot8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA/getUpdates "HTTP/1.1 409 Conflict"
+2026-08-30 02:16:30,745 [ERROR] Exception happened while polling for updates.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 680, in get_updates
+    updates = await super().get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 4767, in get_updates
+    await self._post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 712, in _post
+    return await self._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 378, in _do_post
+    return await super()._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 741, in _do_post
+    result = await request.post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-08-30 02:16:30,745 [ERROR] Exception happened while polling for updates.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_utils/networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 680, in get_updates
+    updates = await super().get_updates(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 4767, in get_updates
+    await self._post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 712, in _post
+    return await self._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/ext/_extbot.py", line 378, in _do_post
+    return await super()._do_post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/_bot.py", line 741, in _do_post
+    result = await request.post(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+  File "/usr/local/lib/python3.10/dist-packages/telegram/request/_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running

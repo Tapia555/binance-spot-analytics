@@ -3,8 +3,8 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import Tuple
 
-from execution.balance_store import BalanceStore
-from execution.position_store import PositionStore
+from .balance_store import BalanceStore
+from .position_store import PositionStore
 
 
 class RiskManager:

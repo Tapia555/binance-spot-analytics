@@ -3,7 +3,7 @@ from __future__ import annotations
 from decimal import Decimal, InvalidOperation
 from typing import Tuple
 
-from execution.symbol_rules_service import SymbolRules
+from .symbol_rules_service import SymbolRules
 
 
 class OrderValidationError(ValueError):

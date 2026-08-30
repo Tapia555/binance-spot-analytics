@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from execution.balance_store import BalanceStore
+from .balance_store import BalanceStore
 
 
 @dataclass(frozen=True)
