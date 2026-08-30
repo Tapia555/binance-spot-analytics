@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from decimal import Decimal
 from .config import settings
 from .storage.order_database import OrderDatabase
 from .execution.bybit_client import BybitClient
@@ -47,11 +48,34 @@ class TradingBot:
 
     async def get_trades(self) -> str:
         """Get recent trades"""
-        return "📜 Сделки: пока нет"
+        try:
+            trades = self.db.get_recent_trades(limit=10)
+            if not trades:
+                return "📜 Нет закрытых сделок"
+            result = f"Последние сделки ({len(trades)}):\n"
+            for trade in trades[:5]:
+                pnl_str = f"${float(trade.pnl):.2f}" if trade.pnl else "N/A"
+                result += f"\n{trade.symbol} {trade.side} {trade.quantity} | PNL: {pnl_str}"
+            return result
+        except Exception as e:
+            logger.error(f"Error getting trades: {e}")
+            return "❌ Ошибка"
 
     async def get_pnl(self) -> str:
         """Get PNL for different periods"""
-        return "📊 PNL: пока нет сделок"
+        try:
+            summary = self.db.get_pnl_summary()
+            return (
+                f"📊 PNL:\n"
+                f"📅 День: ${summary['pnl_day']:.2f}\n"
+                f"📅 Неделя: ${summary['pnl_week']:.2f}\n"
+                f"📅 Месяц: ${summary['pnl_month']:.2f}\n"
+                f"📅 Всего: ${summary['pnl_total']:.2f}\n"
+                f"💼 Всего сделок: {summary['total_trades']}"
+            )
+        except Exception as e:
+            logger.error(f"Error getting PNL: {e}")
+            return "❌ Ошибка PNL"
 
     async def get_settings(self) -> str:
         """Get current settings"""

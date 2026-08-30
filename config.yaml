@@ -30,3 +30,8 @@ telegram:
   enabled: true
   bot_token: "8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA"
   chat_id: "195470033"
+
+bybit:
+  api_key: "EzntUGuI5G797xvbak"
+  api_secret: "lcHwzwvSTKDRiDZ8nkVwXLgkZSvuXA8JBKCP"
+  testnet: true

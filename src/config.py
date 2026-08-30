@@ -50,12 +50,20 @@ class TelegramConfig:
 
 
 @dataclass
+class BybitConfig:
+    api_key: str
+    api_secret: str
+    testnet: bool
+
+
+@dataclass
 class Settings:
     bot: BotConfig
     strategy: StrategyConfig
     risk: RiskConfig
     execution: ExecutionConfig
     telegram: TelegramConfig
+    bybit: BybitConfig
     log_level: str
     log_file: str
 
@@ -107,6 +115,11 @@ def load_config(config_path: str = "config.yaml") -> Settings:
             bot_token=data.get("telegram", {}).get("bot_token"),
             chat_id=data.get("telegram", {}).get("chat_id"),
         ),
+        bybit=BybitConfig(
+            api_key=data.get("bybit", {}).get("api_key", ""),
+            api_secret=data.get("bybit", {}).get("api_secret", ""),
+            testnet=data.get("bybit", {}).get("testnet", True),
+        ),
         log_level=data.get("logging", {}).get("level", "INFO"),
         log_file=data.get("logging", {}).get("file", "bot.log"),
     )
@@ -143,6 +156,11 @@ def _default_settings() -> Settings:
             enabled=False,
             bot_token=None,
             chat_id=None,
+        ),
+        bybit=BybitConfig(
+            api_key="",
+            api_secret="",
+            testnet=True,
         ),
         log_level="INFO",
         log_file="bot.log",
