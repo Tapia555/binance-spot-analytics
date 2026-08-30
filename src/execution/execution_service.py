@@ -5,7 +5,6 @@ import json
 from dataclasses import dataclass
 from typing import Any
 
-from .bybit_client import BybitClient
 from .order_store import OrderStore
 from .order_validator import OrderValidator
 from .risk_manager import RiskManager

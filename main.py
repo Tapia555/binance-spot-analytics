@@ -13,7 +13,7 @@ load_dotenv()
 from config import load_config
 from data.kline_stream import KlineStream, Kline
 from strategy.ma_crossover_strategy import MACrossoverStrategy, StrategyAction
-from execution.bybit_client import BybitClient
+from execution.binance_testnet import BinanceTestnetClient
 from storage.order_database import OrderDatabase
 from tg.notifier import TelegramNotifier
 from tg.bot_handler import TelegramBotHandler
@@ -41,15 +41,14 @@ class TradingBot:
             rsi_period=config.strategy.rsi_period,
         )
         
-        api_key = os.getenv("BYBIT_API_KEY")
-        secret_key = os.getenv("BYBIT_API_SECRET")
+        api_key = os.getenv("BINANCE_API_KEY")
+        secret_key = os.getenv("BINANCE_API_SECRET")
         logger.info(f"API Key: {api_key[:10]}..." if api_key else "API Key: None")
         logger.info(f"Secret Key: {secret_key[:10]}..." if secret_key else "Secret Key: None")
         
-        self.executor = BybitClient(
-            
+        self.executor = BinanceTestnetClient(
             api_key=api_key,
-            api_secret=secret_key,
+            secret_key=secret_key,
             testnet=True,
         )
         self.db = OrderDatabase()
@@ -108,18 +107,16 @@ class TradingBot:
                     try:
                         quantity = "0.001"
                         if signal.action == StrategyAction.BUY:
-                            order = await self.executor.create_order(
+                            order = await self.executor.create_market_order(
                                 symbol=signal.symbol,
                                 side="BUY",
-                                order_type="MARKET",
                                 quantity=quantity,
                             )
                             logger.info(f"Order executed: {order}")
                         else:
-                            order = await self.executor.create_order(
+                            order = await self.executor.create_market_order(
                                 symbol=signal.symbol,
                                 side="SELL",
-                                order_type="MARKET",
                                 quantity=quantity,
                             )
                             logger.info(f"Order executed: {order}")

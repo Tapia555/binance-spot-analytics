@@ -1,8 +1,6 @@
 bot:
   symbol: "BTCUSDT"
   testnet: true
-  base_url: "https://api-testnet.bybit.com"
-  ws_url: "wss://stream-testnet.bybit.com"
 
 strategy:
   name: "ma_crossover"
@@ -31,7 +29,7 @@ telegram:
   bot_token: "8993781193:AAHjvdrUJk4_byoOwmWJhXpr60eMEzWq7qA"
   chat_id: "195470033"
 
-bybit:
-  api_key: "EzntUGuI5G797xvbak"
-  api_secret: "lcHwzwvSTKDRiDZ8nkVwXLgkZSvuXA8JBKCP"
+binance:
+  api_key: "твой_binance_api_key"
+  api_secret: "твой_binance_api_secret"
   testnet: true

@@ -14,8 +14,6 @@ logger = logging.getLogger(__name__)
 class BotConfig:
     symbol: str
     testnet: bool
-    base_url: str
-    ws_url: str
 
 
 @dataclass
@@ -50,7 +48,7 @@ class TelegramConfig:
 
 
 @dataclass
-class BybitConfig:
+class BinanceConfig:
     api_key: str
     api_secret: str
     testnet: bool
@@ -63,13 +61,12 @@ class Settings:
     risk: RiskConfig
     execution: ExecutionConfig
     telegram: TelegramConfig
-    bybit: BybitConfig
+    binance: BinanceConfig
     log_level: str
     log_file: str
 
 
 def load_config(config_path: str = "config.yaml") -> Settings:
-    """Загружает конфиг из YAML файла."""
     path = Path(config_path)
 
     if not path.exists():
@@ -83,12 +80,6 @@ def load_config(config_path: str = "config.yaml") -> Settings:
         bot=BotConfig(
             symbol=data.get("bot", {}).get("symbol", "BTCUSDT"),
             testnet=data.get("bot", {}).get("testnet", True),
-            base_url=data.get("bot", {}).get(
-                "base_url", "https://testnet.binance.vision"
-            ),
-            ws_url=data.get("bot", {}).get(
-                "ws_url", "wss://stream.testnet.binance.vision/ws"
-            ),
         ),
         strategy=StrategyConfig(
             name=data.get("strategy", {}).get("name", "ma_crossover"),
@@ -99,9 +90,7 @@ def load_config(config_path: str = "config.yaml") -> Settings:
         ),
         risk=RiskConfig(
             max_portfolio_pct=data.get("risk", {}).get("max_portfolio_pct", 0.10),
-            max_loss_per_trade_pct=data.get("risk", {}).get(
-                "max_loss_per_trade_pct", 0.02
-            ),
+            max_loss_per_trade_pct=data.get("risk", {}).get("max_loss_per_trade_pct", 0.02),
             stop_loss_pct=data.get("risk", {}).get("stop_loss_pct", 0.02),
             take_profit_pct=data.get("risk", {}).get("take_profit_pct", 0.04),
         ),
@@ -115,10 +104,10 @@ def load_config(config_path: str = "config.yaml") -> Settings:
             bot_token=data.get("telegram", {}).get("bot_token"),
             chat_id=data.get("telegram", {}).get("chat_id"),
         ),
-        bybit=BybitConfig(
-            api_key=data.get("bybit", {}).get("api_key", ""),
-            api_secret=data.get("bybit", {}).get("api_secret", ""),
-            testnet=data.get("bybit", {}).get("testnet", True),
+        binance=BinanceConfig(
+            api_key=data.get("binance", {}).get("api_key", ""),
+            api_secret=data.get("binance", {}).get("api_secret", ""),
+            testnet=data.get("binance", {}).get("testnet", True),
         ),
         log_level=data.get("logging", {}).get("level", "INFO"),
         log_file=data.get("logging", {}).get("file", "bot.log"),
@@ -126,46 +115,16 @@ def load_config(config_path: str = "config.yaml") -> Settings:
 
 
 def _default_settings() -> Settings:
-    """Возвращает настройки по умолчанию."""
     return Settings(
-        bot=BotConfig(
-            symbol="BTCUSDT",
-            testnet=True,
-            base_url="https://testnet.binance.vision",
-            ws_url="wss://stream.testnet.binance.vision/ws",
-        ),
-        strategy=StrategyConfig(
-            name="ma_crossover",
-            fast_period=10,
-            slow_period=20,
-            trend_period=200,
-            rsi_period=14,
-        ),
-        risk=RiskConfig(
-            max_portfolio_pct=0.10,
-            max_loss_per_trade_pct=0.02,
-            stop_loss_pct=0.02,
-            take_profit_pct=0.04,
-        ),
-        execution=ExecutionConfig(
-            timeout=10.0,
-            max_retries=3,
-            retry_delay=1.0,
-        ),
-        telegram=TelegramConfig(
-            enabled=False,
-            bot_token=None,
-            chat_id=None,
-        ),
-        bybit=BybitConfig(
-            api_key="",
-            api_secret="",
-            testnet=True,
-        ),
+        bot=BotConfig(symbol="BTCUSDT", testnet=True),
+        strategy=StrategyConfig(name="ma_crossover", fast_period=10, slow_period=20, trend_period=200, rsi_period=14),
+        risk=RiskConfig(max_portfolio_pct=0.10, max_loss_per_trade_pct=0.02, stop_loss_pct=0.02, take_profit_pct=0.04),
+        execution=ExecutionConfig(timeout=10.0, max_retries=3, retry_delay=1.0),
+        telegram=TelegramConfig(enabled=False, bot_token=None, chat_id=None),
+        binance=BinanceConfig(api_key="", api_secret="", testnet=True),
         log_level="INFO",
         log_file="bot.log",
     )
 
 
-# Глобальный settings объект
 settings = load_config()

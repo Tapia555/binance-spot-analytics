@@ -3,7 +3,7 @@ import logging
 from decimal import Decimal
 from .config import settings
 from .storage.order_database import OrderDatabase
-from .execution.bybit_client import BybitClient
+from .execution.binance_testnet import BinanceTestnetClient
 from .tg.bot_handler import TelegramBotHandler
 
 logger = logging.getLogger(__name__)
