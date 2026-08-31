@@ -43,8 +43,6 @@ class TradingBot:
         
         api_key = os.getenv("BINANCE_API_KEY")
         secret_key = os.getenv("BINANCE_API_SECRET")
-        logger.info(f"API Key: {api_key[:10]}..." if api_key else "API Key: None")
-        logger.info(f"Secret Key: {secret_key[:10]}..." if secret_key else "Secret Key: None")
         
         self.executor = BinanceTestnetClient(
             api_key=api_key,

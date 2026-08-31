@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import logging
+import os
+
+from dotenv import load_dotenv
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
@@ -8,6 +11,8 @@ from typing import Optional
 import yaml
 
 logger = logging.getLogger(__name__)
+
+load_dotenv('/root/bot/.env')
 
 
 @dataclass
@@ -100,13 +105,13 @@ def load_config(config_path: str = "config.yaml") -> Settings:
             retry_delay=data.get("execution", {}).get("retry_delay", 1.0),
         ),
         telegram=TelegramConfig(
-            enabled=data.get("telegram", {}).get("enabled", False),
-            bot_token=data.get("telegram", {}).get("bot_token"),
+            enabled=os.getenv("TELEGRAM_BOT_TOKEN") is not None or data.get("telegram", {}).get("enabled", False),
+            bot_token=os.getenv("TELEGRAM_BOT_TOKEN") or data.get("telegram", {}).get("bot_token"),
             chat_id=data.get("telegram", {}).get("chat_id"),
         ),
         binance=BinanceConfig(
-            api_key=data.get("binance", {}).get("api_key", ""),
-            api_secret=data.get("binance", {}).get("api_secret", ""),
+            api_key=os.getenv("BINANCE_API_KEY") or data.get("binance", {}).get("api_key", ""),
+            api_secret=os.getenv("BINANCE_API_SECRET") or data.get("binance", {}).get("api_secret", ""),
             testnet=data.get("binance", {}).get("testnet", True),
         ),
         log_level=data.get("logging", {}).get("level", "INFO"),

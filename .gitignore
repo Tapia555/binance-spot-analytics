@@ -18,3 +18,16 @@ reports/*
 .env
 *.key
 *.pem
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Local backups
+*.backup
+
+__pycache__/
+*.pyc
+*.pyo
+*.backup
