@@ -31,3 +31,9 @@ __pycache__/
 *.pyc
 *.pyo
 *.backup
+
+# Backup / temporary files
+*.bak
+*.broken
+*.before_*
+*.after_*
