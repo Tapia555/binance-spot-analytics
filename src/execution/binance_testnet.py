@@ -210,3 +210,59 @@ class BinanceTestnetClient:
             params["endTime"] = end_time
 
         return await self._request("GET", "/api/v3/klines", params=params)
+
+
+    async def get_ticker_price(self, symbol: str) -> Dict[str, Any]:
+        """Get current price for a symbol."""
+        return await self._request(
+            "GET",
+            "/api/v3/ticker/price",
+            params={"symbol": symbol},
+        )
+
+    async def get_klines(self, symbol: str, interval: str = "1h", limit: int = 5) -> Dict[str, Any]:
+        """Get candlestick data."""
+        return await self._request(
+            "GET",
+            "/api/v3/klines",
+            params={
+                "symbol": symbol,
+                "interval": interval,
+                "limit": limit,
+            },
+        )
+
+
+    async def test_order(
+        self,
+        symbol: str,
+        side: str,
+        order_type: str,
+        quantity: str,
+        price: Optional[str] = None,
+        time_in_force: str = "GTC",
+    ) -> Dict[str, Any]:
+        """Test order creation without sending to matching engine."""
+        params = {
+            "symbol": symbol,
+            "side": side,
+            "type": order_type,
+            "quantity": quantity,
+            "timeInForce": time_in_force,
+        }
+        if price:
+            params["price"] = price
+        
+        return await self._request(
+            "POST",
+            "/api/v3/order/test",
+            params=params,
+            signed=True,
+        )
+
+    async def get_exchange_info(self) -> Dict[str, Any]:
+        """Get exchange info including symbol rules."""
+        return await self._request(
+            "GET",
+            "/api/v3/exchangeInfo",
+        )

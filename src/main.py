@@ -62,6 +62,127 @@ class TradingBot:
         finally:
             await client.close()
 
+    async def get_all_assets(self) -> str:
+        """Get all non-zero balances."""
+        client = BinanceTestnetClient(
+            api_key=settings.binance.api_key,
+            secret_key=settings.binance.api_secret,
+        )
+        try:
+            account = await client.get_account()
+            nonzero = [
+                b for b in account.get("balances", [])
+                if float(b.get("free", 0)) or float(b.get("locked", 0))
+            ]
+            if not nonzero:
+                return "💰 Нет активов с ненулевым балансом"
+            
+            result = f"💰 Активы ({len(nonzero)}):\n"
+            for b in nonzero[:20]:  # Показать первые 20
+                free = float(b.get("free", 0))
+                locked = float(b.get("locked", 0))
+                if free or locked:
+                    result += f"{b['asset']}: {free:.8f} (заблокировано: {locked:.8f})\n"
+            
+            if len(nonzero) > 20:
+                result += f"... и ещё {len(nonzero) - 20} активов"
+            
+            return result.strip()
+        except Exception:
+            logger.exception("Error getting all assets")
+            return "❌ Не удалось получить активы"
+        finally:
+            await client.close()
+
+    async def get_market_info(self) -> str:
+        """Get market data for BTC/USDT."""
+        client = BinanceTestnetClient(
+            api_key=settings.binance.api_key,
+            secret_key=settings.binance.api_secret,
+        )
+        try:
+            symbol = "BTCUSDT"
+            
+            # Цена
+            ticker = await client.get_ticker_price(symbol)
+            price = ticker.get("price", "N/A")
+            
+            # Свечи
+            klines = await client.get_klines(symbol, "1h", 5)
+            candles = ""
+            for k in reversed(klines[:5]):
+                # [open_time, open, high, low, close, volume, ...]
+                close = float(k[4])
+                candles += f"{close:.2f} "
+            
+            # Параметры символа
+            info = await client.get_exchange_info()
+            lot_size = "N/A"
+            price_step = "N/A"
+            for s in info.get("symbols", []):
+                if s.get("symbol") == symbol:
+                    for f in s.get("filters", []):
+                        if f.get("filterType") == "LOT_SIZE":
+                            lot_size = f"{float(f['stepSize']):.8f}"
+                        elif f.get("filterType") == "PRICE_FILTER":
+                            price_step = f"{float(f['tickSize']):.2f}"
+                    break
+            
+            return (
+                f"📊 Рынок {symbol}:\n"
+                f"💵 Цена: {price} USDT\n"
+                f"📈 Последние 5 свечей (1h): {candles.strip()}\n"
+                f"📏 Лот: {lot_size}\n"
+                f"📐 Шаг цены: {price_step}"
+            )
+        except Exception:
+            logger.exception("Error getting market info")
+            return "❌ Не удалось получить рыночные данные"
+        finally:
+            await client.close()
+
+    async def test_order_action(self) -> str:
+        """Create a test order (not sent to matching engine)."""
+        client = BinanceTestnetClient(
+            api_key=settings.binance.api_key,
+            secret_key=settings.binance.api_secret,
+        )
+        try:
+            symbol = "BTCUSDT"
+            
+            # Получить текущую цену
+            ticker = await client.get_ticker_price(symbol)
+            current_price = float(ticker.get("price", 0))
+            
+            # Цена на 1% ниже
+            test_price = current_price * 0.99
+            quantity = "0.001"
+            
+            result = await client.test_order(
+                symbol=symbol,
+                side="BUY",
+                order_type="LIMIT",
+                quantity=quantity,
+                price=f"{test_price:.2f}",
+                time_in_force="GTC",
+            )
+            
+            order_id = result.get("orderId", "N/A")
+            status = result.get("status", "N/A")
+            
+            return (
+                f"🧪 Тест ордера:\n"
+                f"{symbol} BUY {quantity} @ {test_price:.2f}\n"
+                f"Order ID: {order_id}\n"
+                f"Статус: {status}\n"
+                f"✅ Ордер валиден (не отправлен)"
+            )
+        except Exception as e:
+            logger.exception("Error testing order")
+            return f"❌ Ошибка тестового ордера: {e}"
+        finally:
+            await client.close()
+
     async def get_trades(self) -> str:
         """Get recent trades"""
         try:
@@ -120,6 +241,9 @@ class TradingBot:
             on_status=self.get_status,
             on_orders=self.get_orders,
             on_balance=self.get_balance,
+            on_assets=self.get_all_assets,
+            on_market=self.get_market_info,
+            on_test_order=self.test_order_action,
             on_trades=self.get_trades,
             on_settings=self.get_settings,
             on_emergency=self.emergency_stop,
