@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 from decimal import Decimal
 
-from execution.binance_testnet import BinanceTestnetClient
+from src.execution.binance_testnet import BinanceTestnetClient
 
 
 def build_parser() -> argparse.ArgumentParser:

@@ -24,17 +24,15 @@ class StateSynchronizer:
             )
 
     async def sync(self, symbol: str) -> None:
-        account = await self.client.get_account()
+    account = await self.client.get_account()
 
-        self.state.account.apply_snapshot(
-            balances={
-                item["asset"]: item
-                for item in account.get("balances", [])
-            },
-            update_time_ms=account.get("updateTime"),
-        )
+    self.state.account.apply_snapshot(
+        balances={item["asset"]: item for item in account["balances"]},
+        update_time_ms=account.get("updateTime"),
+    )
 
-        open_orders = await self.client.get_open_orders(symbol=symbol)
+    open_orders = await self.client.get_open_orders(symbol=symbol)
 
-        for order in open_orders:
-            self.state.orders.apply_rest_order(order)
+    for order in open_orders:
+        self.state.orders.apply_rest_order(order)
+

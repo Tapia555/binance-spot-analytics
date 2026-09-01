@@ -43,8 +43,24 @@ class TradingBot:
             return "❌ Ошибка"
 
     async def get_balance(self) -> str:
-        """Get account balance"""
-        return "💰 Баланс: загрузка..."
+        """Get account balance from Binance Testnet."""
+        client = BinanceTestnetClient(
+                api_key=settings.binance.api_key,
+                secret_key=settings.binance.api_secret,
+            )
+        try:
+            balance = await client.get_account_balance("USDT")
+            return (
+                f"Свободно: {balance.get('free', '0')} "
+                f"USDT\n"
+                f"Заблокировано: {balance.get('locked', '0')} "
+                f"USDT"
+            )
+        except Exception:
+            logger.exception("Error getting Binance balance")
+            return "❌ Не удалось получить баланс Binance"
+        finally:
+            await client.close()
 
     async def get_trades(self) -> str:
         """Get recent trades"""

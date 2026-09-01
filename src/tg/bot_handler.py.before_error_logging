@@ -87,24 +87,17 @@ class TelegramBotHandler:
         elif text == "🔄 Перезапуск":
             await update.message.reply_text("🔄 Перезапуск...", reply_markup=self.keyboard)
 
-    async def _error_handler(self, update, context) -> None:
-        logger.exception(
-            "Unhandled Telegram handler error",
-            exc_info=context.error,
-        )
-
     async def run(self) -> None:
         self._app = Application.builder().token(self.bot_token).build()
         self._app.add_handler(CommandHandler("start", self._start_command))
         self._app.add_handler(MessageHandler(filters.ALL, self._handle_button))
-        self._app.add_error_handler(self._error_handler)
-
+        
         logger.info("Telegram bot started")
-
+        
         await self._app.initialize()
         await self._app.start()
         await self._app.updater.start_polling()
-
+        
         try:
             while True:
                 await asyncio.sleep(1)

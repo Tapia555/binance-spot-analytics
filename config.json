@@ -1,0 +1,7 @@
+{
+  "binance": {
+    "api_key": "pPwYOkfZjAoCEWfTX4OCy8b5mGHzrx8Z7S44264ct9tb9JFPzzZaAS25MbpgZmeH",
+    "api_secret": "Rsi8CAhsChIEQdnof66QsAwVtZ1hM4J0afU4XcZla8j1IHJstBC6NAXdQls3GZm9",
+    "testnet": true
+  }
+}

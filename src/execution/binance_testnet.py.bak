@@ -4,7 +4,6 @@ import asyncio
 import hashlib
 import hmac
 import logging
-import os
 import time
 from typing import Any, Dict, List, Optional
 from urllib.parse import urlencode
@@ -37,13 +36,8 @@ class BinanceTestnetClient:
         retry_delay: float = 1.0,
     ) -> None:
         self.base_url = base_url
-        self.api_key = api_key or os.getenv("BINANCE_API_KEY")
-        self.secret_key = secret_key or os.getenv("BINANCE_API_SECRET")
-
-        if not self.api_key or not self.secret_key:
-            raise RuntimeError(
-                "BINANCE_API_KEY and BINANCE_API_SECRET are required"
-            )
+        self.api_key = api_key
+        self.secret_key = secret_key
         self.timeout = ClientTimeout(total=timeout)
         self.max_retries = max_retries
         self.retry_delay = retry_delay
@@ -123,29 +117,8 @@ class BinanceTestnetClient:
 
         raise BinanceAPIError(-1, "Max retries exceeded")
 
-    async def get_account(self) -> Dict[str, Any]:
-        return await self._request(
-            "GET",
-            "/api/v3/account",
-            signed=True,
-        )
-
     async def get_account_balance(self, asset: str = "USDT") -> Dict[str, Any]:
-        account = await self._request(
-            "GET",
-            "/api/v3/account",
-            signed=True,
-        )
-
-        for balance in account.get("balances", []):
-            if balance.get("asset") == asset:
-                return balance
-
-        return {
-            "asset": asset,
-            "free": "0",
-            "locked": "0",
-        }
+        return await self._request("GET", "/api/v3/account")
 
     async def get_symbol_rules(self, symbol: str) -> Dict[str, Any]:
         data = await self._request("GET", "/api/v3/exchangeInfo")
